@@ -1,0 +1,956 @@
+[
+  {
+    "id": "cat-01",
+    "name": "Casual War",
+    "image": "https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=800&q=80",
+    "subcategories": [
+      {
+        "id": "sub-01",
+        "name": "Jeans Pant",
+        "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-01",
+            "title": "Slim Fit Blue Jeans",
+            "material": "98% Cotton, 2% Elastane",
+            "price": 1990,
+            "size": ["28", "30", "32", "34", "36"],
+            "color": "Blue",
+            "image": "https://images.unsplash.com/photo-1495121605193-b116b5b09a9f?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-02",
+            "title": "Regular Fit Black Jeans",
+            "material": "99% Cotton, 1% Spandex",
+            "price": 1890,
+            "size": ["28", "30", "32", "34", "36"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-03",
+            "title": "Ripped Denim Jeans",
+            "material": "100% Cotton",
+            "price": 2190,
+            "size": ["30", "32", "34"],
+            "color": "Light Blue",
+            "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-04",
+            "title": "Stretch Skinny Jeans",
+            "material": "97% Cotton, 3% Elastane",
+            "price": 2090,
+            "size": ["28", "30", "32", "34"],
+            "color": "Dark Blue",
+            "image": "https://images.unsplash.com/photo-1542068829-1115f7259450?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-02",
+        "name": "Casual T-Shirt",
+        "image": "https://images.unsplash.com/photo-1520975913453-df14f5cdb7c6?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-05",
+            "title": "Striped Cotton Tee",
+            "material": "100% Cotton",
+            "price": 750,
+            "size": ["M", "L", "XL"],
+            "color": "Navy White",
+            "image": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-06",
+            "title": "Plain Round Neck Tee",
+            "material": "100% Cotton",
+            "price": 690,
+            "size": ["S", "M", "L"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1521335629791-ce4aec67dd51?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-07",
+            "title": "Graphic Print Tee",
+            "material": "Cotton Blend",
+            "price": 850,
+            "size": ["M", "L", "XL"],
+            "color": "Grey",
+            "image": "https://images.unsplash.com/photo-1530845640724-497d93f0de53?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-08",
+            "title": "V-Neck Cotton Tee",
+            "material": "100% Cotton",
+            "price": 770,
+            "size": ["S", "M", "L", "XL"],
+            "color": "White",
+            "image": "https://images.unsplash.com/photo-1520976220434-681f70c95c25?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-03",
+        "name": "Casual Shirt",
+        "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-09",
+            "title": "Checked Casual Shirt",
+            "material": "Cotton Blend",
+            "price": 1150,
+            "size": ["M", "L", "XL"],
+            "color": "Red Check",
+            "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-10",
+            "title": "Denim Casual Shirt",
+            "material": "100% Cotton",
+            "price": 1250,
+            "size": ["M", "L"],
+            "color": "Blue",
+            "image": "https://images.unsplash.com/photo-1495121605193-b116b5b09a9f?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-11",
+            "title": "Striped Casual Shirt",
+            "material": "Cotton Blend",
+            "price": 1200,
+            "size": ["M", "L", "XL"],
+            "color": "White Striped",
+            "image": "https://images.unsplash.com/photo-1503341777924-cf234b7d6e1a?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-12",
+            "title": "Linen Casual Shirt",
+            "material": "Linen Cotton",
+            "price": 1400,
+            "size": ["M", "L"],
+            "color": "Beige",
+            "image": "https://images.unsplash.com/photo-1520975654035-11c9cddb7f96?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cat-02",
+    "name": "Formal War",
+    "image": "https://images.unsplash.com/photo-1520976220434-681f70c95c25?auto=format&fit=crop&w=800&q=80",
+    "subcategories": [
+      {
+        "id": "sub-04",
+        "name": "Formal Shirt",
+        "image": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-13",
+            "title": "White Office Shirt",
+            "material": "Cotton Blend",
+            "price": 1290,
+            "size": ["M", "L", "XL"],
+            "color": "White",
+            "image": "https://images.unsplash.com/photo-1520975913453-df14f5cdb7c6?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-14",
+            "title": "Blue Formal Shirt",
+            "material": "Cotton Blend",
+            "price": 1390,
+            "size": ["M", "L", "XL"],
+            "color": "Light Blue",
+            "image": "https://images.unsplash.com/photo-1520975654035-11c9cddb7f96?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-15",
+            "title": "Slim Fit Formal Shirt",
+            "material": "Polyester Cotton",
+            "price": 1490,
+            "size": ["M", "L", "XL"],
+            "color": "Grey",
+            "image": "https://images.unsplash.com/photo-1520975402691-4f8b67968b5a?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-16",
+            "title": "Classic Black Shirt",
+            "material": "Cotton Blend",
+            "price": 1590,
+            "size": ["M", "L", "XL"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975404321-6f238caf11c9?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-05",
+        "name": "Formal Pant",
+        "image": "https://images.unsplash.com/photo-1503341777924-cf234b7d6e1a?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-17",
+            "title": "Charcoal Grey Trouser",
+            "material": "Polyester Viscose",
+            "price": 1690,
+            "size": ["30", "32", "34", "36"],
+            "color": "Charcoal Grey",
+            "image": "https://images.unsplash.com/photo-1520975554845-c4f43a6798b9?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-18",
+            "title": "Black Formal Trousers",
+            "material": "Polyester Blend",
+            "price": 1790,
+            "size": ["30", "32", "34", "36"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-19",
+            "title": "Navy Blue Trousers",
+            "material": "Cotton Blend",
+            "price": 1590,
+            "size": ["30", "32", "34", "36"],
+            "color": "Navy Blue",
+            "image": "https://images.unsplash.com/photo-1520975540417-c4bd3a4f8f17?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-20",
+            "title": "Slim Fit Khaki Pants",
+            "material": "Cotton Blend",
+            "price": 1690,
+            "size": ["30", "32", "34", "36"],
+            "color": "Khaki",
+            "image": "https://images.unsplash.com/photo-1520975765550-2c24cf147adf?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-06",
+        "name": "Formal Blazer",
+        "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-21",
+            "title": "Black Formal Blazer",
+            "material": "Wool Blend",
+            "price": 3990,
+            "size": ["M", "L", "XL"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975793478-d8bb4b3e7de3?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-22",
+            "title": "Navy Blue Blazer",
+            "material": "Wool Blend",
+            "price": 4290,
+            "size": ["M", "L", "XL"],
+            "color": "Navy Blue",
+            "image": "https://images.unsplash.com/photo-1520975997111-7c0b49bbdd62?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-23",
+            "title": "Grey Formal Blazer",
+            "material": "Polyester Wool",
+            "price": 3890,
+            "size": ["M", "L", "XL"],
+            "color": "Grey",
+            "image": "https://images.unsplash.com/photo-1520975740117-9f48568bbdda?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-24",
+            "title": "Checked Blazer",
+            "material": "Cotton Blend",
+            "price": 4190,
+            "size": ["M", "L", "XL"],
+            "color": "Checked",
+            "image": "https://images.unsplash.com/photo-1520975919135-1f47a3f5e54a?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cat-03",
+    "name": "Outer War",
+    "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80",
+    "subcategories": [
+      {
+        "id": "sub-07",
+        "name": "Hoodie",
+        "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-25",
+            "title": "Zipper Hoodie",
+            "material": "Fleece",
+            "price": 2100,
+            "size": ["M", "L", "XL"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975448896-c9b7e92339d6?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-26",
+            "title": "Pullover Hoodie",
+            "material": "Cotton Polyester",
+            "price": 2200,
+            "size": ["M", "L", "XL"],
+            "color": "Grey",
+            "image": "https://images.unsplash.com/photo-1520975461985-291a42e50d3c?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-27",
+            "title": "Graphic Hoodie",
+            "material": "Cotton Blend",
+            "price": 2300,
+            "size": ["M", "L", "XL"],
+            "color": "Blue",
+            "image": "https://images.unsplash.com/photo-1520975448570-96080bb967ae?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-28",
+            "title": "Fleece Hoodie",
+            "material": "Fleece",
+            "price": 2400,
+            "size": ["M", "L", "XL"],
+            "color": "Red",
+            "image": "https://images.unsplash.com/photo-1520975404347-6ac9bf0278f7?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-08",
+        "name": "Jacket",
+        "image": "https://images.unsplash.com/photo-1520975793478-d8bb4b3e7de3?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-29",
+            "title": "Windbreaker Jacket",
+            "material": "Polyester",
+            "price": 2790,
+            "size": ["M", "L", "XL"],
+            "color": "Olive",
+            "image": "https://images.unsplash.com/photo-1520975404321-6f238caf11c9?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-30",
+            "title": "Leather Jacket",
+            "material": "Leather",
+            "price": 3590,
+            "size": ["M", "L", "XL"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-31",
+            "title": "Denim Jacket",
+            "material": "Cotton",
+            "price": 2690,
+            "size": ["M", "L", "XL"],
+            "color": "Blue",
+            "image": "https://images.unsplash.com/photo-1520975554845-c4f43a6798b9?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-32",
+            "title": "Puffer Jacket",
+            "material": "Polyester",
+            "price": 2990,
+            "size": ["M", "L", "XL"],
+            "color": "Navy",
+            "image": "https://images.unsplash.com/photo-1520975765550-2c24cf147adf?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-09",
+        "name": "Coat",
+        "image": "https://images.unsplash.com/photo-1503341777924-cf234b7d6e1a?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-33",
+            "title": "Wool Coat",
+            "material": "Wool Blend",
+            "price": 3990,
+            "size": ["M", "L", "XL"],
+            "color": "Camel",
+            "image": "https://images.unsplash.com/photo-1520975540417-c4bd3a4f8f17?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-34",
+            "title": "Trench Coat",
+            "material": "Cotton Blend",
+            "price": 4290,
+            "size": ["M", "L", "XL"],
+            "color": "Beige",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-35",
+            "title": "Double Breasted Coat",
+            "material": "Wool Blend",
+            "price": 4590,
+            "size": ["M", "L", "XL"],
+            "color": "Grey",
+            "image": "https://images.unsplash.com/photo-1520975997111-7c0b49bbdd62?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-36",
+            "title": "Casual Coat",
+            "material": "Cotton Blend",
+            "price": 3990,
+            "size": ["M", "L", "XL"],
+            "color": "Navy Blue",
+            "image": "https://images.unsplash.com/photo-1520975740117-9f48568bbdda?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cat-04",
+    "name": "Active War",
+    "image": "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80",
+    "subcategories": [
+      {
+        "id": "sub-10",
+        "name": "Gym T-Shirt",
+        "image": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-37",
+            "title": "Dry Fit Tee",
+            "material": "Polyester",
+            "price": 890,
+            "size": ["M", "L", "XL"],
+            "color": "Grey",
+            "image": "https://images.unsplash.com/photo-1520975448896-c9b7e92339d6?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-38",
+            "title": "Sleeveless Gym Tee",
+            "material": "Cotton Blend",
+            "price": 950,
+            "size": ["M", "L"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975461985-291a42e50d3c?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-39",
+            "title": "Breathable Mesh Tee",
+            "material": "Polyester",
+            "price": 980,
+            "size": ["M", "L", "XL"],
+            "color": "White",
+            "image": "https://images.unsplash.com/photo-1520975448570-96080bb967ae?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-40",
+            "title": "Reflective Gym Tee",
+            "material": "Polyester",
+            "price": 920,
+            "size": ["M", "L", "XL"],
+            "color": "Neon Green",
+            "image": "https://images.unsplash.com/photo-1520975404347-6ac9bf0278f7?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-11",
+        "name": "Track Pant",
+        "image": "https://images.unsplash.com/photo-1520975997111-7c0b49bbdd62?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-41",
+            "title": "Slim Fit Joggers",
+            "material": "Cotton Spandex",
+            "price": 1190,
+            "size": ["M", "L", "XL"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975554845-c4f43a6798b9?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-42",
+            "title": "Loose Fit Track Pants",
+            "material": "Polyester",
+            "price": 1290,
+            "size": ["M", "L"],
+            "color": "Grey",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-43",
+            "title": "Zip Pocket Track Pants",
+            "material": "Polyester Cotton",
+            "price": 1390,
+            "size": ["M", "L", "XL"],
+            "color": "Navy Blue",
+            "image": "https://images.unsplash.com/photo-1520975540417-c4bd3a4f8f17?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-44",
+            "title": "Elastic Waist Joggers",
+            "material": "Cotton Blend",
+            "price": 1190,
+            "size": ["M", "L", "XL"],
+            "color": "Dark Grey",
+            "image": "https://images.unsplash.com/photo-1520975765550-2c24cf147adf?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-12",
+        "name": "Sports Jacket",
+        "image": "https://images.unsplash.com/photo-1520975740117-9f48568bbdda?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-45",
+            "title": "Lightweight Sports Jacket",
+            "material": "Polyester",
+            "price": 2490,
+            "size": ["M", "L", "XL"],
+            "color": "Blue",
+            "image": "https://images.unsplash.com/photo-1520975919135-1f47a3f5e54a?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-46",
+            "title": "Waterproof Sports Jacket",
+            "material": "Nylon",
+            "price": 2990,
+            "size": ["M", "L", "XL"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975997111-7c0b49bbdd62?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-47",
+            "title": "Windproof Jacket",
+            "material": "Polyester",
+            "price": 2790,
+            "size": ["M", "L", "XL"],
+            "color": "Red",
+            "image": "https://images.unsplash.com/photo-1520975740117-9f48568bbdda?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-48",
+            "title": "Reflective Sports Jacket",
+            "material": "Polyester",
+            "price": 2690,
+            "size": ["M", "L", "XL"],
+            "color": "Neon Yellow",
+            "image": "https://images.unsplash.com/photo-1520975448570-96080bb967ae?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cat-05",
+    "name": "Home War",
+    "image": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
+    "subcategories": [
+      {
+        "id": "sub-13",
+        "name": "Pajamas",
+        "image": "https://images.unsplash.com/photo-1520975448896-c9b7e92339d6?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-49",
+            "title": "Cotton Sleep Pants",
+            "material": "100% Cotton",
+            "price": 890,
+            "size": ["M", "L", "XL"],
+            "color": "Checkered",
+            "image": "https://images.unsplash.com/photo-1520975448896-c9b7e92339d6?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-50",
+            "title": "Flannel Pajama Pants",
+            "material": "Flannel Cotton",
+            "price": 950,
+            "size": ["M", "L", "XL"],
+            "color": "Red Plaid",
+            "image": "https://images.unsplash.com/photo-1520975461985-291a42e50d3c?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-51",
+            "title": "Silk Pajama Set",
+            "material": "Silk",
+            "price": 1290,
+            "size": ["M", "L"],
+            "color": "Light Blue",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-52",
+            "title": "Warm Cotton Pajamas",
+            "material": "Cotton",
+            "price": 990,
+            "size": ["M", "L", "XL"],
+            "color": "Grey",
+            "image": "https://images.unsplash.com/photo-1520975540417-c4bd3a4f8f17?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-14",
+        "name": "Robe",
+        "image": "https://images.unsplash.com/photo-1520975740117-9f48568bbdda?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-53",
+            "title": "Bath Robe",
+            "material": "Terry Cotton",
+            "price": 1390,
+            "size": ["Free"],
+            "color": "White",
+            "image": "https://images.unsplash.com/photo-1520975740117-9f48568bbdda?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-54",
+            "title": "Silk Robe",
+            "material": "Silk Blend",
+            "price": 1790,
+            "size": ["M", "L"],
+            "color": "Red",
+            "image": "https://images.unsplash.com/photo-1520975997111-7c0b49bbdd62?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-55",
+            "title": "Fleece Robe",
+            "material": "Fleece",
+            "price": 1290,
+            "size": ["M", "L", "XL"],
+            "color": "Grey",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-56",
+            "title": "Cotton Robe",
+            "material": "100% Cotton",
+            "price": 1190,
+            "size": ["M", "L", "XL"],
+            "color": "Blue",
+            "image": "https://images.unsplash.com/photo-1520975554845-c4f43a6798b9?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-15",
+        "name": "Slippers",
+        "image": "https://images.unsplash.com/photo-1520975402691-4f8b67968b5a?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-57",
+            "title": "Cotton Slippers",
+            "material": "Cotton",
+            "price": 390,
+            "size": ["S", "M", "L"],
+            "color": "Brown",
+            "image": "https://images.unsplash.com/photo-1520975402691-4f8b67968b5a?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-58",
+            "title": "Rubber Slippers",
+            "material": "Rubber",
+            "price": 290,
+            "size": ["S", "M", "L"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975913453-df14f5cdb7c6?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-59",
+            "title": "Leather Slippers",
+            "material": "Leather",
+            "price": 490,
+            "size": ["M", "L", "XL"],
+            "color": "Tan",
+            "image": "https://images.unsplash.com/photo-1520975461985-291a42e50d3c?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-60",
+            "title": "Fleece Slippers",
+            "material": "Fleece",
+            "price": 590,
+            "size": ["M", "L"],
+            "color": "Grey",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cat-06",
+    "name": "Ceremonial",
+    "image": "https://images.unsplash.com/photo-1503341777924-cf234b7d6e1a?auto=format&fit=crop&w=800&q=80",
+    "subcategories": [
+      {
+        "id": "sub-16",
+        "name": "Sherwani",
+        "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-61",
+            "title": "Traditional Sherwani",
+            "material": "Silk Blend",
+            "price": 4990,
+            "size": ["L", "XL"],
+            "color": "Maroon Gold",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-62",
+            "title": "Embroidered Sherwani",
+            "material": "Silk Blend",
+            "price": 5290,
+            "size": ["L", "XL"],
+            "color": "Cream",
+            "image": "https://images.unsplash.com/photo-1520975997111-7c0b49bbdd62?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-63",
+            "title": "Velvet Sherwani",
+            "material": "Velvet",
+            "price": 5790,
+            "size": ["L", "XL"],
+            "color": "Royal Blue",
+            "image": "https://images.unsplash.com/photo-1520975740117-9f48568bbdda?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-64",
+            "title": "Silk Sherwani",
+            "material": "Silk",
+            "price": 4990,
+            "size": ["L", "XL"],
+            "color": "Gold",
+            "image": "https://images.unsplash.com/photo-1520975919135-1f47a3f5e54a?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-17",
+        "name": "Kurta Set",
+        "image": "https://images.unsplash.com/photo-1520975404321-6f238caf11c9?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-65",
+            "title": "Cotton Kurta Set",
+            "material": "Cotton",
+            "price": 2990,
+            "size": ["M", "L", "XL"],
+            "color": "White",
+            "image": "https://images.unsplash.com/photo-1520975540417-c4bd3a4f8f17?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-66",
+            "title": "Embroidered Kurta Set",
+            "material": "Silk Blend",
+            "price": 3390,
+            "size": ["M", "L", "XL"],
+            "color": "Beige",
+            "image": "https://images.unsplash.com/photo-1520975765550-2c24cf147adf?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-67",
+            "title": "Silk Kurta Set",
+            "material": "Silk",
+            "price": 3690,
+            "size": ["M", "L", "XL"],
+            "color": "Blue",
+            "image": "https://images.unsplash.com/photo-1520975793478-d8bb4b3e7de3?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-68",
+            "title": "Velvet Kurta Set",
+            "material": "Velvet",
+            "price": 3890,
+            "size": ["M", "L", "XL"],
+            "color": "Maroon",
+            "image": "https://images.unsplash.com/photo-1520975402691-4f8b67968b5a?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-18",
+        "name": "Dress Shoes",
+        "image": "https://images.unsplash.com/photo-1520975913453-df14f5cdb7c6?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-69",
+            "title": "Leather Oxford Shoes",
+            "material": "Leather",
+            "price": 3990,
+            "size": ["7", "8", "9", "10"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975402691-4f8b67968b5a?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-70",
+            "title": "Brown Derby Shoes",
+            "material": "Leather",
+            "price": 4190,
+            "size": ["7", "8", "9", "10"],
+            "color": "Brown",
+            "image": "https://images.unsplash.com/photo-1520975913453-df14f5cdb7c6?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-71",
+            "title": "Black Monk Strap Shoes",
+            "material": "Leather",
+            "price": 4390,
+            "size": ["7", "8", "9", "10"],
+            "color": "Black",
+            "image": "https://images.unsplash.com/photo-1520975997111-7c0b49bbdd62?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-72",
+            "title": "Tan Loafers",
+            "material": "Leather",
+            "price": 3890,
+            "size": ["7", "8", "9", "10"],
+            "color": "Tan",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cat-07",
+    "name": "Kid's Also",
+    "image": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80",
+    "subcategories": [
+      {
+        "id": "sub-19",
+        "name": "Kid's T-Shirt",
+        "image": "https://images.unsplash.com/photo-1520975913453-df14f5cdb7c6?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-73",
+            "title": "Cotton Printed Tee",
+            "material": "100% Cotton",
+            "price": 650,
+            "size": ["XS", "S", "M"],
+            "color": "Yellow",
+            "image": "https://images.unsplash.com/photo-1520975913453-df14f5cdb7c6?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-74",
+            "title": "Striped Kid's Tee",
+            "material": "100% Cotton",
+            "price": 670,
+            "size": ["XS", "S", "M"],
+            "color": "Blue White",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-75",
+            "title": "Graphic Kid's Tee",
+            "material": "Cotton Blend",
+            "price": 720,
+            "size": ["XS", "S", "M"],
+            "color": "Pink",
+            "image": "https://images.unsplash.com/photo-1520975997111-7c0b49bbdd62?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-76",
+            "title": "Plain Kid's Tee",
+            "material": "100% Cotton",
+            "price": 690,
+            "size": ["XS", "S", "M"],
+            "color": "White",
+            "image": "https://images.unsplash.com/photo-1520975402691-4f8b67968b5a?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-20",
+        "name": "Kid's Shorts",
+        "image": "https://images.unsplash.com/photo-1520975554845-c4f43a6798b9?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-77",
+            "title": "Cotton Kid's Shorts",
+            "material": "100% Cotton",
+            "price": 890,
+            "size": ["XS", "S", "M"],
+            "color": "Blue",
+            "image": "https://images.unsplash.com/photo-1520975554845-c4f43a6798b9?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-78",
+            "title": "Striped Kid's Shorts",
+            "material": "Cotton Blend",
+            "price": 920,
+            "size": ["XS", "S"],
+            "color": "Red White",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-79",
+            "title": "Denim Kid's Shorts",
+            "material": "100% Cotton",
+            "price": 950,
+            "size": ["XS", "S", "M"],
+            "color": "Light Blue",
+            "image": "https://images.unsplash.com/photo-1520975997111-7c0b49bbdd62?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-80",
+            "title": "Plain Kid's Shorts",
+            "material": "Cotton Blend",
+            "price": 890,
+            "size": ["XS", "S", "M"],
+            "color": "Beige",
+            "image": "https://images.unsplash.com/photo-1520975402691-4f8b67968b5a?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      },
+      {
+        "id": "sub-21",
+        "name": "Kid's Shoes",
+        "image": "https://images.unsplash.com/photo-1520975404321-6f238caf11c9?auto=format&fit=crop&w=800&q=80",
+        "products": [
+          {
+            "id": "prod-81",
+            "title": "Velcro Kid's Sneakers",
+            "material": "Synthetic",
+            "price": 1590,
+            "size": ["10", "11", "12"],
+            "color": "Red",
+            "image": "https://images.unsplash.com/photo-1520975404321-6f238caf11c9?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-82",
+            "title": "Slip-On Kid's Shoes",
+            "material": "Synthetic",
+            "price": 1490,
+            "size": ["10", "11", "12"],
+            "color": "Blue",
+            "image": "https://images.unsplash.com/photo-1520975740117-9f48568bbdda?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-83",
+            "title": "Lightweight Kid's Shoes",
+            "material": "Mesh",
+            "price": 1690,
+            "size": ["10", "11", "12"],
+            "color": "White",
+            "image": "https://images.unsplash.com/photo-1520975997111-7c0b49bbdd62?auto=format&fit=crop&w=400&q=80"
+          },
+          {
+            "id": "prod-84",
+            "title": "Running Kid's Shoes",
+            "material": "Synthetic",
+            "price": 1790,
+            "size": ["10", "11", "12"],
+            "color": "Green",
+            "image": "https://images.unsplash.com/photo-1520975347774-6c9234c7842b?auto=format&fit=crop&w=400&q=80"
+          }
+        ]
+      }
+    ]
+  }
+]
+
+

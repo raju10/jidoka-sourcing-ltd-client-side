@@ -1,0 +1,26 @@
+// section {
+//   width: 100%;
+//   // height: 100%;
+//   min-height: 100vh;
+//   border: 2px solid blue;
+
+//   box-sizing: border-box;
+//   //
+//   scroll-snap-align: center;
+// }
+section {
+  width: 100%;
+  box-sizing: border-box;
+  scroll-snap-align: center;
+  // border: 2px solid blue; /* just for debugging */
+}
+
+/* exactly 1 screen tall (for hero, static sections) */
+.section-full {
+  height: 100vh;
+}
+
+/* at least 1 screen tall, grows with content */
+.section-auto {
+  min-height: 100vh;
+}

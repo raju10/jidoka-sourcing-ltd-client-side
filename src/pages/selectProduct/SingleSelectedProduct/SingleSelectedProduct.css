@@ -1,0 +1,36 @@
+.sPImg {
+  /* width: 100%;
+  height: 100%;
+  border: 1px solid black; */
+
+  /* box-sizing: border-box; */
+  /* object-fit: cover; */
+  /* display: flex;
+  justify-content: end; */
+}
+.sPImg img {
+  /* max-width: 100%;
+  height: 600px;
+  object-fit: cover; */
+}
+.sProductCotain h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+.sProductCotain p {
+  color: #666;
+}
+.incress-Decress-contain {
+  /* border: 1px solid gray;
+  padding: 6px 20px; */
+}
+.more-info {
+  border-top: 1px solid rgba(173, 172, 172, 0.96);
+  border-bottom: 1px solid rgba(173, 172, 172, 0.96);
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 18px;
+}

@@ -1,0 +1,54 @@
+.products {
+  // position: relative;
+  // width: 100%;
+  // min-height: 100vh; // ensures full screen height
+  .ourAllProdects {
+    background-image: url("../../../assets/mobile-discover-bg.jpg");
+    background-size: cover;
+    height: 100%;
+    background-position: left;
+    background-repeat: no-repeat;
+    width: 100%;
+    max-width: 1600px;
+    margin: auto;
+
+    padding: 60px;
+    padding-top: 0px;
+
+    .prodectSectionTittle {
+      text-align: center;
+
+      // position: absolute;
+      // top: 43px;
+      padding-top: 40px;
+
+      h1 {
+        color: #241843;
+
+        text-align: center;
+        width: 50%;
+        margin: auto;
+      }
+      p {
+        width: 50%;
+        margin: auto;
+        color: #5c5c5c;
+        text-align: center;
+      }
+    }
+    ////////////////////
+    .mySwiper {
+      margin-top: 60px;
+
+      // .another {
+      //   .img {
+      //     background: linear-gradient(
+      //       rgba(206, 57, 57, 0.02) 55.87%,
+      //       rgb(18, 16, 13) 100%
+      //     ) !important;
+      //   }
+      // }
+    }
+    ///
+  }
+}
