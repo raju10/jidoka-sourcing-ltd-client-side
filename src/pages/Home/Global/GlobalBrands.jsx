@@ -15,7 +15,7 @@ import img14 from "../../../assets/global-brands/14.svg";
 
 const GlobalBrands = () => {
   return (
-    <div className="w-full max-w-[1600px] m-auto px-3 py-10 ">
+    <div className="w-full max-w-[1600px] m-auto px-6  ">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         <p className="col-span-4">
           ClientsWe Serve The trusted choice of global brands
@@ -27,7 +27,7 @@ const GlobalBrands = () => {
           garments that stand out.
         </h2>{" "}
       </div>
-      <div className="grid sm:grid-cols-5 lg:grid-cols-7 grid-cols-3 gap-3 mt-30">
+      <div className="grid sm:grid-cols-5 lg:grid-cols-7 grid-cols-3 gap-3 md:mt-30 mt-20">
         <img
           src={img1}
           alt=""

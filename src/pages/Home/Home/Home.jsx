@@ -32,6 +32,8 @@ import "./Home.scss";
 import adsBanner from "../../../assets/advertising-banner.png";
 import { Helmet } from "react-helmet-async";
 import ContactSection from "../../ContactSection/ContactSection";
+import WhoWeAreSection from "../../AboutUs/WhoWeAreSection";
+import OurHistory from "../../AboutUs/OurHistory";
 const Home = () => {
   return (
     <div className="">
@@ -44,24 +46,32 @@ const Home = () => {
           <Banner />
         </section>
 
+        {/* Who we are section*/}
+        <section className="">
+          <WhoWeAreSection></WhoWeAreSection>
+        </section>
         {/* Categories: grows if content is bigger */}
         <section className="section-auto">
           <Categories />
         </section>
 
         {/* Fabrics: exactly full screen */}
-        <section className="section-full">
+        {/* <section className="section-full">
           <OurPremiumFabrics />
-        </section>
+        </section> */}
+        {/* our history section */}
         <section className="">
+          <OurHistory></OurHistory>
+        </section>
+        <section className="py-20">
           <img
             src={adsBanner}
             alt=""
-            className="w-full h-[400px] object-cover"
+            className="w-full h-[400px] object-cover "
           />
         </section>
         {/* GlobalBrands: exactly full screen */}
-        <section className=" bg-[#fafafa] pt-20 pb-40">
+        <section className="  md:py-20 pb-30">
           <GlobalBrands></GlobalBrands>
         </section>
 

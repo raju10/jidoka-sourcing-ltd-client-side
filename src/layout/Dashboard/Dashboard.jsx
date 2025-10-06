@@ -37,7 +37,7 @@ const Dashboard = () => {
       <SideNav></SideNav>
 
       {/* </div> */}
-      <div className="ml-50 flex-1 min-h-screen p-5 bg-gray-100 overflow-y-auto">
+      <div className="lg:ml-60 pt-20 lg:pt-5 flex-1 min-h-screen p-5 bg-gray-100 overflow-y-auto">
         <Outlet></Outlet>
       </div>
     </div>

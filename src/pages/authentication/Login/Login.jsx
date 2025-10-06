@@ -1,7 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import logo from "../../../assets/logo/logo1.png";
 import "./Login.css";
 import { useForm } from "react-hook-form";
-import bgImg from "../../../assets/Authintecate-img/image.png";
+import bgImg from "../../../assets/Authintecate-img/authintication bg img.jpg";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -77,23 +78,22 @@ const Login = () => {
   };
   return (
     <div
-      className="min-h-screen flex items-center justify-center  px-4 bg-none"
+      className="min-h-screen flex items-center justify-center  px-4 bg-none text-white"
       style={{
-        backgroundImage: `url(${bgImg})`,
+        backgroundImage: ` linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),  url(${bgImg})`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
-      <div className="w-full max-w-2xl  p-8 rounded-xl border hover:border-blue-400 hover:border-s-5 hover:border-2 hover:shadow-2xl">
+      <div className="w-full max-w-2xl  p-8 rounded-xl border ">
+        <img src={logo} alt="" className="w-15 object-cover" />
         <form onSubmit={handleSubmit(onSubmit)} className="">
-          <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-            Please Login
-          </h2>
+          <h2 className="text-2xl font-bold mb-6 text-center ">Please Login</h2>
 
           {/* Email Field */}
           <div className="mb-6">
-            <label className="block mb-1 text-gray-700">Email</label>
+            <label className="block mb-1 ">Email</label>
             <input
               type="email"
               {...register("email", { required: "Email is required" })}
@@ -109,7 +109,7 @@ const Login = () => {
 
           {/* Password Field */}
           <div className="mb-6">
-            <label className="block mb-1 text-gray-700">Password</label>
+            <label className="block mb-1 ">Password</label>
             <input
               type="password"
               {...register("password", {
@@ -154,6 +154,7 @@ const Login = () => {
           <input
             type="submit"
             value="Login"
+            disabled
             //  disabled={disabled}
             className="w-full btn bg-blue-500 mt-4 text-white hover:bg-blue-600 font-semibold"
           />

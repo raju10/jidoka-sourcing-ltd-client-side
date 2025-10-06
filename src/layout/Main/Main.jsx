@@ -9,9 +9,15 @@ const Main = () => {
   return (
     <div>
       {noHeaderFooter || <Navbar></Navbar>}
-      <div className=" py-20">
-        <Outlet></Outlet>
-      </div>
+      {location.pathname === "/" ? (
+        <div className=" pt-20">
+          <Outlet></Outlet>
+        </div>
+      ) : (
+        <div className=" ">
+          <Outlet></Outlet>
+        </div>
+      )}
       {noHeaderFooter || <Footer></Footer>}
     </div>
   );

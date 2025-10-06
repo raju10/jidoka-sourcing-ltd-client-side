@@ -9,11 +9,12 @@
     background-position: left;
     background-repeat: no-repeat;
     width: 100%;
-    max-width: 1600px;
-    margin: auto;
+    // max-width: 1600px;
+    // margin: auto;
 
-    padding: 60px;
-    padding-top: 0px;
+    padding: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 
     .prodectSectionTittle {
       text-align: center;
@@ -26,29 +27,28 @@
         color: #241843;
 
         text-align: center;
-        width: 50%;
+
         margin: auto;
       }
       p {
-        width: 50%;
         margin: auto;
         color: #5c5c5c;
         text-align: center;
       }
     }
     ////////////////////
-    .mySwiper {
-      margin-top: 60px;
+    // .mySwiper {
+    //   margin-top: 60px;
 
-      // .another {
-      //   .img {
-      //     background: linear-gradient(
-      //       rgba(206, 57, 57, 0.02) 55.87%,
-      //       rgb(18, 16, 13) 100%
-      //     ) !important;
-      //   }
-      // }
-    }
+    //   // .another {
+    //   //   .img {
+    //   //     background: linear-gradient(
+    //   //       rgba(206, 57, 57, 0.02) 55.87%,
+    //   //       rgb(18, 16, 13) 100%
+    //   //     ) !important;
+    //   //   }
+    //   // }
+    // }
     ///
   }
 }

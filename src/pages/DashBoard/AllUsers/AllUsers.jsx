@@ -21,24 +21,59 @@ const AllUsers = () => {
   });
   // handle make admin
   const handleMakeAdmin = (user) => {
-    axiosSecure
-      .patch(`/users/admin/${user._id}`)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.modifiedCount > 0) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${user.name} is an admain now`,
-            showConfirmButton: false,
-            timer: 1500,
+    ////////////////////
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        html: `You won't to add this email : 
+       <b> ${user.email}</b>
+        for a new admin !`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Admin!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
+            console.log(res.data);
+            if (res?.data?.modifiedCount > 0) {
+              refetch();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                html: `<b>${user.email}</b> is an admain now`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your imaginary file is safe :)",
+            icon: "error",
           });
         }
-      })
-      .catch((err) => {
-        console.error(err);
       });
+
+    ////////////////////////////
+
+    // .catch((err) => {
+    //   console.error(err);
+    // });
   };
   // delete user
   const handleDeleteUser = (userId) => {
@@ -78,8 +113,8 @@ const AllUsers = () => {
         <thead>
           <tr>
             <th></th>
-            <th>Name</th>
-            <th>Email</th>
+            <th>User</th>
+
             <th>Role</th>
             <th>Action</th>
           </tr>
@@ -88,8 +123,19 @@ const AllUsers = () => {
           {users.map((user, index) => (
             <tr key={user._id}>
               <th>{index + 1}</th>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
+
+              <td>
+                <div className="">
+                  <p>
+                    <b>Name : </b>
+                    {user.name}{" "}
+                  </p>
+                  <p>
+                    <b>Email : </b>
+                    {user.email}{" "}
+                  </p>
+                </div>
+              </td>
               <td>
                 {
                   user.role === "Admin" ? (

@@ -747,10 +747,10 @@
 //
 //
 
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaPlus, FaTrashAlt } from "react-icons/fa";
 import useSubCategory from "../../../hooks/useSubCategory";
 import { useLocation } from "react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useForm } from "react-hook-form";
@@ -763,13 +763,15 @@ const ManageProducts = () => {
   //  subCategorySelectItem,
   // subCatIdFiltaringProducts,
   const [allSubCategorys] = useSubCategory();
+
   const [allProducts] = useProducts();
-  const [selectedFilterSubCategory, setSelectedFilterSubCategory] = useState(
-    []
-  );
+  const [selectedFilterSubCategory, setSelectedFilterSubCategory] =
+    useState(null);
   console.log(selectedFilterSubCategory);
+  const [searchCode, setSearchCode] = useState(""); // 👈 for search
   const location = useLocation();
   const { register, handleSubmit } = useForm();
+
   // -------------------- MODAL SHOW --------------------
   const showFormModal = () => {
     MySwal.fire({
@@ -807,24 +809,43 @@ const ManageProducts = () => {
     }
   };
 
-  const filter = selectedFilterSubCategory
-    ? allProducts?.filter(
+  // const filter = selectedFilterSubCategory
+  //   ? allProducts?.filter(
+  //       (cat) =>
+  //         cat?.subCategoryItem.subCategoryID === selectedFilterSubCategory?._id
+  //     )
+  //   : allProducts;
+  // console.log(filter);
+  // --------------------PRODUCT CODE SEARCH --------------------
+  const handleProductCode = (e) => {
+    setSearchCode(e.target.value.trim().toLowerCase());
+  };
+  // -------------------- FILTER LOGIC --------------------
+  const filteredProducts = useMemo(() => {
+    let filtered = allProducts || [];
+
+    // Filter by subcategory
+    if (selectedFilterSubCategory) {
+      filtered = filtered.filter(
         (cat) =>
-          cat?.subCategoryItem.subCategoryID === selectedFilterSubCategory?._id
-      )
-    : allProducts;
-  console.log(filter);
+          cat?.subCategoryItem?.subCategoryID === selectedFilterSubCategory?._id
+      );
+    }
+
+    // Filter by product code search
+    if (searchCode) {
+      filtered = filtered.filter((f) =>
+        f?.productCode?.toLowerCase().includes(searchCode)
+      );
+    }
+
+    return filtered;
+  }, [allProducts, selectedFilterSubCategory, searchCode]);
+
   // -------------------- RENDER --------------------
   return (
     <div className="">
-      <div className="text-end my-10">
-        <button className="btn btn-primary" onClick={showFormModal}>
-          Add New Product
-        </button>
-      </div>
-
-      <div className="p-4 max-w-md ">
-        <label className="block mb-2 text-lg font-medium text-gray-700">
+      {/*     <label className="block mb-2 text-lg font-medium text-gray-700">
           Select Sub Category
         </label>
         <select
@@ -839,60 +860,146 @@ const ManageProducts = () => {
               {cat.subCategoryName}
             </option>
           ))}
-        </select>
+        </select> */}
+      <div className="grid sm:grid-cols-2 gap-4 items-end   m-10 ">
+        <div className=" max-w-sm ">
+          <label className="block pb-2 text-lg font-medium text-gray-700">
+            Select Sub-Category
+          </label>
+          <select
+            onChange={handleTableFilterChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md "
+            defaultValue="all"
+          >
+            <option value="" disabled>
+              -- Choose Sub-Category --
+            </option>
+            <option value="all">All</option>
+            {allSubCategorys?.map((cat) => (
+              <option key={cat._id} value={JSON.stringify(cat)}>
+                {cat.subCategoryName}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="text-end">
+          <button className="btn btn-primary" onClick={showFormModal}>
+            <FaPlus /> Add New Sub category
+          </button>
+        </div>
       </div>
+      {/* Product Code Search */}
+      <div className="mb-5">
+        <input
+          type="text"
+          placeholder="🔍 Search by product code..."
+          onChange={handleProductCode}
+          className="border border-gray-400 px-4 py-2 rounded-md w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      {/* Products Table */}
       <table className="table min-w-full">
         {/* head */}
         <thead>
           <tr>
             <th></th>
-            <th> Product Code</th>
-            <th> Image</th>
-            <th>Title</th>
-            <th>Price</th>
+            <th> Product </th>
+            <th>Items</th>
 
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {filter.map((item, index) => (
-            <tr key={item._id}>
-              <td>{index + 1}</td>
-              <td>
+          {filteredProducts.length <= 0 ? (
+            <p className="font-bold text-lg text-red-400 text-center py-10">
+              Product not avalible this category
+            </p>
+          ) : (
+            filteredProducts?.map((item, index) => (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                {/* <td>
                 <p>{item.productCode}</p>
-              </td>
-              <td>
-                <div className="">
-                  {" "}
-                  <img
-                    src={item.image}
-                    alt=""
-                    className="w-25 h-20 rounded object-cover"
-                  />
-                </div>
-              </td>
-              <td>
-                <p>{item.productTitle}</p>
-              </td>
-              <td>
-                <p>{item.price}</p>
-              </td>
+              </td> */}
+                <td>
+                  <div className="md:flex gap-5 items-center">
+                    <div className="">
+                      <img
+                        src={item.image}
+                        alt=""
+                        className="w-25 h-20 rounded object-cover"
+                      />
+                    </div>
+                    <div className="">
+                      <p>
+                        code :{" "}
+                        <i className="text-[#b67718] font-medium font-serif text-[16px]">
+                          {item.productCode}
+                        </i>{" "}
+                      </p>
+                      <p className="text-lg font-semibold">
+                        {item.productTitle}
+                      </p>
+                      <div className="flex gap-3">
+                        {item.price ? (
+                          <b>$ {item.price}</b>
+                        ) : (
+                          <b> Price not add</b>
+                        )}
+                        {item.discount && (
+                          <p className="text-red-500"> - {item.discount} % </p>
+                        )}
+                      </div>
+                      {item.noOfQuantity ? (
+                        <p>Quantity : {item.noOfQuantity}</p>
+                      ) : (
+                        <p>Quantity Available</p>
+                      )}
+                      {/* size */}
 
-              <td>
-                <button className="btn bg-[#D1A054] text-white hover:bg-black ">
-                  <FaEdit></FaEdit>
-                </button>
-              </td>
-              <td>
-                <button
-                  //  onClick={() => handleDeleteItem(item)}
-                  className="btn bg-red-600 text-white hover:bg-black"
-                >
-                  <FaTrashAlt></FaTrashAlt>
-                </button>
-              </td>
-            </tr>
-          ))}
+                      {item.size && (
+                        <div className="flex gap-3">
+                          <b> Size :</b>
+                          {item.size.map((s) => (
+                            <i className="" key={s}>
+                              {s}
+                            </i>
+                          ))}{" "}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div className="">
+                    <p>
+                      {" "}
+                      <b>Category :</b> {item?.categoryItem?.categoryName}
+                    </p>
+                    <p>
+                      {" "}
+                      <b>Sub Category :</b>{" "}
+                      {item.subCategoryItem.subCategoryName}
+                    </p>
+                  </div>
+                </td>
+                <td>
+                  <div className="flex gap-2">
+                    <button className="btn bg-[#D1A054] text-white hover:bg-black ">
+                      <FaEdit></FaEdit>
+                    </button>
+                    <button
+                      //  onClick={() => handleDeleteItem(item)}
+                      className="btn bg-red-600 text-white hover:bg-black"
+                    >
+                      <FaTrashAlt></FaTrashAlt>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

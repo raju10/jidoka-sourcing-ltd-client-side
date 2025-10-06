@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
+import logo from "../../../assets/logo/logo1.png";
 import "./SignUp.scss";
-import bgImg from "../../../assets/Authintecate-img/image.png";
+import bgImg from "../../../assets/Authintecate-img/authintication bg img.jpg";
 import { Link, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { useContext, useState } from "react";
@@ -61,23 +62,24 @@ const SignUp = () => {
   };
   return (
     <div
-      className="min-h-screen flex items-center justify-center  px-4 bg-none"
+      className="min-h-screen h-full flex items-center justify-center  px-4  text-white"
       style={{
-        backgroundImage: `url(${bgImg})`,
+        backgroundImage: ` linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),  url(${bgImg})`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
-      <div className="w-full max-w-2xl  p-8 rounded-xl border hover:border-blue-400 hover:border-s-5 hover:border-2 hover:shadow-2xl">
+      <div className="w-full max-w-2xl  p-8 rounded-xl border">
+        <img src={logo} alt="" className="w-15 object-cover" />
         <form onSubmit={handleSubmit(onSubmit)} className="">
-          <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+          <h2 className="text-2xl font-bold mb-6 text-center ">
             SignUp Now !!!
           </h2>
 
           {/* Name Field */}
           <div className="mb-6">
-            <label className="block mb-1 text-gray-700">Name</label>
+            <label className="block mb-1 ">Name</label>
             <input
               type="text"
               {...register("displayName", { required: "Name is required" })}
@@ -92,7 +94,7 @@ const SignUp = () => {
           </div>
           {/* Email Field */}
           <div className="mb-6">
-            <label className="block mb-1 text-gray-700">Email</label>
+            <label className="block mb-1 ">Email</label>
             <input
               type="email"
               {...register("email", { required: "Email is required" })}
@@ -108,7 +110,7 @@ const SignUp = () => {
 
           {/* password field */}
           <div className="mb-6">
-            <label className="block mb-1 text-gray-700">Password</label>
+            <label className="block mb-1 ">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -122,12 +124,12 @@ const SignUp = () => {
                 })}
               />
 
-              <button
+              {/* <button
                 onClick={() => setShowPassword(!showPassword)}
                 className="btn btn-sm absolute right-1 top-1"
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
+              </button> */}
             </div>
 
             {errors.password?.type === "required" && (
@@ -160,9 +162,10 @@ const SignUp = () => {
           <input
             type="submit"
             value="Sign Up"
-            disabled={errors.password && "disabled"}
+            // disabled={errors.password && "disabled"}
+            disabled
             //   disabled={disabled}
-            className="w-full btn bg-blue-500 mt-4 text-white hover:bg-blue-600 font-semibold"
+            className="w-full btn btn-outline  mt-4 text-white  font-semibold"
           />
         </form>
 

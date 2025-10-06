@@ -865,7 +865,7 @@ const SingleSelectedProduct = () => {
       });
       return;
     }
-    const phone = "8801814265958"; // admin WhatsApp number
+    const phone = "8801619755755"; // admin WhatsApp number
     const text = encodeURIComponent(
       `📩 New Product Inquiry\n
 🛒 Product: ${spData?.productTitle}
@@ -897,7 +897,7 @@ const SingleSelectedProduct = () => {
   //////////////////////////////////
 
   return (
-    <div className="w-full min-h-screen box-border mt-20">
+    <div className=" mt-20">
       <div className="w-full max-w-[1600px] mx-auto">
         {/* 🔙 Back button */}
         <div className="px-10 pb-3">

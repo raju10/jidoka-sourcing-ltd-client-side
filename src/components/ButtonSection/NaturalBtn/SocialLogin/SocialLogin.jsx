@@ -4,7 +4,7 @@ import { AuthContext } from "../../../../providers/AuthProvider";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
-
+import googleLogo from "../../../../assets/New folder/google-bg-remove-removebg-preview.png";
 const SocialLogin = ({ from, extraState }) => {
   const { googleSignIn } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
@@ -27,7 +27,7 @@ const SocialLogin = ({ from, extraState }) => {
   };
   return (
     <button onClick={handleGoogleSignIn} className="btn btn-outline">
-      <FaGoogle />
+      <img src={googleLogo} alt="" className="w-6" />
       Continue with Google
     </button>
   );

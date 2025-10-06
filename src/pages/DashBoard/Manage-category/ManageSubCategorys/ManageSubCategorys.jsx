@@ -771,7 +771,7 @@
 //
 //
 import useSubCategory from "../../../../hooks/useSubCategory";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaPlus, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useForm } from "react-hook-form";
@@ -909,31 +909,31 @@ const ManageSubCategorys = () => {
   // -------------------- RENDER --------------------
   return (
     <div className="">
-      <div className="text-end my-10">
-        <button className="btn btn-primary" onClick={showFormModal}>
-          Add New Sub category
-        </button>
+      <div className="grid sm:grid-cols-2 gap-4 items-end   m-10 ">
+        <div className=" max-w-sm ">
+          <label className="block pb-2 text-lg font-medium text-gray-700">
+            Select Category
+          </label>
+          <select
+            onChange={handleTableFilterChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md "
+            defaultValue=""
+          >
+            <option value="">-- Choose Category --</option>
+            <option value="all">All</option>
+            {allCategorys.map((cat) => (
+              <option key={cat._id} value={JSON.stringify(cat)}>
+                {cat.categoryName}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="text-end">
+          <button className="btn btn-primary" onClick={showFormModal}>
+            <FaPlus /> Add New Sub category
+          </button>
+        </div>
       </div>
-
-      <div className="p-4 max-w-md ">
-        <label className="block mb-2 text-lg font-medium text-gray-700">
-          Select Category
-        </label>
-        <select
-          onChange={handleTableFilterChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4"
-          defaultValue=""
-        >
-          <option value="">-- Choose Category --</option>
-          <option value="all">All</option>
-          {allCategorys.map((cat) => (
-            <option key={cat._id} value={JSON.stringify(cat)}>
-              {cat.categoryName}
-            </option>
-          ))}
-        </select>
-      </div>
-
       <table className="table min-w-full">
         <thead>
           <tr>
