@@ -750,27 +750,134 @@
 import { FaEdit, FaPlus, FaTrashAlt } from "react-icons/fa";
 import useSubCategory from "../../../hooks/useSubCategory";
 import { useLocation } from "react-router";
-import { useMemo, useState } from "react";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-import { useForm } from "react-hook-form";
 import useProducts from "../../../hooks/useProducts";
 import AddSubCategoryProductForm from "../AddSubCategoryProduct/AddSubCategoryProductForm";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+import { useMemo, useState } from "react";
 
 const MySwal = withReactContent(Swal);
 
-const ManageProducts = () => {
-  //  subCategorySelectItem,
-  // subCatIdFiltaringProducts,
-  const [allSubCategorys] = useSubCategory();
+const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
-  const [allProducts] = useProducts();
+const ManageProducts = () => {
+  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  const [allSubCategorys] = useSubCategory();
+  const [allProducts, refetch] = useProducts();
   const [selectedFilterSubCategory, setSelectedFilterSubCategory] =
     useState(null);
   console.log(selectedFilterSubCategory);
   const [searchCode, setSearchCode] = useState(""); // 👈 for search
   const location = useLocation();
-  const { register, handleSubmit } = useForm();
+
+  // -------------------- DELETE --------------------
+  const handleDeleteProduct = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You want to delete "${item.productTitle}"!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axiosSecure?.delete(`/product/${item._id}`);
+          if (res.data.deletedCount > 0) {
+            refetch(); // Reload data
+            Swal.fire("Deleted!", "Product has been deleted.", "success");
+          }
+        } catch (error) {
+          console.error("Delete Error:", error);
+          Swal.fire("Error", "Could not delete product.", "error");
+        }
+      }
+    });
+  };
+
+  // -------------------- EDIT --------------------
+  const handleEditProduct = (item) => {
+    const onEditSubmit = async (
+      data,
+      productCode,
+      selectedSizes,
+      affordableStatus
+    ) => {
+      try {
+        let imageUrl = item.image;
+
+        // If a new image is selected, upload it
+        if (data.image && data.image[0] instanceof File) {
+          const imageFile = new FormData();
+          imageFile.append("image", data.image[0]);
+          const res = await axiosPublic.post(img_hosting_api, imageFile, {
+            headers: { "content-type": "multipart/form-data" },
+          });
+          imageUrl = res.data.data.display_url;
+        }
+
+        const selectedSubCategoryItem = data.parentCategory
+          ? JSON.parse(data.parentCategory)
+          : item.subCategoryItem;
+
+        const updatedProduct = {
+          ...data,
+          productCode,
+          size: selectedSizes.map((s) => s.value),
+          mostAffordable: affordableStatus,
+          image: imageUrl,
+          price: parseFloat(data.price),
+          discount: parseFloat(data.discount),
+          noOfQuantity: parseFloat(data.noOfQuantity),
+          subCategoryItem: {
+            subCategoryImage: selectedSubCategoryItem.subCategoryImage || item.subCategoryItem.subCategoryImage,
+            subCategoryName: selectedSubCategoryItem.subCategoryName || item.subCategoryItem.subCategoryName,
+            subCategoryID: selectedSubCategoryItem._id || item.subCategoryItem.subCategoryID,
+          },
+          categoryItem: selectedSubCategoryItem.selectedCategoryItem || item.categoryItem,
+        };
+
+        // Remove parentCategory from the object sent to the server
+        delete updatedProduct.parentCategory;
+
+        const res = await axiosPublic?.put(`/product/${item._id}`, updatedProduct);
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          MySwal.close();
+          Swal.fire("Updated!", "Product has been updated.", "success");
+        } else {
+          MySwal.close();
+          Swal.fire("No changes", "No information was updated.", "info");
+        }
+      } catch (error) {
+        console.error("Edit Error:", error);
+        Swal.fire("Error", "Could not update product.", "error");
+      }
+    };
+
+    MySwal.fire({
+      title: "Edit Product",
+      html: (
+        <AddSubCategoryProductForm
+          onSubmit={onEditSubmit}
+          allSubCategorys={allSubCategorys}
+          allProducts={allProducts}
+          defaultValues={{
+            ...item,
+            parentCategory: JSON.stringify(item.subCategoryItem),
+          }}
+        />
+      ),
+      showConfirmButton: false,
+      showCancelButton: true,
+      width: "600px",
+    });
+  };
 
   // -------------------- MODAL SHOW --------------------
   const showFormModal = () => {
@@ -884,7 +991,7 @@ const ManageProducts = () => {
         </div>
         <div className="text-end">
           <button className="btn btn-primary" onClick={showFormModal}>
-            <FaPlus /> Add New Sub category
+            <FaPlus /> Add New Product
           </button>
         </div>
       </div>
@@ -986,11 +1093,14 @@ const ManageProducts = () => {
                 </td>
                 <td>
                   <div className="flex gap-2">
-                    <button className="btn bg-[#D1A054] text-white hover:bg-black ">
+                    <button
+                      onClick={() => handleEditProduct(item)}
+                      className="btn bg-[#D1A054] text-white hover:bg-black "
+                    >
                       <FaEdit></FaEdit>
                     </button>
                     <button
-                      //  onClick={() => handleDeleteItem(item)}
+                      onClick={() => handleDeleteProduct(item)}
                       className="btn bg-red-600 text-white hover:bg-black"
                     >
                       <FaTrashAlt></FaTrashAlt>

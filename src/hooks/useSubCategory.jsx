@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 
 const useSubCategory = () => {
   const [allSubCategorys, setSubAllCategorys] = useState([]);
+  const [reload, setReload] = useState(false);
+
+  const refetch = () => setReload(!reload);
   //console.log(allCategorys);
   //const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -12,8 +15,8 @@ const useSubCategory = () => {
         // setLoading(false);
       })
       .catch((err) => console.log("Error loading JSON:", err));
-  }, []);
-  return [allSubCategorys];
+  }, [reload]); // Reload when this trigger changes
+  return [allSubCategorys, refetch];
 };
 
 export default useSubCategory;

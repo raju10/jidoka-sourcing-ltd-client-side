@@ -771,7 +771,7 @@
 //
 //
 import useSubCategory from "../../../../hooks/useSubCategory";
-import { FaEdit, FaPlus, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaEye, FaPlus, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useForm } from "react-hook-form";
@@ -780,6 +780,7 @@ import { useState } from "react";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import AddSubCategoryForm from "../../AddSubCategory/AddSubCategoryForm";
 import { useLocation } from "react-router";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MySwal = withReactContent(Swal);
 
@@ -789,7 +790,8 @@ const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const ManageSubCategorys = () => {
   const axiosPublic = useAxiosPublic();
-  const [allSubCategorys] = useSubCategory();
+  const axiosSecure = useAxiosSecure();
+  const [allSubCategorys, refetch] = useSubCategory();
   const [allCategorys] = useCategory();
   // const [selcedCategory, setSelectedCatagory] = useState(null);
   // For table filtering
@@ -807,10 +809,15 @@ const ManageSubCategorys = () => {
       const selectedCategoryItem = JSON.parse(data.parentCategory);
 
       // ✅ check duplicate
-      const isDuplicate = allSubCategorys.some(
+      // const isDuplicate = allSubCategorys.some(
+      //   (item) =>
+      //     item.subCategoryName.toLowerCase() ===
+      //     data.subCategoryName.toLowerCase()
+      // );
+      const isDuplicate = allSubCategorys?.some(
         (item) =>
-          item.subCategoryName.toLowerCase() ===
-          data.subCategoryName.toLowerCase()
+          item?.selectedCategoryItem?._id === selectedCategoryItem?._id && // Match category
+          item?.subCategoryName?.trim().toLowerCase() === data?.subCategoryName?.trim().toLowerCase() // Match name
       );
       if (isDuplicate) {
         Swal.fire({
@@ -847,7 +854,9 @@ const ManageSubCategorys = () => {
       const insertedId = subCategoryResponse?.data?.insertedId;
 
       if (subCategoryResponse?.data?.acknowledged === true && insertedId) {
+        refetch(); // Trigger the reload
         MySwal.close();
+
         Swal.fire({
           icon: "success",
           title: "Subcategory Added!",
@@ -862,6 +871,109 @@ const ManageSubCategorys = () => {
         text: "Please try again.",
       });
     }
+  };
+
+  // -------------------- DELETE --------------------
+  const handleDeleteSubCategory = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You want to delete "${item.subCategoryName}"!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axiosSecure?.delete(`/subCategory/${item._id}`);
+          if (res.data.deletedCount > 0) {
+            refetch(); // Reload data
+            Swal.fire("Deleted!", "Sub Category has been deleted.", "success");
+          }
+        } catch (error) {
+          console.error("Delete Error:", error);
+          Swal.fire("Error", "Could not delete subcategory.", "error");
+        }
+      }
+    });
+  };
+
+  // -------------------- EDIT --------------------
+  const handleEditSubCategory = (item) => {
+    const onEditSubmit = async (data) => {
+      try {
+        let imageUrl = item.subCategoryImage;
+
+        // If a new image is selected, upload it
+        if (data.subCategoryImage && data.subCategoryImage[0] instanceof File) {
+          const imageFile = new FormData();
+          imageFile.append("image", data.subCategoryImage[0]);
+          const res = await axiosPublic.post(img_hosting_api, imageFile, {
+            headers: { "content-type": "multipart/form-data" },
+          });
+          imageUrl = res.data.data.display_url;
+        }
+
+        const selectedCategoryItem = data.parentCategory
+          ? JSON.parse(data.parentCategory)
+          : item.selectedCategoryItem;
+
+        const updatedSubCategory = {
+          subCategoryName: data.subCategoryName,
+          subCategoryImage: imageUrl,
+          selectedCategoryItem,
+        };
+
+        const res = await axiosPublic?.put(`/subCategory/${item._id}`, updatedSubCategory);
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          MySwal.close();
+          Swal.fire("Updated!", "Sub Category has been updated.", "success");
+        } else {
+          MySwal.close();
+          Swal.fire("No changes", "No information was updated.", "info");
+        }
+      } catch (error) {
+        console.error("Edit Error:", error);
+        Swal.fire("Error", "Could not update subcategory.", "error");
+      }
+    };
+
+    MySwal.fire({
+      title: "Edit Sub Category",
+      html: (
+        <AddSubCategoryForm
+          onSubmit={onEditSubmit}
+          allCategorys={allCategorys}
+          location={location}
+          defaultValues={{
+            subCategoryName: item.subCategoryName,
+            parentCategory: JSON.stringify(item.selectedCategoryItem),
+          }}
+        />
+      ),
+      showConfirmButton: false,
+      showCancelButton: true,
+      width: "600px",
+    });
+  };
+  // -------------------- VIEW --------------------
+  const handleViewSubCategory = (item) => {
+    Swal.fire({
+      title: `<span style="color: #3b82f6;">${item.subCategoryName}</span>`,
+      html: `
+        <div style="text-align: left; padding: 10px;">
+          <img src="${item.subCategoryImage}" alt="${item.subCategoryName}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;" />
+          <p><strong>Category:</strong> ${item.selectedCategoryItem?.categoryName || "N/A"}</p>
+          <p><strong>ID:</strong> ${item._id}</p>
+        </div>
+      `,
+      showCloseButton: true,
+      focusConfirm: false,
+      confirmButtonText: "Close",
+      confirmButtonColor: "#3b82f6",
+    });
   };
 
   // -------------------- MODAL SHOW --------------------
@@ -902,8 +1014,8 @@ const ManageSubCategorys = () => {
 
   const filter = selectedFilterCategory
     ? allSubCategorys?.filter(
-        (cat) => cat?.selectedCategoryItem?._id === selectedFilterCategory?._id
-      )
+      (cat) => cat?.selectedCategoryItem?._id === selectedFilterCategory?._id
+    )
     : allSubCategorys;
 
   // -------------------- RENDER --------------------
@@ -940,6 +1052,7 @@ const ManageSubCategorys = () => {
             <th></th>
             <th>Image</th>
             <th>Title</th>
+            <th>View</th>
             <th>Action</th>
             <th>Action</th>
           </tr>
@@ -961,12 +1074,27 @@ const ManageSubCategorys = () => {
                 <p>{item.subCategoryName}</p>
               </td>
               <td>
-                <button className="btn bg-[#D1A054] text-white hover:bg-black ">
+                <button
+                  onClick={() => handleViewSubCategory(item)}
+                  className="btn bg-blue-500 text-white hover:bg-black "
+                  title="View Details"
+                >
+                  <FaEye />
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() => handleEditSubCategory(item)}
+                  className="btn bg-[#D1A054] text-white hover:bg-black "
+                >
                   <FaEdit />
                 </button>
               </td>
               <td>
-                <button className="btn bg-red-600 text-white hover:bg-black">
+                <button
+                  onClick={() => handleDeleteSubCategory(item)}
+                  className="btn bg-red-600 text-white hover:bg-black"
+                >
                   <FaTrashAlt />
                 </button>
               </td>

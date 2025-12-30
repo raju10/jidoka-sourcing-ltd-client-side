@@ -5,6 +5,7 @@ import { Link, NavLink, useLocation, useParams } from "react-router";
 import { delay } from "motion";
 
 const ProductsAllRelated = ({ pro, productData }) => {
+  console.log(pro, productData)
   // console.log("jahid", pro, productData);
   const { id, id1 } = useParams();
   //console.log(id, id1);

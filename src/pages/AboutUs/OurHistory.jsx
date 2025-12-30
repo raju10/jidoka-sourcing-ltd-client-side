@@ -20,7 +20,7 @@ export default function OurHistory() {
             transition={{ duration: 0.8 }}
             className="bg-white shadow-lg  sm:p-10 mt-60 max-w-2xl  mx-5 p-5"
             style={{ zIndex: 10 }}
-            // className=" bg-white shadow-lg p-6 sm:p-10 border-double  border-6 border-[#d1a280]  mt-20 relative z-1  overflow-hidden"
+          // className=" bg-white shadow-lg p-6 sm:p-10 border-double  border-6 border-[#d1a280]  mt-20 relative z-1  overflow-hidden"
           >
             <span className="text-sm text-[#d1a280] uppercase tracking-wide font-medium mb-2 block">
               Our history
@@ -29,14 +29,10 @@ export default function OurHistory() {
               Crafted with passion, crafted with care.
             </h2>
             <p className="text-gray-600 mb-3 text-sm">
-              Neque fames ornare hac id laoreet aliquam nibh ligula porttitor.
-              At phasellus sollicitudin arcu maecenas porta praesent lorem
-              sagittis. Dapibus nibh lectus commodo praesent quam.
+              <b>    Jidoka Sourcing Limited</b> is a professional sourcing and production support company built on quality, experience, and efficiency. Our expert team—comprising Textile, Industrial, and Production Engineers, along with factory operation specialists—brings strong industry knowledge and hands-on expertise.
             </p>
             <p className="text-gray-600">
-              Neque fames ornare hac id laoreet aliquam nibh ligula porttitor.
-              At phasellus sollicitudin arcu maecenas porta praesent lorem
-              sagittis. Dapibus nibh lectus commodo praesent quam.
+              We focus on Total Quality Management (TQM), offering reliable stocklot sourcing, CM/CMT production solutions, and strict quality assurance. Through teamwork, professionalism, and timely delivery, we aim to build long-term partnerships and ensure complete customer satisfaction.
             </p>
           </motion.div>
         </div>
@@ -79,8 +75,8 @@ export default function OurHistory() {
               <FaRegLightbulb className="mx-auto text-[#d1a280] text-3xl mb-3" />
               <h4 className="text-lg font-semibold mb-1">Vision</h4>
               <p className="text-gray-600 text-sm">
-                Maecenas orci convallis felis potenti proin interdum habitasse
-                ex lectus arcu cursus
+                To become a globally recognized sourcing hub known for quality,
+                trust, and sustainability in apparel and goods manufacturing.
               </p>
             </div>
 
@@ -89,8 +85,7 @@ export default function OurHistory() {
               <FaCogs className="mx-auto text-[#d1a280] text-3xl mb-3" />
               <h4 className="text-lg font-semibold mb-1">Motto</h4>
               <p className="text-gray-600 text-sm">
-                Maecenas orci convallis felis potenti proin interdum habitasse
-                ex lectus arcu cursus
+                Built in Quality — every piece, every process, every promise.
               </p>
             </div>
 
@@ -99,8 +94,9 @@ export default function OurHistory() {
               <FaGem className="mx-auto text-[#d1a280] text-3xl mb-3" />
               <h4 className="text-lg font-semibold mb-1">Mission</h4>
               <p className="text-gray-600 text-sm">
-                Maecenas orci convallis felis potenti proin interdum habitasse
-                ex lectus arcu cursus
+                To deliver high-quality stocklots and CM/CMT orders with
+                flexibility, integrity, and timely execution, ensuring client
+                satisfaction across global markets.
               </p>
             </div>
 
@@ -109,8 +105,8 @@ export default function OurHistory() {
               <FaTrophy className="mx-auto text-[#d1a280] text-3xl mb-3" />
               <h4 className="text-lg font-semibold mb-1">Value</h4>
               <p className="text-gray-600 text-sm">
-                Maecenas orci convallis felis potenti proin interdum habitasse
-                ex lectus arcu cursus
+                Integrity, accountability, consistency, innovation and long-term
+                client relationships.
               </p>
             </div>
           </motion.div>

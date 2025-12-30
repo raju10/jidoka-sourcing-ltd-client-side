@@ -26,7 +26,7 @@
 import Banner from "../Banner/Banner";
 import Categories from "../Categories/Categories";
 import GlobalBrands from "../Global/GlobalBrands";
-import Message from "../massageSection/Message";
+import OurTeam from "../OurTeam/OurTeam";
 import OurPremiumFabrics from "../OurPremiumFabrics/OurPremiumFabrics";
 import "./Home.scss";
 import adsBanner from "../../../assets/advertising-banner.png";
@@ -73,6 +73,9 @@ const Home = () => {
         {/* GlobalBrands: exactly full screen */}
         <section className="  md:py-20 pb-30">
           <GlobalBrands></GlobalBrands>
+        </section>
+        <section className="  md:py-20 pb-30">
+          <OurTeam></OurTeam>
         </section>
 
         {/* <section className=" -my-20 ">

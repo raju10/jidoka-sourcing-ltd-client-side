@@ -116,6 +116,7 @@
 //
 
 import { motion } from "framer-motion";
+import logo from "../../assets/logo/final-logo.jpeg";
 import {
   FaFacebookF,
   FaInstagram,
@@ -133,6 +134,7 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+          <img src={logo} alt="logo" className="w-17  object-cover mb-5" />
           <h3 className="text-sm font-bold uppercase mb-4 leading-relaxed">
             Sign up to get 10% off your first order and stay up to date on the
             latest product releases, special offers and news

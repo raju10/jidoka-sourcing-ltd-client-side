@@ -20,7 +20,7 @@ import bannerVideo from "../../../assets/banner-video/vecteezy_smiling-young-wom
 
 const Banner = () => {
   return (
-    <div className="w-full h-full relative overflow-hidden">
+    <div className="w-full h-full relative overflow-hidden -my-4">
       <video
         className="w-full h-full object-cover"
         autoPlay

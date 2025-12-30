@@ -104,7 +104,7 @@
 //
 //
 //
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 const AddSubCategoryForm = ({
   onSubmit,
@@ -116,15 +116,26 @@ const AddSubCategoryForm = ({
   findSelectedcategory,
   allCategorys,
   location,
+  defaultValues, // New prop for editing
 }) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm({
+    defaultValues: defaultValues || {}, // Initialize with default values if provided
+  });
   // console.log(location);
   // Local state for form dropdown
   const [selectedFormCategory, setSelectedFormCategory] = useState("");
+
+  // Sync selectedFormCategory with defaultValues if provided (for editing)
+  useEffect(() => {
+    if (defaultValues?.parentCategory) {
+      setSelectedFormCategory(defaultValues.parentCategory);
+    }
+  }, [defaultValues]);
+
   console.log(selectedFormCategory);
   const handleFormSelectChange = (e) => {
     setSelectedFormCategory(e.target.value);
@@ -142,6 +153,7 @@ const AddSubCategoryForm = ({
               {...register("parentCategory", {
                 required: "Please select a category",
               })}
+              disabled={!!defaultValues} // 👈 Lock during edit mode
               value={selectedFormCategory}
               onChange={handleFormSelectChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4"
@@ -184,11 +196,10 @@ const AddSubCategoryForm = ({
           {...register("subCategoryName", {
             required: "Sub Category Name is required",
           })}
-          className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-            errors.subCategoryName
-              ? "border-red-500 focus:ring-red-400"
-              : "border-gray-300 focus:ring-blue-400"
-          }`}
+          className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${errors.subCategoryName
+            ? "border-red-500 focus:ring-red-400"
+            : "border-gray-300 focus:ring-blue-400"
+            }`}
           placeholder="Enter Sub Category Name"
           autoComplete="off"
         />

@@ -1852,9 +1852,14 @@ const AddSubCategory = () => {
   // onSubmit handler
   const onSubmit = async (data) => {
     // 1. Duplicate check for subCategoryName
-    const duplicate = allSubCategorys.some(
+    // const duplicate = allSubCategorys.some(
+    //   (item) =>
+    //     normalize(item.subCategoryName) === normalize(data.subCategoryName)
+    // );
+    const duplicate = allSubCategorys?.some(
       (item) =>
-        normalize(item.subCategoryName) === normalize(data.subCategoryName)
+        item?.selectedCategoryItem?._id === findSelectedcategory?._id && // Match category
+        normalize(item?.subCategoryName) === normalize(data?.subCategoryName) // Match name
     );
     if (duplicate) {
       Swal.fire({
@@ -1950,9 +1955,9 @@ const AddSubCategory = () => {
           onSubmit={onSubmit}
           // register={register}
           findSelectedcategory={findSelectedcategory}
-          // errors={errors}
-          // handleSubmit={handleSubmit}
-          // isSubmitting={isSubmitting}
+        // errors={errors}
+        // handleSubmit={handleSubmit}
+        // isSubmitting={isSubmitting}
         />
       </div>
     </div>

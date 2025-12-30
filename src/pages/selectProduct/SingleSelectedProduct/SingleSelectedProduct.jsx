@@ -782,7 +782,7 @@ const SingleSelectedProduct = () => {
   useEffect(() => {
     if (user?.email) {
       axiosSecure
-        .get(`/users/contact/status/${spData._id}?email=${user.email}`)
+        .get(`/users/contact/status/${spData?._id}?email=${user.email}`)
         .then((res) => {
           if (res.data.isSent) {
             setIsSent(true);
@@ -792,7 +792,7 @@ const SingleSelectedProduct = () => {
         })
         .catch((err) => console.error(err));
     }
-  }, [axiosSecure, spData._id, user?.email]);
+  }, [axiosSecure, spData?._id, user?.email]);
 
   const handleContactSeller = async (product) => {
     console.log(product);
@@ -806,7 +806,7 @@ const SingleSelectedProduct = () => {
     }
 
     const templateParams = {
-      to_email: "trolltube272@gmail.com", // your Gmail
+      to_email: "info@jidokasourcing.com", // your Gmail
       productTitle: product.productTitle,
       price: product.price || "N/A",
       no_of_quantity: product.noOfQuantity || "N/A",

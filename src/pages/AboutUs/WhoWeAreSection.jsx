@@ -31,19 +31,27 @@ const WhoWeAreSection = () => {
           Great quality, great prices, great service!
         </h3>
         <p className="text-gray-600 mb-4">
-          Ligula egestas lacus tellus etiam eget venenatis consectetur
-          sollicitudin cursus netus mi. Hendrerit augue phasellus tempus ad id
-          dictumst sem adipiscing per facilisis.
+          Jidoka Sourcing Limited has been officially operating since 2023 as a
+          specialized sourcing and sales house for shipment cancellation
+          stocklot goods. Based in Chattogram, Bangladesh, we are committed to
+          delivering quality, integrity, and reliability in every deal.
+          Alongside stocklot trading, we also work with CM (Cutting & Making)
+          and CMT (Cutting, Making & Trimming) based orders, offering tailored
+          and flexible production solutions to meet buyers' specific needs. Our
+          expertise also extends to manufacturing support for apparel, footwear,
+          bags, leather goods, and a wide range of other products. We facilitate
+          export-import operations with custom clearance assistance, ensuring a
+          smooth and professional supply chain experience.
         </p>
-        <p className="text-gray-600">
+        {/* <p className="text-gray-600">
           Ligula dolor vestibulum ultrices sodales potenti amet class aenean
           curae etiam.
-        </p>
+        </p> */}
 
         {/* Stats Section */}
         <div className="grid grid-cols-3 gap-4 mt-8">
           {/* Happy Customer */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -53,10 +61,10 @@ const WhoWeAreSection = () => {
               <CountUp end={8} duration={5} suffix="K+" />
             </h4>
             <p className="text-gray-600 text-sm">Happy customer</p>
-          </motion.div>
+          </motion.div> */}
 
           {/* Sold Product */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -66,7 +74,7 @@ const WhoWeAreSection = () => {
               <CountUp end={17} duration={5} suffix="K+" />
             </h4>
             <p className="text-gray-600 text-sm">Sold Product</p>
-          </motion.div>
+          </motion.div> */}
 
           {/* Customer Rating */}
           <motion.div
@@ -78,7 +86,7 @@ const WhoWeAreSection = () => {
             <h4 className="text-2xl font-bold text-[#d1a280]">
               <CountUp end={4.8} decimals={1} duration={5} />
             </h4>
-            <p className="text-gray-600 text-sm">Customer Rating</p>
+            <p className="text-gray-600 text-sm">Customer Satisfaction</p>
           </motion.div>
         </div>
       </motion.div>

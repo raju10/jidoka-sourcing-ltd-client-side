@@ -1,5 +1,11 @@
 import { useForm } from "react-hook-form";
-import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedin,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
 import emailjs from "emailjs-com";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -59,21 +65,48 @@ export default function ContactSection() {
           }}
         >
           <div>
-            <h4 className="text-orange-300 font-semibold mb-4">Headquarter</h4>
-            <p className="text-lg mb-6 font-medium">
-              Jln Cempaka Wangi No 22, <br /> Jakarta - Indonesia
+            <h4 className="text-orange-300 font-semibold mb-4">
+              Headquarter (Bangladesh)
+            </h4>
+            <p className="text-lg mb-1 font-medium">
+              Jidoka Sourcing Limited.
+              <br /> Road: 01. Line: 01. H Block. Chattogram. Bangladesh.
+            </p>
+            <p className=" font-medium">info@jidokasourcing.com</p>
+            <p className="mb-6 font-medium">fahim@jidokasourcing.com</p>
+            <h4 className="text-orange-300 font-semibold mb-4">
+              Branch Office (Canada)
+            </h4>
+            <p className="text-lg mb-1 font-medium">
+              Jidoka Sourcing Limited.
+              <br /> 3000 danforth avenue Unit 11. Canada
             </p>
 
-            <h4 className="text-orange-300 font-semibold mb-2">Email Us</h4>
-            <p className="mb-6 font-medium">support@yourdomain.tld</p>
+            <p className=" font-medium">info@jidokasourcing.com</p>
+            <p className="mb-6 font-medium">shawon@jidokasourcing.com</p>
+
+            {/* <h4 className="text-orange-300 font-semibold mb-2">Email Us</h4> */}
+            {/* <p className=" font-medium">info@jidokasourcing.com</p> */}
 
             <h4 className="text-orange-300 font-semibold mb-2">Call Us</h4>
-            <p className="mb-6 font-medium">+6221.2002.2012</p>
+            <p className="mb-1 font-medium">+880 1619-755755</p>
+            <a
+              href="https://www.jidokasourcing.com/"
+              className="mb-6 font-medium text-blue-500"
+            >
+              www.jidokasourcing.com
+            </a>
 
             <h4 className="text-orange-300 font-semibold mb-2">
               Follow our social media
             </h4>
             <div className="flex gap-3">
+              <a
+                href="https://www.linkedin.com/company/jidoka-sourcing-limited/"
+                className="bg-white/20 p-2 rounded-md hover:bg-white/40"
+              >
+                <FaLinkedin />
+              </a>
               <a
                 href="#"
                 className="bg-white/20 p-2 rounded-md hover:bg-white/40"
@@ -91,12 +124,6 @@ export default function ContactSection() {
                 className="bg-white/20 p-2 rounded-md hover:bg-white/40"
               >
                 <FaTwitter />
-              </a>
-              <a
-                href="#"
-                className="bg-white/20 p-2 rounded-md hover:bg-white/40"
-              >
-                <FaYoutube />
               </a>
             </div>
           </div>

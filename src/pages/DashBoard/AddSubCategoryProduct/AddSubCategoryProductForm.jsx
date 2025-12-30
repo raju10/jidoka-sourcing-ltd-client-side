@@ -30,12 +30,19 @@ const AddSubCategoryProductForm = ({
   subCatIdFiltaringProducts,
   allSubCategorys,
   allProducts,
-  // onSubmit
+  onSubmit: propOnSubmit,
+  defaultValues,
 }) => {
   const axiosPublic = useAxiosPublic();
-  const [productCode, setProductCode] = useState("");
-  const [selectedSizes, setSelectedSizes] = useState([]);
-  const [affordableStatus, setAffordableStatus] = useState("disable");
+  const [productCode, setProductCode] = useState(
+    defaultValues?.productCode || ""
+  );
+  const [selectedSizes, setSelectedSizes] = useState(
+    defaultValues?.size?.map((s) => ({ label: s, value: s })) || []
+  );
+  const [affordableStatus, setAffordableStatus] = useState(
+    defaultValues?.mostAffordable || "disable"
+  );
   console.log("subCategorySelectItem", subCategorySelectItem);
   console.log("subCatIdFiltaringProducts", subCatIdFiltaringProducts);
   const {
@@ -44,23 +51,42 @@ const AddSubCategoryProductForm = ({
     reset,
     setError,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm({
+    defaultValues: defaultValues,
+  });
 
-  useEffect(() => setProductCode(generateRandomCode()), []);
+  useEffect(() => {
+    if (defaultValues) {
+      setProductCode(defaultValues.productCode || "");
+      setAffordableStatus(defaultValues.mostAffordable || "disable");
+
+      // Auto-select the correct subcategory in the dropdown
+      const matchedSubCat = allSubCategorys?.find(
+        (cat) => cat._id === defaultValues.subCategoryItem?.subCategoryID
+      );
+      if (matchedSubCat) {
+        setSelectedFormCategory(JSON.stringify(matchedSubCat));
+      }
+    } else {
+      setProductCode(generateRandomCode());
+      setSelectedFormCategory("");
+      setAffordableStatus("disable");
+    }
+  }, [defaultValues, allSubCategorys]);
 
   // Normalize string: lower case and remove non-letters for duplicate check
-  const normalize = (str) => str.toLowerCase().replace(/[^a-z]/g, "");
+  // const normalize = (str) => str.toLowerCase().replace(/[^a-z]/g, "");
 
-  // Validation functions similar to your pattern (simple)
-  const validateName = (name) => {
-    if (!/^[A-Za-z0-9\s]+$/.test(name)) {
-      return {
-        valid: false,
-        reason: "Name can only contain letters and numbers.",
-      };
-    }
-    return { valid: true, formatted: name.trim() };
-  };
+  // // Validation functions similar to your pattern (simple)
+  // const validateName = (name) => {
+  //   if (!/^[A-Za-z0-9\s]+$/.test(name)) {
+  //     return {
+  //       valid: false,
+  //       reason: "Name can only contain letters and numbers.",
+  //     };
+  //   }
+  //   return { valid: true, formatted: name.trim() };
+  // };
 
   // Local state for form dropdown
   const [selectedFormCategory, setSelectedFormCategory] = useState("");
@@ -70,40 +96,23 @@ const AddSubCategoryProductForm = ({
   };
   /////////////
   const onSubmit = async (data) => {
+    if (propOnSubmit) {
+      await propOnSubmit(data, productCode, selectedSizes, affordableStatus);
+      return;
+    }
     console.log(data);
     const { parentCategory, ...filteredData } = data;
     try {
-      // 1. Duplicate check for subCategoryName
-      const duplicate = allProducts?.some(
-        (item) => normalize(item.productTitle) === normalize(data.productTitle)
-      );
-      if (duplicate) {
-        Swal.fire({
-          icon: "error",
-          title: "Duplicate product",
-          html: `The Product <b>${data?.productTitle}</b> already exists.`,
+      // image upload
+      let imageUrl = "";
+      if (data.image && data.image[0]) {
+        const imageFile = { image: data.image[0] };
+        const res = await axiosPublic.post(img_hosting_api, imageFile, {
+          headers: { "content-type": "multipart/form-data" },
         });
-        setError("productTitle", {
-          type: "manual",
-          message: "Duplicate productTitle name",
-        });
-        return;
+        imageUrl = res.data.data.display_url;
       }
 
-      // 2. Validate Name, Title, Price
-      const nameCheck = validateName(data?.productTitle);
-      if (!nameCheck.valid) {
-        setError("productTitle", {
-          type: "manual",
-          message: nameCheck.reason,
-        });
-        return;
-      }
-      // image upload
-      const imageFile = { image: data.image[0] };
-      const res = await axiosPublic.post(img_hosting_api, imageFile, {
-        headers: { "content-type": "multipart/form-data" },
-      });
       // product data validation or add to data base
       let subCategoryItem;
       let categoryItem;
@@ -117,18 +126,16 @@ const AddSubCategoryProductForm = ({
         subCategoryItem = { ...subCategorySelectItem };
         categoryItem = subCategoryItem.selectedCategoryItem;
       }
-      // delete nested property
-      // delete data.parentCategory;
+
       const productItem = {
         ...filteredData,
-
         productCode,
         size: selectedSizes.map((item) => item.value),
         price: parseFloat(data.price),
         discount: parseFloat(data.discount),
         noOfQuantity: parseFloat(data.noOfQuantity),
         mostAffordable: affordableStatus,
-        image: res.data.data.display_url,
+        image: imageUrl,
         subCategoryItem: {
           subCategoryImage: subCategoryItem.subCategoryImage,
           subCategoryName: subCategoryItem.subCategoryName,
@@ -154,7 +161,7 @@ const AddSubCategoryProductForm = ({
         });
       }
     } catch (error) {
-      console.error("Error submitting subcategory:", error);
+      console.error("Error submitting product:", error);
       Swal.fire({
         icon: "error",
         title: `Something went wrong! ${error}`,
@@ -180,6 +187,7 @@ const AddSubCategoryProductForm = ({
               onChange={handleFormSelectChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4"
               defaultValue=""
+              disabled={!!defaultValues} // 👈 Disable during edit as requested
             >
               <option value="">-- Choose Sub Category --</option>
               {allSubCategorys?.map((cat) => (
@@ -401,7 +409,7 @@ const AddSubCategoryProductForm = ({
         <label className="block mb-1 font-medium">Product Image</label>
         <input
           type="file"
-          {...register("image", { required: true })}
+          {...register("image", { required: !defaultValues })}
           accept="image/*"
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
@@ -429,7 +437,13 @@ const AddSubCategoryProductForm = ({
         <input
           type="submit"
           disabled={isSubmitting}
-          value={isSubmitting ? "Submitting..." : "Add Product"}
+          value={
+            isSubmitting
+              ? "Submitting..."
+              : defaultValues
+                ? "Update Product"
+                : "Add Product"
+          }
           className="w-full btn bg-blue-500 mt-4 text-white hover:bg-blue-600 font-semibold"
         />
       </div>
