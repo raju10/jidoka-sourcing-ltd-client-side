@@ -6,6 +6,8 @@ import { useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import AddCategoryForm from "./AddCategoryForm";
+import useSubCategory from "../../../hooks/useSubCategory";
+import useProducts from "../../../hooks/useProducts";
 
 const MySwal = withReactContent(Swal);
 
@@ -17,18 +19,35 @@ const ManageCategory = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const [allCategorys, refetch] = useCategory();
+    const [allSubCategorys] = useSubCategory();
+    const [allProducts] = useProducts();
     const [searchTerm, setSearchTerm] = useState("");
 
     // -------------------- VIEW --------------------
     const handleViewCategory = (item) => {
+        const subCatCount = allSubCategorys?.filter(sc => sc?.selectedCategoryItem?._id === item._id).length;
+        const prodCount = allProducts?.filter(p => p?.categoryItem?._id === item._id).length;
+
         Swal.fire({
             title: `<span class="text-2xl font-bold text-[#41a28e]">${item.categoryName}</span>`,
             html: `
         <div class="text-center p-4">
           <img src="${item.categoryImage}" alt="${item.categoryName}" class="w-full max-w-[300px] h-[300px] object-cover rounded-xl shadow-lg border border-gray-200 mx-auto mb-4" />
-          <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 mt-4">
+          
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="bg-blue-50 p-3 rounded-lg border border-blue-100">
+              <p class="text-blue-600 text-xs font-semibold uppercase">Sub-Categories</p>
+              <p class="text-xl font-bold">${subCatCount}</p>
+            </div>
+            <div class="bg-green-50 p-3 rounded-lg border border-green-100">
+              <p class="text-green-600 text-xs font-semibold uppercase">Total Products</p>
+              <p class="text-xl font-bold">${prodCount}</p>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
             <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Category ID</p>
-            <p class="font-mono text-gray-700 font-bold">${item._id}</p>
+            <p class="font-mono text-gray-700 font-bold text-sm">${item._id}</p>
           </div>
         </div>
       `,
@@ -164,51 +183,68 @@ const ManageCategory = () => {
                             <th className="rounded-tl-xl">#</th>
                             <th>Image</th>
                             <th>Category Name</th>
+                            <th>Sub-Categories</th>
+                            <th>Total Products</th>
                             <th className="text-center rounded-tr-xl">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {filteredCategories?.length > 0 ? (
-                            filteredCategories.map((item, index) => (
-                                <tr key={item._id} className="hover:bg-gray-50 transition-colors">
-                                    <td className="font-medium text-gray-500">{index + 1}</td>
-                                    <td>
-                                        <img
-                                            src={item.categoryImage}
-                                            alt={item.categoryName}
-                                            className="w-16 h-16 rounded-lg object-cover shadow-sm border border-gray-100"
-                                        />
-                                    </td>
-                                    <td>
-                                        <p className="font-bold text-gray-700 text-lg">{item.categoryName}</p>
-                                    </td>
-                                    <td>
-                                        <div className="flex justify-center gap-3">
-                                            <button
-                                                onClick={() => handleViewCategory(item)}
-                                                className="btn btn-sm bg-[#41a28e] text-white hover:bg-black border-none px-4"
-                                                title="View Details"
-                                            >
-                                                <FaEye />
-                                            </button>
-                                            <button
-                                                onClick={() => showEditModal(item)}
-                                                className="btn btn-sm bg-[#D1A054] text-white hover:bg-black border-none px-4"
-                                                title="Edit Category"
-                                            >
-                                                <FaEdit />
-                                            </button>
-                                            <button
-                                                onClick={() => handleDeleteCategory(item)}
-                                                className="btn btn-sm bg-red-600 text-white hover:bg-black border-none px-4"
-                                                title="Delete Category"
-                                            >
-                                                <FaTrashAlt />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))
+                            filteredCategories.map((item, index) => {
+                                const subCatCount = allSubCategorys?.filter(sc => sc?.selectedCategoryItem?._id === item._id).length;
+                                const prodCount = allProducts?.filter(p => p?.categoryItem?._id === item._id).length;
+
+                                return (
+                                    <tr key={item._id} className="hover:bg-gray-50 transition-colors">
+                                        <td className="font-medium text-gray-500">{index + 1}</td>
+                                        <td>
+                                            <img
+                                                src={item.categoryImage}
+                                                alt={item.categoryName}
+                                                className="w-16 h-16 rounded-lg object-cover shadow-sm border border-gray-100"
+                                            />
+                                        </td>
+                                        <td>
+                                            <p className="font-bold text-gray-700 text-lg">{item.categoryName}</p>
+                                        </td>
+                                        <td>
+                                            <div className="badge badge-info gap-2 py-3 px-4 text-white text-xs font-semibold">
+                                                {subCatCount} Sub-Cats
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div className="badge badge-success gap-2 py-3 px-4 text-white text-xs font-semibold">
+                                                {prodCount} Products
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div className="flex justify-center gap-3">
+                                                <button
+                                                    onClick={() => handleViewCategory(item)}
+                                                    className="btn btn-sm bg-[#41a28e] text-white hover:bg-black border-none px-4"
+                                                    title="View Details"
+                                                >
+                                                    <FaEye />
+                                                </button>
+                                                <button
+                                                    onClick={() => showEditModal(item)}
+                                                    className="btn btn-sm bg-[#D1A054] text-white hover:bg-black border-none px-4"
+                                                    title="Edit Category"
+                                                >
+                                                    <FaEdit />
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDeleteCategory(item)}
+                                                    className="btn btn-sm bg-red-600 text-white hover:bg-black border-none px-4"
+                                                    title="Delete Category"
+                                                >
+                                                    <FaTrashAlt />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })
                         ) : (
                             <tr>
                                 <td colSpan="4" className="text-center py-10 text-gray-400 font-medium text-lg">

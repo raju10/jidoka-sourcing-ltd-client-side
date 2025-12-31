@@ -5,38 +5,47 @@ import hodImg from "../../../assets/our-team/ceo.png";
 
 const teamMembers = [
     {
-        name: "Tycho Luijten",
-        role: "CEO",
+        name: "Engr. Afjal Hossain Fahim",
+        role: "Founder ( Sourcing, Sales and Manufacturing Excellence) ",
         image: ceoImg,
     },
     {
-        name: "Yvo Wander",
-        role: "COO",
+        name: "Minhaz Chowdhury Shakil",
+        role: "HOD- Operation. Partial Sales and Sourcing ",
         image: cooImg,
     },
     {
-        name: "Baptiste Genty",
-        role: "Head of Demand",
+        name: "Salauddin Ahmed Shimanto",
+        role: "HOD- Stocklots Sourcing & Factory Manufacturing  Excellence ",
+        image: hodImg,
+    },
+    {
+        name: "Engr. Muftadil Islam Rabid",
+        role: "HOD- Total Quality Management ",
+        image: hodImg,
+    },
+    {
+        name: "Engr. Julfikar Ali",
+        role: "HOD-   Commercial,  Logistics,  IT & H.R.",
         image: hodImg,
     },
 ];
 
 const OurTeam = () => {
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
-            <div className="mb-12">
-                <span className="text-sm text-orange-500 uppercase tracking-widest font-semibold mb-2 block">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 py-10">
+                <span className="col-span-4 text-lg text-orange-500 uppercase tracking-widest font-bold mb-2 block">
                     Our Team
                 </span>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-                    Crafted with passion, <br />
-                    managed by experts.
+                <h2 className="col-span-8 text-[30px]  font-bold text-gray-900 leading-tight text-end">
+                    Our team consists of skilled apparel industry professionals dedicated to quality, reliability, and on-time delivery. We work together to build strong, long-term partnerships.
                 </h2>
             </div>
 
             {/* Team Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
                 {teamMembers.map((member, index) => (
                     <motion.div
                         key={index}

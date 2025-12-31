@@ -781,6 +781,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import AddSubCategoryForm from "../../AddSubCategory/AddSubCategoryForm";
 import { useLocation } from "react-router";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useProducts from "../../../../hooks/useProducts";
 
 const MySwal = withReactContent(Swal);
 
@@ -793,6 +794,7 @@ const ManageSubCategorys = () => {
   const axiosSecure = useAxiosSecure();
   const [allSubCategorys, refetch] = useSubCategory();
   const [allCategorys] = useCategory();
+  const [allProducts] = useProducts();
   // const [selcedCategory, setSelectedCatagory] = useState(null);
   // For table filtering
   const [selectedFilterCategory, setSelectedFilterCategory] = useState(null);
@@ -960,19 +962,30 @@ const ManageSubCategorys = () => {
   };
   // -------------------- VIEW --------------------
   const handleViewSubCategory = (item) => {
+    const prodCount = allProducts?.filter(p => p?.subCategoryItem?.subCategoryID === item._id).length;
+
     Swal.fire({
-      title: `<span style="color: #3b82f6;">${item.subCategoryName}</span>`,
+      title: `<span class="text-2xl font-bold text-[#41a28e]">${item.subCategoryName}</span>`,
       html: `
-        <div style="text-align: left; padding: 10px;">
-          <img src="${item.subCategoryImage}" alt="${item.subCategoryName}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;" />
-          <p><strong>Category:</strong> ${item.selectedCategoryItem?.categoryName || "N/A"}</p>
-          <p><strong>ID:</strong> ${item._id}</p>
+        <div class="text-center p-4">
+          <img src="${item.subCategoryImage}" alt="${item.subCategoryName}" class="w-full max-w-[300px] h-[300px] object-cover rounded-xl shadow-lg border border-gray-200 mx-auto mb-4" />
+          
+           <div class="bg-green-50 p-4 rounded-lg border border-green-100 mb-4">
+            <p class="text-green-600 text-xs font-semibold uppercase tracking-wider mb-1">Products in this Sub-Category</p>
+            <p class="text-2xl font-bold text-green-700">${prodCount}</p>
+          </div>
+
+          <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+            <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Parent Category</p>
+            <p class="font-bold text-gray-700">${item?.selectedCategoryItem?.categoryName}</p>
+            <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mt-3 mb-1">Sub-Category ID</p>
+            <p class="font-mono text-gray-700 font-bold text-sm">${item._id}</p>
+          </div>
         </div>
       `,
       showCloseButton: true,
-      focusConfirm: false,
       confirmButtonText: "Close",
-      confirmButtonColor: "#3b82f6",
+      confirmButtonColor: "#41a28e",
     });
   };
 
@@ -1052,54 +1065,65 @@ const ManageSubCategorys = () => {
             <th>#</th>
             <th>Image</th>
             <th>Title</th>
-
+            <th>Total Products</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {filter.map((item, index) => (
-            <tr key={item._id}>
-              <td>{index + 1}</td>
-              <td>
-                <div>
-                  <img
-                    src={item.subCategoryImage}
-                    alt=""
-                    className="w-25 h-20 rounded object-cover"
-                  />
-                </div>
-              </td>
-              <td>
-                <p>{item.subCategoryName}</p>
-              </td>
-              <td className="flex gap-2">
-                <button
-                  onClick={() => handleViewSubCategory(item)}
-                  className="btn bg-blue-500 text-white hover:bg-black "
-                  title="View Details"
-                >
-                  <FaEye />
-                </button>
+          {filter.map((item, index) => {
+            const prodCount = allProducts?.filter(p => p?.subCategoryItem?.subCategoryID === item._id).length;
 
-                <button
-                  onClick={() => handleEditSubCategory(item)}
-                  className="btn bg-[#D1A054] text-white hover:bg-black "
-                >
-                  <FaEdit />
-                </button>
+            return (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <div>
+                    <img
+                      src={item.subCategoryImage}
+                      alt=""
+                      className="w-25 h-20 rounded object-cover"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <p className="font-bold text-gray-700">{item.subCategoryName}</p>
+                </td>
+                <td>
+                  <div className="badge badge-success gap-2 py-3 px-4 text-xs text-white font-semibold">
+                    {prodCount} Products
+                  </div>
+                </td>
+                <td className=" ">
+                  <div className="flex justify-center gap-3">
+                    <button
+                      onClick={() => handleViewSubCategory(item)}
+                      className="btn bg-blue-500 text-white hover:bg-black "
+                      title="View Details"
+                    >
+                      <FaEye />
+                    </button>
 
-                <button
-                  onClick={() => handleDeleteSubCategory(item)}
-                  className="btn bg-red-600 text-white hover:bg-black"
-                >
-                  <FaTrashAlt />
-                </button>
-              </td>
-            </tr>
-          ))}
+                    <button
+                      onClick={() => handleEditSubCategory(item)}
+                      className="btn bg-[#D1A054] text-white hover:bg-black "
+                    >
+                      <FaEdit />
+                    </button>
+
+                    <button
+                      onClick={() => handleDeleteSubCategory(item)}
+                      className="btn bg-red-600 text-white hover:bg-black"
+                    >
+                      <FaTrashAlt />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
-    </div>
+    </div >
   );
 };
 
