@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router";
-import logo from "../../assets/logo/logo1.png";
+import logo from "../../assets/logo/final-logo.jpeg";
 import {
   FaFolderPlus,
   FaBoxes,
@@ -140,6 +140,17 @@ const SideNav = () => {
                             >
                               <li>
                                 <Link
+                                  to="/dashboard/manageCategorys"
+                                  onClick={() => setIsSidebarOpen(false)}
+                                  className={`flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 transition ${isActive(
+                                    "/dashboard/manageCategorys"
+                                  )}`}
+                                >
+                                  <FaThList /> Manage Category
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
                                   to="/dashboard/manageSubCategorys"
                                   onClick={() => setIsSidebarOpen(false)}
                                   className={`flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 transition ${isActive(
@@ -265,6 +276,16 @@ const SideNav = () => {
                         transition={{ duration: 0.3 }}
                         className="ml-6 mt-2 space-y-1 overflow-hidden"
                       >
+                        <li>
+                          <Link
+                            to="/dashboard/manageCategorys"
+                            className={`flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 transition ${isActive(
+                              "/dashboard/manageCategorys"
+                            )}`}
+                          >
+                            <FaThList /> Manage Category
+                          </Link>
+                        </li>
                         <li>
                           <Link
                             to="/dashboard/manageSubCategorys"

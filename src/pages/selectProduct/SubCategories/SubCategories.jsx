@@ -23,11 +23,15 @@ const SubCategories = () => {
   console.log(selectedCatagory);
 
   return (
-    <div className="grid grid-cols-12">
-      <div className="w-full   bg-black col-span-3">
+    <div className="grid grid-cols-1 md:grid-cols-12">
+      <div className="hidden md:block md:col-span-3 bg-black">
         <SideNavDataFitaring id={id}></SideNavDataFitaring>
       </div>
-      <div className=" w-4/5 mx-auto min-h-screen h-full col-span-9">
+      {/* Mobile only SideNav toggle and menu is handled inside SideNavDataFitaring using fixed positioning */}
+      <div className="md:hidden">
+        <SideNavDataFitaring id={id}></SideNavDataFitaring>
+      </div>
+      <div className="w-[95%] md:w-4/5 mx-auto min-h-screen h-full md:col-span-9">
         <div className="title py-20">
           <h1 className="text-2xl text-end">
             Timeless elegance and sophistication, crafted for every professional

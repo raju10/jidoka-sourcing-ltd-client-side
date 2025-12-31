@@ -22,6 +22,7 @@ import ContactSection from "../pages/ContactSection/ContactSection";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import AdminRoute from "./AdminRoute";
 import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
+import ManageCategory from "../pages/DashBoard/Manage-category/ManageCategory";
 
 export const router = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ export const router = createBrowserRouter([
       {
         path: "addSubCategoryProduct/:id",
         element: <AddSubCategoryProduct></AddSubCategoryProduct>,
+      },
+      {
+        path: "manageCategorys",
+        element: <ManageCategory></ManageCategory>,
       },
       {
         path: "manageSubCategorys",

@@ -747,7 +747,7 @@
 //
 //
 
-import { FaEdit, FaPlus, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaEye, FaPlus, FaTrashAlt } from "react-icons/fa";
 import useSubCategory from "../../../hooks/useSubCategory";
 import { useLocation } from "react-router";
 import useProducts from "../../../hooks/useProducts";
@@ -773,6 +773,88 @@ const ManageProducts = () => {
   console.log(selectedFilterSubCategory);
   const [searchCode, setSearchCode] = useState(""); // 👈 for search
   const location = useLocation();
+
+  // -------------------- VIEW DETAILS --------------------
+  const handleViewProduct = (item) => {
+    Swal.fire({
+      title: `<span class="text-2xl font-bold text-[#41a28e]">${item.productTitle}</span>`,
+      html: `
+        <div class="text-left overflow-y-auto max-h-[70vh] px-4 py-2">
+          <div class="mb-6 flex justify-center">
+            <img src="${item.image}" alt="${item.productTitle
+        }" class="w-full max-w-[300px] h-[300px] object-cover rounded-lg shadow-md border border-gray-200" />
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+              <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Product Code</p>
+              <p class="font-mono text-[#b67718] font-bold text-lg">${item.productCode
+        }</p>
+            </div>
+            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+              <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Price Info</p>
+              <p class="text-lg flex flex-col md:flex-row items-center gap-2">
+                ${item.discount
+          ? `<small class="line-through text-gray-400 text-sm">$ ${item.price}</small>
+                       <span class="font-bold text-[#41a28e]">$ ${Math.round(item.price - (item.price * item.discount / 100))}</span>
+                       <span class="text-red-500 text-xs font-semibold ml-1">(-${item.discount}%)</span>`
+          : `<span class="font-bold">$ ${item.price}</span>`
+        }
+              </p>
+            </div>
+             <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+              <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Material</p>
+              <p class="font-medium capitalize">${item.material || "N/A"}</p>
+            </div>
+            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+              <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Color</p>
+              <p class="font-medium capitalize">${item.color || "N/A"}</p>
+            </div>
+            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+              <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Sizes Available</p>
+              <div class="flex flex-wrap gap-2 mt-1">
+                ${item.size && item.size.length > 0
+          ? item.size
+            .map(
+              (s) =>
+                `<span class="px-2 py-1 bg-[#41a28e] text-white text-xs rounded font-bold">${s}</span>`
+            )
+            .join("")
+          : '<span class="text-gray-400">No size specified</span>'
+        }
+              </div>
+            </div>
+            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+              <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Quantity</p>
+              <p class="font-medium">${item.noOfQuantity || "In Stock"}</p>
+            </div>
+          </div>
+
+          <div class="mt-4 bg-gray-50 p-3 rounded-lg border border-gray-100">
+            <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Category & Sub-Category</p>
+            <p class="font-medium"><span class="text-gray-400">Cat:</span> ${item?.categoryItem?.categoryName
+        }</p>
+            <p class="font-medium"><span class="text-gray-400">Sub-Cat:</span> ${item.subCategoryItem.subCategoryName
+        }</p>
+          </div>
+
+          <div class="mt-4 bg-gray-50 p-3 rounded-lg border border-gray-100">
+            <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Description</p>
+            <p class="text-gray-700 leading-relaxed text-sm">${item.description || "No description available."
+        }</p>
+          </div>
+        </div>
+      `,
+      width: "600px",
+      confirmButtonText: "Close",
+      confirmButtonColor: "#41a28e",
+      showCloseButton: true,
+      customClass: {
+        container: "my-swal-container",
+        popup: "rounded-2xl",
+      },
+    });
+  };
 
   // -------------------- DELETE --------------------
   const handleDeleteProduct = (item) => {
@@ -802,6 +884,7 @@ const ManageProducts = () => {
 
   // -------------------- EDIT --------------------
   const handleEditProduct = (item) => {
+    // onEditSubmit code...
     const onEditSubmit = async (
       data,
       productCode,
@@ -835,17 +918,26 @@ const ManageProducts = () => {
           discount: parseFloat(data.discount),
           noOfQuantity: parseFloat(data.noOfQuantity),
           subCategoryItem: {
-            subCategoryImage: selectedSubCategoryItem.subCategoryImage || item.subCategoryItem.subCategoryImage,
-            subCategoryName: selectedSubCategoryItem.subCategoryName || item.subCategoryItem.subCategoryName,
-            subCategoryID: selectedSubCategoryItem._id || item.subCategoryItem.subCategoryID,
+            subCategoryImage:
+              selectedSubCategoryItem.subCategoryImage ||
+              item.subCategoryItem.subCategoryImage,
+            subCategoryName:
+              selectedSubCategoryItem.subCategoryName ||
+              item.subCategoryItem.subCategoryName,
+            subCategoryID:
+              selectedSubCategoryItem._id || item.subCategoryItem.subCategoryID,
           },
-          categoryItem: selectedSubCategoryItem.selectedCategoryItem || item.categoryItem,
+          categoryItem:
+            selectedSubCategoryItem.selectedCategoryItem || item.categoryItem,
         };
 
         // Remove parentCategory from the object sent to the server
         delete updatedProduct.parentCategory;
 
-        const res = await axiosPublic?.put(`/product/${item._id}`, updatedProduct);
+        const res = await axiosPublic?.put(
+          `/product/${item._id}`,
+          updatedProduct
+        );
         if (res.data.modifiedCount > 0) {
           refetch();
           MySwal.close();
@@ -968,7 +1060,7 @@ const ManageProducts = () => {
             </option>
           ))}
         </select> */}
-      <div className="grid sm:grid-cols-2 gap-4 items-end   m-10 ">
+      <div className="grid sm:grid-cols-2 gap-4 items-end   m-5 ">
         <div className=" max-w-sm ">
           <label className="block pb-2 text-lg font-medium text-gray-700">
             Select Sub-Category
@@ -996,12 +1088,12 @@ const ManageProducts = () => {
         </div>
       </div>
       {/* Product Code Search */}
-      <div className="mb-5">
+      <div className="mb-5 px-4 ">
         <input
           type="text"
           placeholder="🔍 Search by product code..."
           onChange={handleProductCode}
-          className="border border-gray-400 px-4 py-2 rounded-md w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border border-gray-400 px-4 py-2 rounded-md w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500 "
         />
       </div>
 
@@ -1045,18 +1137,30 @@ const ManageProducts = () => {
                           {item.productCode}
                         </i>{" "}
                       </p>
-                      <p className="text-lg font-semibold">
-                        {item.productTitle}
-                      </p>
+                      <div className="flex gap-4 justify-start items-center">
+                        <p className="text-lg font-semibold">
+                          {item.productTitle}
+                        </p>
+                        <p className="flex items-center gap-1">
+                          {item.discount && (
+
+                            <>
+                              <span className="text-red-500"> - {item.discount} % </span>
+                              <span className="text-gray-400 text-xs">off</span>
+                            </>
+                          )}
+                        </p>
+                      </div>
                       <div className="flex gap-3">
                         {item.price ? (
-                          <b>$ {item.price}</b>
+                          <div className="">
+                            {item.discount ? <small className="line-through text-gray-500 text-xs">$ {item.price} </small> : <b>$ {item.price}</b>}
+                            {item.discount && <small className="text-[16px] font-semibold p-2">$ {Math.round(item.price - (item.price * item.discount / 100))}</small>}
+                          </div>
                         ) : (
                           <b> Price not add</b>
                         )}
-                        {item.discount && (
-                          <p className="text-red-500"> - {item.discount} % </p>
-                        )}
+
                       </div>
                       {item.noOfQuantity ? (
                         <p>Quantity : {item.noOfQuantity}</p>
@@ -1093,6 +1197,13 @@ const ManageProducts = () => {
                 </td>
                 <td>
                   <div className="flex gap-2">
+                    <button
+                      onClick={() => handleViewProduct(item)}
+                      className="btn bg-[#41a28e] text-white hover:bg-black"
+                      title="View Details"
+                    >
+                      <FaEye />
+                    </button>
                     <button
                       onClick={() => handleEditProduct(item)}
                       className="btn bg-[#D1A054] text-white hover:bg-black "

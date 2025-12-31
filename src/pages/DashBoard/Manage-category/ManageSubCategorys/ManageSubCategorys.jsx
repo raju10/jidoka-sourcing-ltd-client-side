@@ -1049,11 +1049,10 @@ const ManageSubCategorys = () => {
       <table className="table min-w-full">
         <thead>
           <tr>
-            <th></th>
+            <th>#</th>
             <th>Image</th>
             <th>Title</th>
-            <th>View</th>
-            <th>Action</th>
+
             <th>Action</th>
           </tr>
         </thead>
@@ -1073,7 +1072,7 @@ const ManageSubCategorys = () => {
               <td>
                 <p>{item.subCategoryName}</p>
               </td>
-              <td>
+              <td className="flex gap-2">
                 <button
                   onClick={() => handleViewSubCategory(item)}
                   className="btn bg-blue-500 text-white hover:bg-black "
@@ -1081,16 +1080,14 @@ const ManageSubCategorys = () => {
                 >
                   <FaEye />
                 </button>
-              </td>
-              <td>
+
                 <button
                   onClick={() => handleEditSubCategory(item)}
                   className="btn bg-[#D1A054] text-white hover:bg-black "
                 >
                   <FaEdit />
                 </button>
-              </td>
-              <td>
+
                 <button
                   onClick={() => handleDeleteSubCategory(item)}
                   className="btn bg-red-600 text-white hover:bg-black"

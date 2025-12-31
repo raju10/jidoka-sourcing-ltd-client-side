@@ -43,13 +43,13 @@ export default function ContactSection() {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className=" flex items-center justify-center bg-gray-100 px-6 py-10 "
+      className=" flex items-center justify-center bg-gray-100 px-6 py-30 "
     >
       <motion.div
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="max-w-7xl w-full grid md:grid-cols-2 rounded shadow-xl overflow-hidden"
+        className="max-w-7xl w-full grid md:grid-cols-2 rounded shadow-xl overflow-hidden "
       >
         {/* Left Section */}
         <motion.div
