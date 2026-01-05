@@ -6,9 +6,9 @@ import useCart from "../../hooks/useCart";
 
 const CheckOut = () => {
   const [cart, refetch] = useCart();
-  console.log(cart);
+  // console.log(cart);
   const location = useLocation();
-  console.log("chack out route location state data", location);
+  // console.log("chack out route location state data", location);
   return (
     <div className="w-full ">
       <CartBanner location={location}></CartBanner>

@@ -1796,7 +1796,7 @@ const AddSubCategory = () => {
 
   // Find selected category by id
   const [findSelectedcategory, setFindSelectedcategory] = useState(null);
-  console.log(findSelectedcategory);
+  // console.log(findSelectedcategory);
   useEffect(() => {
     const category = allCategorys?.find((c) => c?._id === id);
     setFindSelectedcategory(category);
@@ -1930,7 +1930,7 @@ const AddSubCategory = () => {
       subCategoryImage: imgResponse.data.data.display_url,
       selectedCategoryItem: findSelectedcategory,
     };
-    console.log(subCategoryItem);
+    // console.log(subCategoryItem);
     // 6. Post subcategory to backend
     try {
       const res = await axiosPublic.post("/subCategory", subCategoryItem);

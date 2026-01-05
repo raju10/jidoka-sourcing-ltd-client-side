@@ -523,11 +523,11 @@ const AddSubCategoryProduct = () => {
   const [allProducts] = useProducts();
   // console.log(allProducts);
   const [subCategorySelectItem, setSubCategorySelectItem] = useState(null);
-  console.log("subCategorySelectItem", subCategorySelectItem);
+  //console.log("subCategorySelectItem", subCategorySelectItem);
   const [subCatIdFiltaringProducts, setSubCatIdFiltaringProducts] = useState(
     []
   );
-  console.log("subCatIdFiltaringProducts", subCatIdFiltaringProducts);
+  //console.log("subCatIdFiltaringProducts", subCatIdFiltaringProducts);
   useEffect(() => {
     const find = allSubCategorys?.find((f) => f?._id === id);
     setSubCategorySelectItem(find);

@@ -31,8 +31,8 @@ const ShopFiltering = ({ filters, setFilters, closeOnApply }) => {
       type === "color"
         ? String(rawValue).toLowerCase()
         : type === "size"
-        ? String(rawValue).toUpperCase()
-        : rawValue;
+          ? String(rawValue).toUpperCase()
+          : rawValue;
 
     setFilters((prev) => {
       const current = Array.isArray(prev[type]) ? prev[type] : [];
@@ -48,7 +48,7 @@ const ShopFiltering = ({ filters, setFilters, closeOnApply }) => {
     setFilters({ category: [], color: [], size: [], price: 3000 });
 
   return (
-    <div className="bg-gray-50 p-4 max-h-screen overflow-y-auto h-full">
+    <div className="bg-gray-50 sticky top-20   p-4 max-h-screen overflow-y-auto h-full">
       {/* Mobile close/some parent handles close; closeOnApply optional */}
       <div className="mb-3 flex gap-2">
         <button

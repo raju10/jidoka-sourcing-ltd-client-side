@@ -43,8 +43,8 @@ const AddSubCategoryProductForm = ({
   const [affordableStatus, setAffordableStatus] = useState(
     defaultValues?.mostAffordable || "disable"
   );
-  console.log("subCategorySelectItem", subCategorySelectItem);
-  console.log("subCatIdFiltaringProducts", subCatIdFiltaringProducts);
+  // console.log("subCategorySelectItem", subCategorySelectItem);
+  // console.log("subCatIdFiltaringProducts", subCatIdFiltaringProducts);
   const {
     register,
     handleSubmit,
@@ -90,7 +90,7 @@ const AddSubCategoryProductForm = ({
 
   // Local state for form dropdown
   const [selectedFormCategory, setSelectedFormCategory] = useState("");
-  console.log(selectedFormCategory);
+  //console.log(selectedFormCategory);
   const handleFormSelectChange = (e) => {
     setSelectedFormCategory(e.target?.value);
   };
@@ -100,7 +100,7 @@ const AddSubCategoryProductForm = ({
       await propOnSubmit(data, productCode, selectedSizes, affordableStatus);
       return;
     }
-    console.log(data);
+    //console.log(data);
     const { parentCategory, ...filteredData } = data;
     try {
       // image upload
@@ -145,7 +145,7 @@ const AddSubCategoryProductForm = ({
       };
 
       const productResponse = await axiosPublic.post("/product", productItem);
-      console.log(productResponse);
+      //console.log(productResponse);
       reset();
       setSelectedSizes([]);
       setAffordableStatus("disable");

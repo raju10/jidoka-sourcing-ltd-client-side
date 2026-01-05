@@ -86,9 +86,7 @@ const ProductDetails = ({
         <b className="text-xl">Code : </b> <i>{spData?.productCode}</i>
       </p>
       <p>
-        Donec quam felis, ultricies nec, and pellentesque eu, pretium quis, sem.
-        penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        commodo ligula eget dolor. Aenean massa.
+        {spData?.description}
       </p>
       {/* <p>
                    <b>Code : </b> <i>{spData?.productCode}</i>
@@ -115,11 +113,10 @@ const ProductDetails = ({
               <li
                 key={s}
                 onClick={() => handleSizeSelect(s)}
-                className={`${
-                  sizeSelect === s
+                className={`${sizeSelect === s
                     ? "py-2 px-4 rounded-sm bg-white text-black border-2"
                     : "py-2 px-4 rounded-sm bg-[#41a28e] text-white"
-                }`}
+                  }`}
               >
                 {s}
               </li>

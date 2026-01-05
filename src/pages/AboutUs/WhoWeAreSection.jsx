@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import CountUp from "react-countup";
 const WhoWeAreSection = () => {
   return (
-    <div className=" w-100% max-w-5xl mx-auto grid md:grid-cols-12 gap-5 px-6 pt-20 pb-16">
+    <div className=" w-full max-w-5xl mx-auto grid md:grid-cols-12 gap-5 px-6 pt-20 pb-16">
       {/* Left Image */}
       <motion.div
         initial={{ opacity: 0, y: 300 }}

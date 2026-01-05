@@ -3,11 +3,11 @@ import Navbar from "../../shared/Navbar/Navbar";
 import Footer from "../../shared/Footer/Footer";
 const Main = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const noHeaderFooter =
     location.pathname.includes("login") || location.pathname.includes("signUp");
   return (
-    <div>
+    <div className="">
       {noHeaderFooter || <Navbar></Navbar>}
       {location.pathname === "/" ? (
         <div className=" pt-20">

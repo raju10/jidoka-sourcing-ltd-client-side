@@ -4,7 +4,7 @@ import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
   const location = useLocation();
-  console.log(location);
+  //  console.log(location);
   //     get isAdmain value from the database
 
   //   const links = (

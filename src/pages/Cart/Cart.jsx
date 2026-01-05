@@ -155,12 +155,12 @@ import { Helmet } from "react-helmet-async";
 const Cart = () => {
   const axiosPublic = useAxiosPublic();
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const [cart, refetch] = useCart([]); // your hook data
 
   // local state for cart with updated qty
   const [cartData, setCartData] = useState([]);
-  console.log(cartData);
+  // console.log(cartData);
 
   // initialize cartData when cart comes
   useEffect(() => {
@@ -169,7 +169,7 @@ const Cart = () => {
       noOfProduct: item.noOfProduct || 1,
       totalCalculatePrice: (item.finalPrice || 0) * (item.noOfProduct || 1),
     }));
-    console.log(updated);
+    //  console.log(updated);
     setCartData(updated);
   }, [cart]);
 
@@ -183,7 +183,7 @@ const Cart = () => {
           if (newQty < 1) newQty = 1; // prevent zero
           // calculate new total
           const newTotal = newQty * item.finalPrice;
-          console.log(id, newQty, newTotal);
+          //  console.log(id, newQty, newTotal);
 
           updateCartQuantity(id, newQty, newTotal);
           return {
@@ -240,9 +240,9 @@ const Cart = () => {
 
   // handleDeleteItem
   const handleDeleteItem = async (e) => {
-    console.log(e);
+    // console.log(e);
     const res = await axiosPublic.delete(`carts/${e}`);
-    console.log(res);
+    // console.log(res);
     if (res.data.acknowledged > 0) {
       refetch();
       // Swal.fire({
@@ -259,89 +259,112 @@ const Cart = () => {
       <Helmet>
         <title>Jidohaka LTD | Cart</title>
       </Helmet>
-      <div className="min-h-screen bg-white">
-        {/* Banner Section */}
+      <div className="min-h-screen bg-white pb-20">
+        <CartBanner location={location} />
 
-        <CartBanner location={location}></CartBanner>
-        {/* Cart Table */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 py-20 px-5 gap-4 ">
-          <div className="col-span-8">
-            <div className="">
-              <div className="overflow-x-auto">
-                <table className="table border border-gray-200 w-full grid grid-cols-12">
-                  <thead className="bg-gray-50">
-                    <tr className="text-lg text-black">
-                      <th>Product</th>
-                      <th>Price</th>
-                      <th>Quantity</th>
-                      <th>Total</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cartData.map((c) => (
-                      <tr key={c._id} className="">
-                        {/* Product Info */}
-                        <td className="flex flex-col justify-center gap-2">
-                          <img
-                            src={c.image}
-                            alt={c.productTitle}
-                            className="w-20 h-20 object-cover rounded"
-                          />
-                          <div>
-                            <h1 className="font-bold text-lg">
-                              {c.productTitle}
-                            </h1>
-                            <p>Color: {c.color}</p>
-                            <p>Size: {c.size}</p>
-                          </div>
-                        </td>
-
-                        {/* Price */}
-                        <td>${c.finalPrice}</td>
-
-                        {/* Quantity + / - */}
-                        <td>
-                          <div className="border-2 border-gray-300 flex justify-evenly items-center text-lg font-semibold py-1 rounded-lg w-28">
-                            <button
-                              onClick={() => handleQuantityChange(c._id, "dec")}
-                              className="cursor-pointer px-2"
-                            >
-                              -
-                            </button>
-                            <span>{c.noOfProduct}</span>
-                            <button
-                              onClick={() => handleQuantityChange(c._id, "inc")}
-                              className="cursor-pointer px-2"
-                            >
-                              +
-                            </button>
-                          </div>
-                        </td>
-
-                        {/* Total */}
-                        <td>${c.totalCalculatePrice}</td>
-                        <td className="">
-                          <ImCross
-                            onClick={() => handleDeleteItem(c._id)}
-                            className="text-red-500 cursor-pointer hover:text-gray-500 "
-                          />
-                        </td>
+        <div className="container mx-auto px-4 py-10 lg:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 ">
+            {/* Cart Items List */}
+            <div className="col-span-1 lg:col-span-8">
+              <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+                <div className="overflow-x-auto">
+                  <table className="table w-full">
+                    {/* head */}
+                    <thead className="bg-gray-50/50">
+                      <tr className="text-gray-600 font-semibold border-b border-gray-100">
+                        <th className="py-5 px-4 text-left">Product</th>
+                        <th className="py-5 px-4 text-center hidden md:table-cell">Price</th>
+                        <th className="py-5 px-4 text-center">Quantity</th>
+                        <th className="py-5 px-4 text-center hidden sm:table-cell">Total</th>
+                        <th className="py-5 px-4 text-right">Action</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-gray-50">
+                      {cartData.map((c) => (
+                        <tr key={c._id} className="hover:bg-gray-50/30 transition-colors">
+                          <td className="py-5 px-4">
+                            <div className="flex items-center gap-4">
+                              <img
+                                src={c.image}
+                                alt={c.productTitle}
+                                className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg shadow-sm"
+                              />
+                              <div className="space-y-1">
+                                <h3 className="font-bold text-gray-800 text-sm md:text-base leading-tight">
+                                  {c.productTitle}
+                                </h3>
+                                <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-500 uppercase tracking-wider font-medium">
+                                  <span>Color: {c.color}</span>
+                                  <span className="md:border-l md:pl-3">Size: {c.size}</span>
+                                </div>
+                                {/* Mobile-only price display */}
+                                <p className="text-gray-900 font-bold text-sm md:hidden">
+                                  ${c.finalPrice}
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+
+                          <td className="py-5 px-4 text-center hidden md:table-cell">
+                            <span className="font-medium text-gray-700">${c.finalPrice}</span>
+                          </td>
+
+                          <td className="py-5 px-4">
+                            <div className="flex justify-center">
+                              <div className="inline-flex items-center border border-gray-200 rounded-lg overflow-hidden h-9">
+                                <button
+                                  onClick={() => handleQuantityChange(c._id, "dec")}
+                                  className="w-8 h-full flex justify-center items-center hover:bg-gray-100 transition-colors text-gray-500"
+                                >
+                                  -
+                                </button>
+                                <span className="w-10 text-center text-sm font-bold text-gray-800">
+                                  {c.noOfProduct}
+                                </span>
+                                <button
+                                  onClick={() => handleQuantityChange(c._id, "inc")}
+                                  className="w-8 h-full flex justify-center items-center hover:bg-gray-100 transition-colors text-gray-500"
+                                >
+                                  +
+                                </button>
+                              </div>
+                            </div>
+                          </td>
+
+                          <td className="py-5 px-4 text-center hidden sm:table-cell">
+                            <span className="font-bold text-gray-900">${c.totalCalculatePrice}</span>
+                          </td>
+
+                          <td className="py-5 px-4 text-right">
+                            <button
+                              onClick={() => handleDeleteItem(c._id)}
+                              className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all"
+                              title="Remove item"
+                            >
+                              <ImCross className="text-xs" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {cartData.length === 0 && (
+                  <div className="py-20 text-center">
+                    <p className="text-gray-500 text-lg">Your cart is empty.</p>
+                    <Link to="/shop" className="text-blue-600 hover:underline mt-2 inline-block font-medium">
+                      Back to Shopping
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
-          </div>
-          <div className="col-span-4 ">
-            <OrderSummery
-              // updatedCart={updatedCart}
-              // subTotal={subTotal}
-              // vatCalCulate={vatCalCulate}
-              // finalTotalSummeryCost={finalTotalSummeryCost}
-              cartData={cartData}
-            ></OrderSummery>
+
+            {/* Order Summary Section */}
+            <div className="col-span-1 lg:col-span-4 ">
+              <OrderSummery cartData={cartData} />
+            </div>
           </div>
         </div>
       </div>

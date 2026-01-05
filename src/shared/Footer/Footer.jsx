@@ -127,7 +127,7 @@ import footerCardImg from "../../assets/footer/card-footer/1.png";
 const Footer = () => {
   return (
     <footer className="bg-black text-white px-6 md:px-12 lg:px-20 py-5">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-20 py-30">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-20 py-20 md:py-30">
         {/* Newsletter Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

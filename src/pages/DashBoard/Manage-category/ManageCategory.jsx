@@ -19,8 +19,8 @@ const ManageCategory = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const [allCategorys, refetch] = useCategory();
-    const [allSubCategorys] = useSubCategory();
-    const [allProducts] = useProducts();
+    const [allSubCategorys, refetchSub] = useSubCategory();
+    const [allProducts, refetchProd] = useProducts();
     const [searchTerm, setSearchTerm] = useState("");
 
     // -------------------- VIEW --------------------
@@ -59,25 +59,46 @@ const ManageCategory = () => {
 
     // -------------------- DELETE --------------------
     const handleDeleteCategory = (item) => {
+        const relatedSubCats = allSubCategorys?.filter(sc => sc?.selectedCategoryItem?._id === item._id) || [];
+        const relatedProducts = allProducts?.filter(p => p?.categoryItem?._id === item._id) || [];
+
+        const hasChildren = relatedSubCats.length > 0 || relatedProducts.length > 0;
+        const warningText = hasChildren
+            ? `This category contains ${relatedSubCats.length} subcategories and ${relatedProducts.length} products. Deleting it will PERMANENTLY remove all of them!`
+            : `You want to delete the category "${item.categoryName}"?`;
+
         Swal.fire({
             title: "Are you sure?",
-            text: `You want to delete the category "${item.categoryName}"?`,
+            text: warningText,
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete everything!",
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const res = await axiosSecure.delete(`/category/${item._id}`);
-                    if (res.data.deletedCount > 0) {
-                        refetch();
-                        Swal.fire("Deleted!", "Category has been deleted.", "success");
-                    }
+                    // 1. Delete associated products
+                    const productDeletes = relatedProducts.map(p => axiosSecure.delete(`/product/${p._id}`));
+
+                    // 2. Delete associated subcategories
+                    const subCatDeletes = relatedSubCats.map(sc => axiosSecure.delete(`/subCategory/${sc._id}`));
+
+                    // 3. Delete the category itself
+                    const categoryDelete = axiosSecure.delete(`/category/${item._id}`);
+
+                    // Use Promise.all to wait for all deletions
+                    await Promise.all([...productDeletes, ...subCatDeletes, categoryDelete]);
+
+                    // Refetch all to update UI
+                    refetch();
+                    refetchSub();
+                    refetchProd();
+
+                    Swal.fire("Deleted!", "Category and all its related items have been deleted.", "success");
                 } catch (error) {
-                    console.error("Delete Error:", error);
-                    Swal.fire("Error", "Could not delete category.", "error");
+                    console.error("Cascade Delete Error:", error);
+                    Swal.fire("Error", "Something went wrong during deletion.", "error");
                 }
             }
         });

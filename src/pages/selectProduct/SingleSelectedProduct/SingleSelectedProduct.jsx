@@ -795,7 +795,7 @@ const SingleSelectedProduct = () => {
   }, [axiosSecure, spData?._id, user?.email]);
 
   const handleContactSeller = async (product) => {
-    console.log(product);
+    // console.log(product);
     if (!message.trim()) {
       Swal.fire({
         icon: "warning",

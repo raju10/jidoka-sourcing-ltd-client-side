@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import logo from "../../../assets/logo/logo1.png";
-import "./SignUp.scss";
+
 import bgImg from "../../../assets/Authintecate-img/authintication bg img.jpg";
 import { Link, useNavigate } from "react-router";
-import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
+
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -22,7 +22,7 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("signUp Data:", data);
+    // console.log("signUp Data:", data);
     createUser(data.email, data.password, data.displayName)
       .then(() => {
         // create user entry in the database
@@ -30,11 +30,11 @@ const SignUp = () => {
           displayName: data.displayName,
           email: data.email,
         };
-        console.log(userInfo);
+        // console.log(userInfo);
         axiosPublic.post("/users", userInfo).then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data.insertedId) {
-            console.log("User added to the database");
+            // console.log("User added to the database");
             reset();
             Swal.fire({
               title: "✅ User Signed Up Successfully!",
@@ -46,7 +46,7 @@ const SignUp = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);

@@ -7,23 +7,23 @@ import SideNavDataFitaring from "../../Home/SideNavDataFitaring/SideNavDataFitar
 const SubCategories = () => {
   const { id } = useParams();
 
-  console.log(id);
+  //console.log(id);
   const [selectedCatagory, setSelectedCatagory] = useState([]);
   const [allSubCategorys] = useSubCategory();
   const [allProducts] = useProducts();
-  console.log(allSubCategorys);
+  //console.log(allSubCategorys);
 
   useEffect(() => {
     const data = allSubCategorys?.filter(
       (sCat) => sCat?.selectedCategoryItem?._id === id
     );
-    console.log(data);
+    //console.log(data);
     setSelectedCatagory(data);
   }, [allSubCategorys, id]);
-  console.log(selectedCatagory);
+  // console.log(selectedCatagory);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12">
+    <div className="grid grid-cols-1 md:grid-cols-12 pt-15">
       <div className="hidden md:block md:col-span-3 bg-black">
         <SideNavDataFitaring id={id}></SideNavDataFitaring>
       </div>
@@ -38,45 +38,47 @@ const SubCategories = () => {
             <br /> and special occasion.
           </h1>
         </div>
-        <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+        {selectedCatagory?.length > 0 ? <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
           {selectedCatagory?.map((sCatagory) => (
             <div className="" key={sCatagory._id}>
-              <img
-                src={sCatagory?.subCategoryImage}
-                alt=""
-                className="w-full h-[300px] border object-cover"
-              />
+              <Link to={`/product/${id}/${sCatagory._id}`} state={{ sCatagory: sCatagory }}>
+                <img
+                  src={sCatagory?.subCategoryImage}
+                  alt=""
+                  className="w-full h-[300px] border object-cover"
+                />
 
-              <div className=" flex justify-between items-center py-4 ">
-                <h2 className="font-bold text-3xl md:text-lg md:leading-6">
-                  {sCatagory?.subCategoryName}
-                </h2>
-                <Link
-                  to={`/product/${id}/${sCatagory._id}`}
-                  state={{ sCatagory: sCatagory }}
-                >
-                  {" "}
-                  <p
-                    // onClick={() => handleCardClick(sCatagory.id)}
-                    className="cursor-pointer text-lg md:text-sm "
+                <div className=" flex justify-between items-center py-4 ">
+                  <h2 className="font-bold text-3xl md:text-lg md:leading-6">
+                    {sCatagory?.subCategoryName}
+                  </h2>
+                  <Link
+                    to={`/product/${id}/${sCatagory._id}`}
+                    state={{ sCatagory: sCatagory }}
                   >
-                    <b>
-                      {" "}
-                      {
-                        allProducts.filter(
-                          (pro) =>
-                            pro.subCategoryItem.subCategoryID === sCatagory._id
-                        ).length
-                      }
-                    </b>
+                    {" "}
+                    <p
+                      // onClick={() => handleCardClick(sCatagory.id)}
+                      className="cursor-pointer text-lg md:text-sm "
+                    >
+                      <b>
+                        {" "}
+                        {
+                          allProducts.filter(
+                            (pro) =>
+                              pro.subCategoryItem.subCategoryID === sCatagory._id
+                          ).length
+                        }
+                      </b>
 
-                    <small> Product Avalable</small>
-                  </p>
-                </Link>
-              </div>
+                      <small> Product Avalable</small>
+                    </p>
+                  </Link>
+                </div>
+              </Link>
             </div>
           ))}
-        </div>
+        </div> : <p className="text-2xl text-center p-10 text-red-500">No SubCategory Found</p>}
       </div>
     </div>
   );

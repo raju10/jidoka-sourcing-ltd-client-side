@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const useMenu = () => {
   const [allCategory, setAllCategory] = useState([]);
-  console.log(allCategory);
+  // console.log(allCategory);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch("../../../../product.json")

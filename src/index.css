@@ -7,10 +7,18 @@
   --font-instrument: "Instrument Sans", sans-serif;
   --font-marcellus: "Marcellus", serif;
 }
+
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 body {
   color: #241843;
   /* background-color: #ede8e5; */
 }
+
 h1,
 h2,
 h3,
@@ -19,6 +27,7 @@ h5,
 h6 {
   font-family: "Marcellus", serif;
 }
+
 p,
 span {
   font-family: "Instrument Sans", sans-serif;

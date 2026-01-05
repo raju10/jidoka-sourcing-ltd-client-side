@@ -10,16 +10,16 @@ const SocialLogin = ({ from, extraState }) => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
-  console.log(from);
+  // console.log(from);
   const handleGoogleSignIn = () => {
     googleSignIn().then((result) => {
-      console.log(result.user);
+      //    console.log(result.user);
       const userinfo = {
         email: result.user?.email,
         name: result.user?.displayName,
       };
       axiosPublic.post("/users", userinfo).then((res) => {
-        console.log(res.data);
+        //    console.log(res.data);
         // navigate("/");
         navigate(from, { replace: true, state: extraState });
       });

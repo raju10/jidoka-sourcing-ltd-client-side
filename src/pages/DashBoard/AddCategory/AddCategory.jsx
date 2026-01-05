@@ -10,7 +10,7 @@ const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 const AddCategory = () => {
   const navigate = useNavigate();
   const [allCategorys] = useCategory();
-  console.log(allCategorys);
+  // console.log(allCategorys);
   // img upload to imgbb and then get an url
 
   const axiosPublic = useAxiosPublic();
@@ -85,7 +85,7 @@ const AddCategory = () => {
     const categoryResponse = await axiosPublic.post("/category", categoryItem);
 
     const insertedId = categoryResponse?.data?.insertedId;
-    console.log("insertedId", insertedId);
+    // console.log("insertedId", insertedId);
     if (categoryResponse?.data?.acknowledged === true && insertedId) {
       reset();
       Swal.fire({

@@ -11,7 +11,7 @@ const PriceCauculate = () => {
     );
     const vatCalCulate = Math.round(subTotal * 0.02);
     const finalTotalSummeryCost = Math.round(subTotal + vatCalCulate);
-    console.log(finalTotalSummeryCost);
+    //  console.log(finalTotalSummeryCost);
     setUpdatedCart({
       ...cart,
       subTotal,

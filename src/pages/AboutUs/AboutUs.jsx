@@ -37,7 +37,7 @@ export default function AboutUs() {
       <div className="">
         <OurHistory></OurHistory>
       </div>
-      <div className="">
+      <div className="pb-20">
         <GlobalBrands></GlobalBrands>
       </div>
     </section>

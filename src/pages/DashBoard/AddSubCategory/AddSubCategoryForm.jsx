@@ -136,7 +136,7 @@ const AddSubCategoryForm = ({
     }
   }, [defaultValues]);
 
-  console.log(selectedFormCategory);
+  //console.log(selectedFormCategory);
   const handleFormSelectChange = (e) => {
     setSelectedFormCategory(e.target.value);
   };

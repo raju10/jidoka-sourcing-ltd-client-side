@@ -299,19 +299,18 @@
 //
 //
 
-import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useContext, useState } from "react";
+import { useForm, } from "react-hook-form";
 import { FaTruck } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Country, State, City } from "country-state-city";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 
 const UserAddress = ({ location }) => {
-  console.log(location);
-  const [allSelcCartData, setAllSelcCartData] = useState([]);
+  // console.log(location);
+
   const { user } = useContext(AuthContext);
-  const [clientSecret, setClientSecret] = useState("");
-  const axiosSecure = useAxiosSecure();
+
   const {
     register,
     handleSubmit,
@@ -333,17 +332,17 @@ const UserAddress = ({ location }) => {
   //   console.log(mapdata);
   // payment process
   const totalPrice = location?.state?.finalTotalSummeryCost;
-  useEffect(() => {
-    if (totalPrice > 0) {
-      axiosSecure
-        .post("/create-payment-intent", { price: totalPrice })
-        .then((res) => {
-          console.log(res.data.clientSecret);
-          setClientSecret(res.data.clientSecret);
-        });
-    }
-  }, [axiosSecure, totalPrice]);
-  console.log(clientSecret);
+  // useEffect(() => {
+  //   if (totalPrice > 0) {
+  //     axiosSecure
+  //       .post("/create-payment-intent", { price: totalPrice })
+  //       .then((res) => {
+  //         console.log(res.data.clientSecret);
+  //         setClientSecret(res.data.clientSecret);
+  //       });
+  //   }
+  // }, [axiosSecure, totalPrice]);
+  // console.log(clientSecret);
   ///////////////////
   const onSubmit = (data) => {
     const orderData = {
@@ -361,7 +360,7 @@ const UserAddress = ({ location }) => {
         city: data.city,
       },
     };
-    console.log(orderData);
+    //  console.log(orderData);
     alert("Order placed successfully!");
   };
 
@@ -533,9 +532,10 @@ const UserAddress = ({ location }) => {
         {/* Submit Button */}
         <button
           type="submit"
+          disabled={"Comming Soon"}
           className="w-full md:w-auto px-6 py-2 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition"
         >
-          Place Order
+          {"Comming Soon"}
         </button>
       </form>
     </div>

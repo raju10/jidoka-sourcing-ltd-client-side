@@ -25,7 +25,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const extraState = location.state || {}; // keep pro & pData also
-  console.log(location, navigate);
+  //  console.log(location, navigate);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -40,13 +40,13 @@ const Login = () => {
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
-    console.log("Login Data:", email, password);
+    //  console.log("Login Data:", email, password);
     // Perform authentication here (API call, etc.)
 
     signIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        //  console.log(user);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -62,14 +62,15 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        // console.log(errorCode, errorMessage);
+
       });
   };
 
   const handleValidateCaptcha = (e) => {
     // const use_captcha_value = captchaRef.current.value;
     const use_captcha_value = e.target.value;
-    console.log(use_captcha_value);
+    //  console.log(use_captcha_value);
     if (validateCaptcha(use_captcha_value)) {
       setDisabled(false);
     } else {

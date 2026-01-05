@@ -770,7 +770,7 @@ const ManageProducts = () => {
   const [allProducts, refetch] = useProducts();
   const [selectedFilterSubCategory, setSelectedFilterSubCategory] =
     useState(null);
-  console.log(selectedFilterSubCategory);
+  //console.log(selectedFilterSubCategory);
   const [searchCode, setSearchCode] = useState(""); // 👈 for search
   const location = useLocation();
 
@@ -998,12 +998,12 @@ const ManageProducts = () => {
   // --------------------SUB CATEGORY FILTER --------------------
   const handleTableFilterChange = (e) => {
     const value = e.target.value;
-    console.log(value);
+    // console.log(value);
     if (value === "all") {
       setSelectedFilterSubCategory(null);
     } else {
       const selectedObj = JSON.parse(value);
-      console.log(selectedObj);
+      //console.log(selectedObj);
       setSelectedFilterSubCategory(selectedObj);
     }
   };
@@ -1123,12 +1123,21 @@ const ManageProducts = () => {
               </td> */}
                 <td>
                   <div className="md:flex gap-5 items-center">
-                    <div className="">
+                    <div className="relative">
                       <img
                         src={item.image}
                         alt=""
                         className="w-25 h-20 rounded object-cover"
                       />
+
+                      {item.discount && (
+
+                        <p className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 text-[12px] rounded">
+                          - {item.discount} %
+
+                        </p>
+                      )}
+
                     </div>
                     <div className="">
                       <p>
@@ -1140,15 +1149,6 @@ const ManageProducts = () => {
                       <div className="flex gap-4 justify-start items-center">
                         <p className="text-lg font-semibold">
                           {item.productTitle}
-                        </p>
-                        <p className="flex items-center gap-1">
-                          {item.discount && (
-
-                            <>
-                              <span className="text-red-500"> - {item.discount} % </span>
-                              <span className="text-gray-400 text-xs">off</span>
-                            </>
-                          )}
                         </p>
                       </div>
                       <div className="flex gap-3">
@@ -1171,7 +1171,7 @@ const ManageProducts = () => {
 
                       {item.size && (
                         <div className="flex gap-3">
-                          <b> Size :</b>
+                          <b> Size : </b>
                           {item.size.map((s) => (
                             <i className="" key={s}>
                               {s}

@@ -7,50 +7,15 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css";
 import "swiper/css/pagination";
-import causialImg from "../../../assets/carosel-our-product/casual.jpeg";
-import formalImg from "../../../assets/carosel-our-product/formal.jpeg";
-import outerImg from "../../../assets/carosel-our-product/outer.jpeg";
-import activeImg from "../../../assets/carosel-our-product/active.jpeg";
-import homeImg from "../../../assets/carosel-our-product/home.jpeg";
-import ceremonialImg from "../../../assets/carosel-our-product/cr2.jpg";
-import kidsImg from "../../../assets/carosel-our-product/kids.jpeg";
+
 import { Link } from "react-router";
 import useMenu from "../../../hooks/useMenu";
 import useCategory from "../../../hooks/useCategory";
 
-const slides = [
-  {
-    title: "Casual wear",
-    image: causialImg,
-  },
-  {
-    title: "Formal wear",
-    image: formalImg,
-  },
-  {
-    title: "Outer wear",
-    image: outerImg,
-  },
-  {
-    title: "Active wear",
-    image: activeImg,
-  },
-  {
-    title: "Home wear",
-    image: homeImg,
-  },
-  {
-    title: "Ceremonial wear",
-    image: ceremonialImg,
-  },
-  {
-    title: "Kid's wear",
-    image: kidsImg,
-  },
-];
+
 const Categories = () => {
   const [allCategorys] = useCategory();
-  console.log(allCategorys);
+  // console.log(allCategorys);
   const [allCategory] = useMenu();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [clickedIndex, setClickedIndex] = useState(null); // track clicked thumb
@@ -112,11 +77,7 @@ const Categories = () => {
                   <img
                     src={slide.categoryImage}
                     alt=""
-                    className=" w-[400px] h-[400px] rounded-sm object-cover"
-                    // style={{
-                    //   background:
-                    //     "linear-gradient(rgba(206, 57, 57, 0.02) 55.87%, rgb(18, 16, 13) 100%)",
-                    // }}
+                    className="w-full h-[400px] rounded-sm object-cover"
                   />
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-b from-[#28282847] to-[#12100d55]"></div>
@@ -151,11 +112,10 @@ const Categories = () => {
                   alt={slide.categoryName}
                   onClick={() => setClickedIndex(index)} // set clicked index
                   className={`w-full h-[80px] object-cover rounded-sm cursor-pointer transition-all duration-300
-                ${
-                  clickedIndex === index
-                    ? "border-5 border-[#e78036]"
-                    : "border border-transparent"
-                }`}
+                ${clickedIndex === index
+                      ? "border-5 border-[#e78036]"
+                      : "border border-transparent"
+                    }`}
                 />
               </SwiperSlide>
             ))}

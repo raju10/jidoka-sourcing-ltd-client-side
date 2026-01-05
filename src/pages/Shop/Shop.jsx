@@ -98,20 +98,20 @@ const Shop = () => {
       <CartBanner location={location} />
 
       {/* Mobile toggle */}
-      <div className="lg:hidden flex justify-start p-4 sticky top-20  shadow-2xl">
+      {productsToShow.length > 0 && <div className="lg:hidden flex justify-start p-4 sticky top-20  shadow-2xl">
         <button
           onClick={() => setIsFilterOpen(true)}
           className="p-2 text-white bg-gray-800 rounded-md"
         >
           <SlArrowRight />
         </button>
-      </div>
+      </div>}
 
-      <div className="grid grid-cols-12 gap-5">
+      <div className="grid grid-cols-12 gap-5 ">
         {/* Desktop sidebar */}
-        <div className="hidden lg:block col-span-3 p-5">
+        {productsToShow.length <= 0 ? null : <div className="hidden lg:block col-span-3 p-5">
           <ShopFiltering filters={filters} setFilters={setFilters} />
-        </div>
+        </div>}
 
         {/* Mobile animated sidebar */}
         <AnimatePresence>

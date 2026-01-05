@@ -26,6 +26,7 @@ const SideNavDataFitaring = ({ id }) => {
           md:relative md:translate-x-0 md:w-full md:block md:bg-transparent md:p-0
           ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
           md:sticky md:top-32
+
         `}
       >
         <h2 className="text-xl font-bold mb-6 pb-2 border-b border-gray-700 md:hidden">Categories</h2>

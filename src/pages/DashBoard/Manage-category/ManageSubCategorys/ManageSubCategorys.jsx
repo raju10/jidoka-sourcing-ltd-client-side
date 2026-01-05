@@ -794,18 +794,18 @@ const ManageSubCategorys = () => {
   const axiosSecure = useAxiosSecure();
   const [allSubCategorys, refetch] = useSubCategory();
   const [allCategorys] = useCategory();
-  const [allProducts] = useProducts();
+  const [allProducts, refetchProd] = useProducts();
   // const [selcedCategory, setSelectedCatagory] = useState(null);
   // For table filtering
   const [selectedFilterCategory, setSelectedFilterCategory] = useState(null);
-  console.log(selectedFilterCategory);
+  //console.log(selectedFilterCategory);
   const location = useLocation();
   // React Hook Form
   const { register, handleSubmit } = useForm();
 
   // -------------------- SUBMIT --------------------
   const onSubmit = async (data) => {
-    console.log(data);
+    //  console.log(data);
     try {
       // category যেটা dropdown থেকে আসবে সেটাকে object বানানো
       const selectedCategoryItem = JSON.parse(data.parentCategory);
@@ -852,7 +852,7 @@ const ManageSubCategorys = () => {
         "/subCategory",
         subCategoryItem
       );
-      console.log(subCategoryResponse);
+      //console.log(subCategoryResponse);
       const insertedId = subCategoryResponse?.data?.insertedId;
 
       if (subCategoryResponse?.data?.acknowledged === true && insertedId) {
@@ -877,25 +877,39 @@ const ManageSubCategorys = () => {
 
   // -------------------- DELETE --------------------
   const handleDeleteSubCategory = (item) => {
+    const relatedProducts = allProducts?.filter(p => p?.subCategoryItem?.subCategoryID === item._id) || [];
+
+    const hasProducts = relatedProducts.length > 0;
+    const warningText = hasProducts
+      ? `This sub-category contains ${relatedProducts.length} products. Deleting it will also PERMANENTLY remove all of them!`
+      : `You want to delete "${item.subCategoryName}"!`;
+
     Swal.fire({
       title: "Are you sure?",
-      text: `You want to delete "${item.subCategoryName}"!`,
+      text: warningText,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axiosSecure?.delete(`/subCategory/${item._id}`);
-          if (res.data.deletedCount > 0) {
-            refetch(); // Reload data
-            Swal.fire("Deleted!", "Sub Category has been deleted.", "success");
-          }
+          // 1. Delete associated products first
+          const productDeletes = relatedProducts.map(p => axiosSecure.delete(`/product/${p._id}`));
+
+          // 2. Delete the subcategory
+          const subCatDelete = axiosSecure?.delete(`/subCategory/${item._id}`);
+
+          await Promise.all([...productDeletes, subCatDelete]);
+
+          refetch(); // Reload subcategories
+          refetchProd(); // Reload products
+
+          Swal.fire("Deleted!", "Sub Category and its related products have been deleted.", "success");
         } catch (error) {
           console.error("Delete Error:", error);
-          Swal.fire("Error", "Could not delete subcategory.", "error");
+          Swal.fire("Error", "Could not delete subcategory and its products.", "error");
         }
       }
     });
@@ -1015,12 +1029,12 @@ const ManageSubCategorys = () => {
   // -------------------- CATEGORY FILTER --------------------
   const handleTableFilterChange = (e) => {
     const value = e.target.value;
-    console.log(value);
+    //  console.log(value);
     if (value === "all") {
       setSelectedFilterCategory(null);
     } else {
       const selectedObj = JSON.parse(value);
-      console.log(selectedObj);
+      //console.log(selectedObj);
       setSelectedFilterCategory(selectedObj);
     }
   };

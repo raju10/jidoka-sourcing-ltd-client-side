@@ -16,6 +16,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import useAdmin from "../../hooks/useAdmin";
+import { FaShop } from "react-icons/fa6";
 
 const SideNav = () => {
   const [isManageOpen, setIsManageOpen] = useState(false);
@@ -35,7 +36,7 @@ const SideNav = () => {
             <img
               src={logo}
               alt=""
-              className="w-17 h-full  object-cover xl:ml-35"
+              className="w-12 sm:w-15 h-full object-cover rounded-md xl:ml-35"
             />
           </NavLink>
         </div>
@@ -191,6 +192,15 @@ const SideNav = () => {
                     )}`}
                   >
                     <FaHome /> Home
+                  </Link>
+                  <Link
+                    to="/shop"
+                    onClick={() => setIsSidebarOpen(false)}
+                    className={`flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 transition ${isActive(
+                      "/shop"
+                    )}`}
+                  >
+                    <FaShop /> Shop
                   </Link>
 
                   <Link
