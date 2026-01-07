@@ -336,6 +336,14 @@ const SideNav = () => {
               <FaHome /> Home
             </Link>
             <Link
+              to="/shop"
+              className={`flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 transition ${isActive(
+                "/shop"
+              )}`}
+            >
+              <FaShop /> Shop
+            </Link>
+            <Link
               to="/contactUs"
               className={`flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 transition ${isActive(
                 "/contactUs"

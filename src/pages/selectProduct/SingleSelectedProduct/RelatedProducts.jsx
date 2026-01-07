@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import ProductsAllRelated from "../../../shared/ProductsAllRelated/ProductsAllRelated";
 
 const RelatedProducts = ({ searchRelatedData, spAllData }) => {
-  console.log(searchRelatedData);
+  // console.log(searchRelatedData);
   return (
     <motion.div
       className="px-10 py-20"
