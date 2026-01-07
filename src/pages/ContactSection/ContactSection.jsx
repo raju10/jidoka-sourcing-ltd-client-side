@@ -242,7 +242,8 @@ export default function ContactSection() {
               {...register("email", { required: "Email is required" })}
               className="border-b border-gray-300 outline-none py-2 w-full"
               placeholder="Email"
-              value={user?.email}
+              defaultValue={user?.email}
+
             />
             {errors.email && (
               <motion.span

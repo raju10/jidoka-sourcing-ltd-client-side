@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: "https://jidoka-sourcing-ltd-server-side.vercel.app",
 });
 const useAxiosSecure = () => {
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ export default useAxiosSecure;
 // import { AuthContext } from "../providers/AuthProvider";
 
 // const axiossecure = axios.create({
-//   baseURL: "http://localhost:4000",
+//   baseURL: "https://jidoka-sourcing-ltd-server-side.vercel.app",
 // });
 // const useAxiosSecure = () => {
 //   const navigate = useNavigate();

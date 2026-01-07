@@ -1169,14 +1169,14 @@ const ManageProducts = () => {
                       )}
                       {/* size */}
 
-                      {item.size && (
+                      {item?.size && item.size.length > 0 && (
                         <div className="flex gap-3">
                           <b> Size : </b>
-                          {item.size.map((s) => (
+                          {item?.size.map((s) => (
                             <i className="" key={s}>
                               {s}
                             </i>
-                          ))}{" "}
+                          ))}
                         </div>
                       )}
                     </div>

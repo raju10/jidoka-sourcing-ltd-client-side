@@ -7,7 +7,7 @@ const useProducts = () => {
   const refetch = () => setReload(!reload);
 
   useEffect(() => {
-    fetch("http://localhost:4000/product")
+    fetch("https://jidoka-sourcing-ltd-server-side.vercel.app/product")
       .then((res) => res.json())
       .then((data) => {
         setAllProducts(data);

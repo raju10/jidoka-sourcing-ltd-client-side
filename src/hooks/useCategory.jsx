@@ -7,7 +7,7 @@ const useCategory = () => {
   const refetch = () => setReload(!reload);
 
   useEffect(() => {
-    fetch("http://localhost:4000/category")
+    fetch("https://jidoka-sourcing-ltd-server-side.vercel.app/category")
       .then((res) => res.json())
       .then((data) => {
         setAllCategorys(data);

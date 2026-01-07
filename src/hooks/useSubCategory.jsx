@@ -8,7 +8,7 @@ const useSubCategory = () => {
   //console.log(allCategorys);
   //const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:4000/subCategory")
+    fetch("https://jidoka-sourcing-ltd-server-side.vercel.app/subCategory")
       .then((res) => res.json())
       .then((data) => {
         setSubAllCategorys(data);
