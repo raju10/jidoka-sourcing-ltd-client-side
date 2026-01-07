@@ -7,11 +7,13 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { FaMessage } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import { BiLogoGmail } from "react-icons/bi";
+import { AuthContext } from "../../providers/AuthProvider";
+
 
 export default function ContactSection() {
   const {
@@ -22,7 +24,7 @@ export default function ContactSection() {
   } = useForm();
 
   const [loading, setLoading] = useState(false);
-
+  const { user, logOut } = useContext(AuthContext);
   const onSubmit = async (data) => {
     setLoading(true);
 
@@ -207,6 +209,7 @@ export default function ContactSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
+                type="text"
                 {...register("name", { required: "Name is required" })}
                 className="border-b border-gray-300 outline-none py-2"
                 placeholder="Name"
@@ -215,6 +218,7 @@ export default function ContactSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}
+                type="number"
                 {...register("phone")}
                 className="border-b border-gray-300 outline-none py-2"
                 placeholder="Phone"
@@ -234,9 +238,11 @@ export default function ContactSection() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
+              type="email"
               {...register("email", { required: "Email is required" })}
               className="border-b border-gray-300 outline-none py-2 w-full"
               placeholder="Email"
+              value={user?.email}
             />
             {errors.email && (
               <motion.span
@@ -252,6 +258,7 @@ export default function ContactSection() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45 }}
+
               {...register("message", { required: "Message is required" })}
               className="border-b border-gray-300 outline-none py-2 w-full"
               placeholder="Message"
