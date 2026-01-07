@@ -2,32 +2,38 @@ import { motion } from "framer-motion";
 import ceoImg from "../../../assets/our-team/ceo.png";
 import cooImg from "../../../assets/our-team/ceo.png";
 import hodImg from "../../../assets/our-team/ceo.png";
+import { TfiEmail } from "react-icons/tfi";
 
 const teamMembers = [
     {
         name: "Engr. Afjal Hossain Fahim",
         role: "Founder ( Sourcing, Sales and Manufacturing Excellence) ",
         image: ceoImg,
+        email: "fahim@jidokasourcing.com",
     },
     {
         name: "Minhaz Chowdhury Shakil",
         role: "HOD- Operation. Partial Sales and Sourcing ",
         image: cooImg,
+        email: "shakil@jidokasourcing.com",
     },
     {
         name: "Salauddin Ahmed Shimanto",
         role: "HOD- Stocklots Sourcing & Factory Manufacturing  Excellence ",
         image: hodImg,
+        email: "salauddin@jidokasourcing.com",
     },
     {
         name: "Engr. Muftadil Islam Rabid",
         role: "HOD- Total Quality Management ",
         image: hodImg,
+        email: "rabid@jidokasourcing.com",
     },
     {
         name: "Engr. Julfikar Ali",
         role: "HOD-   Commercial,  Logistics,  IT & H.R.",
         image: hodImg,
+        email: "julfikar@jidokasourcing.com",
     },
 ];
 
@@ -74,6 +80,7 @@ const OurTeam = () => {
                             <p className="text-gray-500 font-medium uppercase tracking-wider text-sm mt-1">
                                 {member.role}
                             </p>
+                            <a href={`mailto:${member.email}`} className="flex items-center gap-2 pt-2 text-blue-500"><TfiEmail /> {member.email}</a>
                         </div>
                     </motion.div>
                 ))}

@@ -4,12 +4,14 @@ import {
   FaInstagram,
   FaLinkedin,
   FaTwitter,
-  FaYoutube,
+  FaWhatsapp,
 } from "react-icons/fa";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaMessage } from "react-icons/fa6";
+import Swal from "sweetalert2";
+import { BiLogoGmail } from "react-icons/bi";
 
 export default function ContactSection() {
   const {
@@ -21,21 +23,76 @@ export default function ContactSection() {
 
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setLoading(true);
-    emailjs
-      .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", data, "YOUR_PUBLIC_KEY")
-      .then(
-        () => {
-          alert("Message sent successfully!");
-          reset();
-          setLoading(false);
-        },
-        (error) => {
-          alert("Failed to send message: " + error.text);
-          setLoading(false);
-        }
+
+    const templateParams = {
+      to_email: "trolltube272@gmail.com", // Admin email from SingleSelectedProduct
+      userName: data.name,
+      userEmail: data.email,
+      userPhone: data.phone || "N/A",
+      userMessage: data.message,
+      productTitle: "General Inquiry / Direct Contact",
+    };
+
+    try {
+      const response = await emailjs.send(
+        "service_wfcf35f", // from EmailJS dashboard
+        "template_1bvnn9r", // from EmailJS template
+        templateParams,
+        "3uPCx4qUSql2TD_vK" // from EmailJS account
       );
+
+      if (response.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Message Sent!",
+          text: "The admin has received your message.",
+        });
+        reset();
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Failed to send message. Try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleWhatsAppContact = () => {
+    const data = register("message").value || ""; // This is not quite right with react-hook-form
+    // Better way to get current values
+    const formValues = {
+      name: document.querySelector('input[name="name"]')?.value || "Guest",
+      email: document.querySelector('input[name="email"]')?.value || "N/A",
+      phone: document.querySelector('input[name="phone"]')?.value || "N/A",
+      message: document.querySelector('textarea[name="message"]')?.value || "",
+    };
+
+    if (!formValues.message.trim()) {
+      Swal.fire({
+        icon: "warning",
+        title: "Empty Message",
+        text: "Please write a message before contacting us via WhatsApp.",
+      });
+      return;
+    }
+
+    const adminPhone = "8801814265958"; // Admin WhatsApp number from SingleSelectedProduct
+    const text = encodeURIComponent(
+      `📩 New General Inquiry\n
+👤 User: ${formValues.name}
+📧 Email: ${formValues.email}
+📞 Phone: ${formValues.phone}
+💬 Message: ${formValues.message}`
+    );
+
+    const url = `https://api.whatsapp.com/send?phone=${adminPhone}&text=${text}`;
+    window.open(url, "_blank");
   };
 
   return (
@@ -209,22 +266,35 @@ export default function ContactSection() {
               </motion.span>
             )}
 
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              type="submit"
-              className="border border-gray-400 flex items-center justify-center gap-2 py-2 px-4 rounded-md hover:bg-gray-100 transition"
-              disabled={loading}
-            >
-              {loading ? (
-                "Sending..."
-              ) : (
-                <>
-                  <FaMessage />
-                  Send message
-                </>
-              )}
-            </motion.button>
+            <div className="grid grid-cols-2 gap-3">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="bg-blue-500 text-white flex items-center justify-center gap-2 py-2 px-4 rounded-md hover:bg-black transition cursor-pointer"
+                disabled={loading}
+              >
+                {loading ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    <BiLogoGmail className="text-xl" />
+                    Mail
+                  </>
+                )}
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="button"
+                onClick={handleWhatsAppContact}
+                className="bg-green-500 text-white flex items-center justify-center gap-2 py-2 px-4 rounded-md hover:bg-green-700 transition cursor-pointer"
+              >
+                <FaWhatsapp className="text-xl" />
+                WhatsApp
+              </motion.button>
+            </div>
           </form>
         </motion.div>
       </motion.div>

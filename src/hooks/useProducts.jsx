@@ -12,7 +12,7 @@ const useProducts = () => {
       .then((data) => {
         setAllProducts(data);
       })
-      .catch((err) => { }); // console.log("Error loading JSON:", err));
+      .catch((err) => console.log("Error loading JSON:", err));
   }, [reload]);
 
   return [allProducts, refetch];
