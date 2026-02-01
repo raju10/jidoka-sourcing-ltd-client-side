@@ -120,6 +120,7 @@ import logo from "../../assets/logo/final-logo.jpeg";
 import {
   FaFacebookF,
   FaInstagram,
+  FaLinkedin,
   FaXTwitter,
   FaYoutube,
 } from "react-icons/fa6";
@@ -189,18 +190,32 @@ const Footer = () => {
             Monday – Friday: 10:00-6:00 PM
           </p>
           <p className="text-sm mt-2">
-            <span className="font-semibold">Phone:</span> +1 712-339-9294
+            <span className="font-semibold">Phone:</span> +880 1619-755755
           </p>
           <p className="text-sm mt-1">
-            <span className="font-semibold">Email:</span> info@moderno-theme.com
+            <span className="font-semibold">Email : </span> info@jidokasourcing.com
+
           </p>
           <p className="text-sm mt-1">
-            <span className="font-semibold">Address:</span> 283 N. Glenwood
-            Street, Levittown, NY
+            <span className="font-semibold">Address:</span> Jidoka Sourcing Limited.
+            <br />
+            Road: 01. Line: 01. H Block. Chattogram. Bangladesh.
+          </p>
+          <p className="text-sm mt-1">
+            <span className="font-semibold">Branch Office (Canada) : </span>
+            Jidoka Sourcing Limited.
+            <br />
+            3000 danforth avenue Unit 11. Canada
           </p>
 
           {/* Social Icons */}
           <div className="flex items-center gap-4 mt-6">
+            <a
+              href="https://www.linkedin.com/company/jidoka-sourcing-limited/"
+              className="border border-gray-600 p-3 hover:bg-gray-700"
+            >
+              <FaLinkedin />
+            </a>
             <a
               href="#"
               className="border border-gray-600 p-3 hover:bg-gray-700"

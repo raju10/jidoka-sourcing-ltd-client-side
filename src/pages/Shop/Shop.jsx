@@ -131,7 +131,7 @@ const Shop = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "-100%" }}
                 transition={{ duration: 0.28 }}
-                className="fixed top-0 left-0 z-50 w-3/4 h-full bg-white shadow-lg lg:hidden"
+                className="fixed top-0 left-0 z-100 w-3/4 h-full bg-white shadow-lg lg:hidden"
               >
                 <div className="p-3 flex items-center justify-between border-b">
                   <h3 className="font-semibold">Filters</h3>

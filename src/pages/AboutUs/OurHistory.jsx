@@ -18,7 +18,7 @@ export default function OurHistory() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 0.8, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-white shadow-lg  sm:p-10 mt-60 max-w-2xl  mx-5 p-5"
+            className="bg-white shadow-lg  sm:p-10 mt-30 sm:mt-50 lg:mt-70   md:mt-60 max-w-2xl  mx-5 p-5"
             style={{ zIndex: 10 }}
           // className=" bg-white shadow-lg p-6 sm:p-10 border-double  border-6 border-[#d1a280]  mt-20 relative z-1  overflow-hidden"
           >
@@ -31,7 +31,7 @@ export default function OurHistory() {
             <p className="text-gray-600 mb-3 text-sm">
               <b>    Jidoka Sourcing Limited</b> is a professional sourcing and production support company built on quality, experience, and efficiency. Our expert team—comprising Textile, Industrial, and Production Engineers, along with factory operation specialists—brings strong industry knowledge and hands-on expertise.
             </p>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-sm">
               We focus on Total Quality Management (TQM), offering reliable stocklot sourcing, CM/CMT production solutions, and strict quality assurance. Through teamwork, professionalism, and timely delivery, we aim to build long-term partnerships and ensure complete customer satisfaction.
             </p>
           </motion.div>
@@ -39,7 +39,7 @@ export default function OurHistory() {
       </div>
 
       {/* Bottom Section */}
-      <div className="max-w-6xl mx-auto mt-40">
+      <div className="max-w-6xl mx-auto mt-50">
         <div className=" grid md:grid-cols-2 gap-10 px-6 py-20">
           {/* Left Content */}
           <motion.div

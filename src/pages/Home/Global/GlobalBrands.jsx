@@ -18,13 +18,10 @@ const GlobalBrands = () => {
     <div className="w-full max-w-[1600px] m-auto px-6  ">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         <p className="col-span-4">
-          ClientsWe Serve The trusted choice of global brands
+          Clients We Serve The trusted choice of global brands
         </p>
-        <h2 className="col-span-8 text-black font-semibold lg:text-[35px] text-[23px]">
-          We deliver quality-driven, innovative apparel solutions that meet the
-          evolving needs of our worldwide clients. By combining expert
-          craftsmanship with dependable service, we create fashion-forward
-          garments that stand out.
+        <h2 className="col-span-8 text-black font-semibold lg:text-[30px] text-[23px] text-end">
+          Driven by quality and innovation, we offer apparel solutions that adapt to the evolving needs of global markets. Our expert craftsmanship and commitment to reliable service ensure fashion-forward garments that make a lasting impression.
         </h2>{" "}
       </div>
       <div className="grid sm:grid-cols-5 lg:grid-cols-7 grid-cols-3 gap-3 md:mt-30 mt-20">

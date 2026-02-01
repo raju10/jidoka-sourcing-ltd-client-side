@@ -15,12 +15,12 @@ const ProductContact = ({
 }) => {
   return (
     <motion.div
-      className="col-span-6"
+      className="col-span-12 md:col-span-6 mt-6 md:mt-0"
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="p-4 bg-white shadow rounded-lg max-w-md mx-auto">
+      <div className="p-4 bg-white shadow rounded-lg max-w-full mx-auto">
         <h2 className="text-xl font-semibold mb-2">
           Directly Contact the Seller
         </h2>
@@ -31,19 +31,20 @@ const ProductContact = ({
 
         <div>
           <p className="flex items-center gap-1">
-            <BiLogoGmail /> alloo@gmail.com
+            <BiLogoGmail /> info@jidokasourcing.com
           </p>
           <p className="flex items-center gap-1">
-            <FaWhatsapp /> +88 01814265958
+            <FaWhatsapp /> +8801619755755
           </p>
         </div>
         <div className="divider"></div>
 
         <input
           className="w-full p-3 border border-gray-300 rounded mb-4 text-gray-400"
+          placeholder="Your Email"
           type="email"
-          disabled
-          defaultValue={user?.email}
+          {...user?.email && { disabled: true }}
+          defaultValue={user?.email ? user?.email : ""}
         />
         <textarea
           value={message}
@@ -61,11 +62,10 @@ const ProductContact = ({
           {/* Email btn */}
           <button
             onClick={() => handleContactSeller(spData)}
-            className={`cursor-pointer w-full px-3 py-1 text-white font-semibold rounded ${
-              isSent
-                ? "bg-orange-500 cursor-not-allowed"
-                : "bg-blue-500 hover:bg-black"
-            }`}
+            className={`cursor-pointer w-full px-3 py-1 text-white font-semibold rounded ${isSent
+              ? "bg-orange-500 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-black"
+              }`}
             disabled={isSent}
           >
             {isSent ? (

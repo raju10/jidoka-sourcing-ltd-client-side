@@ -910,7 +910,7 @@ const SingleSelectedProduct = () => {
         </div>
 
         {/* 🖼️ Image + Details + Contact */}
-        <div className="grid xl:grid-cols-12 gap-15 px-10">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 xl:gap-15 px-4 md:px-10">
           <ProductImage spData={spData} />
           <div className="col-span-8 grid sm:grid-cols-12 gap-4">
             <ProductDetails
@@ -935,7 +935,7 @@ const SingleSelectedProduct = () => {
         </div>
 
         {/* 📑 Tabs */}
-        <div className="px-10">
+        <div className="px-4 md:px-10">
           <ProductTabs
             activeTab={activeTab}
             handleClick={setActiveTab}

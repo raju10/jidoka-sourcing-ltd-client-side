@@ -29,7 +29,7 @@ export default function ContactSection() {
     setLoading(true);
 
     const templateParams = {
-      to_email: "trolltube272@gmail.com", // Admin email from SingleSelectedProduct
+      to_email: "info@jidokasourcing.com", // Admin email from SingleSelectedProduct
       userName: data.name,
       userEmail: data.email,
       userPhone: data.phone || "N/A",
@@ -84,7 +84,7 @@ export default function ContactSection() {
       return;
     }
 
-    const adminPhone = "8801814265958"; // Admin WhatsApp number from SingleSelectedProduct
+    const adminPhone = "8801619755755"; // Admin WhatsApp number from SingleSelectedProduct
     const text = encodeURIComponent(
       `📩 New General Inquiry\n
 👤 User: ${formValues.name}
@@ -153,7 +153,7 @@ export default function ContactSection() {
               href="https://www.jidokasourcing.com/"
               className="mb-6 font-medium text-blue-500"
             >
-              www.jidokasourcing.com
+              https://jidokasourcing.com/
             </a>
 
             <h4 className="text-orange-300 font-semibold mb-2">

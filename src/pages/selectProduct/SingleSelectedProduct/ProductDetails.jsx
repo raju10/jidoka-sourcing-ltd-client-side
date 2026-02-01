@@ -11,7 +11,7 @@ const ProductDetails = ({
 }) => {
   return (
     <motion.div
-      className="sProductCotain space-y-7 col-span-6"
+      className="sProductCotain space-y-7 col-span-12 md:col-span-6"
       initial={{ x: 50, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -114,8 +114,8 @@ const ProductDetails = ({
                 key={s}
                 onClick={() => handleSizeSelect(s)}
                 className={`${sizeSelect === s
-                    ? "py-2 px-4 rounded-sm bg-white text-black border-2"
-                    : "py-2 px-4 rounded-sm bg-[#41a28e] text-white"
+                  ? "py-2 px-4 rounded-sm bg-white text-black border-2"
+                  : "py-2 px-4 rounded-sm bg-[#41a28e] text-white"
                   }`}
               >
                 {s}

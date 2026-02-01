@@ -23,7 +23,7 @@ const ShopCardFiltering = ({ pro }) => {
         <img
           src={pro.image}
           alt={pro.productTitle}
-          className="w-full h-[200px] object-cover"
+          className="w-full h-[200px] object-cover z-10"
         />
         {pro.discount && (
 

@@ -45,7 +45,7 @@ const OurTeam = () => {
                 <span className="col-span-4 text-lg text-orange-500 uppercase tracking-widest font-bold mb-2 block">
                     Our Team
                 </span>
-                <h2 className="col-span-8 text-[30px]  font-bold text-gray-900 leading-tight text-end">
+                <h2 className="col-span-8 text-[23px] lg:text-[30px]  font-bold text-gray-900 leading-tight text-end">
                     Our team consists of skilled apparel industry professionals dedicated to quality, reliability, and on-time delivery. We work together to build strong, long-term partnerships.
                 </h2>
             </div>
