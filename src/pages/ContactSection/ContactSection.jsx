@@ -150,7 +150,7 @@ export default function ContactSection() {
             <h4 className="text-orange-300 font-semibold mb-2">Call Us</h4>
             <p className="mb-1 font-medium">+880 1619-755755</p>
             <a
-              href="https://www.jidokasourcing.com/"
+              href="https://jidokasourcing.com/"
               className="mb-6 font-medium text-blue-500"
             >
               https://jidokasourcing.com/
