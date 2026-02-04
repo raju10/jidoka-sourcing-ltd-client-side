@@ -246,7 +246,7 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="border-t border-gray-800 mt-10 pt-6 text-center text-xs text-gray-500">
-        © 2025 Moderno Theme. All Rights Reserved.
+        © 2026 Jidoka Sourcing Limited. All Rights Reserved.
       </div>
     </footer>
   );
