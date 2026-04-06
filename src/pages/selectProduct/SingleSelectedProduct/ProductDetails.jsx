@@ -11,7 +11,7 @@ const ProductDetails = ({
 }) => {
   return (
     <motion.div
-      className="sProductCotain space-y-7 col-span-12 md:col-span-6"
+      className="sProductCotain space-y-7 w-full md:w-1/2"
       initial={{ x: 50, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}

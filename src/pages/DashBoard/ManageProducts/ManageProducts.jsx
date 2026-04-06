@@ -757,6 +757,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import { useMemo, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const MySwal = withReactContent(Swal);
 
@@ -1043,8 +1044,12 @@ const ManageProducts = () => {
 
   // -------------------- RENDER --------------------
   return (
-    <div className="">
-      {/*     <label className="block mb-2 text-lg font-medium text-gray-700">
+    <>
+      <Helmet>
+        <title>Jidoka Sourcing | Manage Products</title>
+      </Helmet>
+      <div className="">
+        {/*     <label className="block mb-2 text-lg font-medium text-gray-700">
           Select Sub Category
         </label>
         <select
@@ -1060,170 +1065,171 @@ const ManageProducts = () => {
             </option>
           ))}
         </select> */}
-      <div className="grid sm:grid-cols-2 gap-4 items-end   m-5 ">
-        <div className=" max-w-sm ">
-          <label className="block pb-2 text-lg font-medium text-gray-700">
-            Select Sub-Category
-          </label>
-          <select
-            onChange={handleTableFilterChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md "
-            defaultValue="all"
-          >
-            <option value="" disabled>
-              -- Choose Sub-Category --
-            </option>
-            <option value="all">All</option>
-            {allSubCategorys?.map((cat) => (
-              <option key={cat._id} value={JSON.stringify(cat)}>
-                {cat.subCategoryName}
+        <div className="grid sm:grid-cols-2 gap-4 items-end   m-5 ">
+          <div className=" max-w-sm ">
+            <label className="block pb-2 text-lg font-medium text-gray-700">
+              Select Sub-Category
+            </label>
+            <select
+              onChange={handleTableFilterChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md "
+              defaultValue="all"
+            >
+              <option value="" disabled>
+                -- Choose Sub-Category --
               </option>
-            ))}
-          </select>
+              <option value="all">All</option>
+              {allSubCategorys?.map((cat) => (
+                <option key={cat._id} value={JSON.stringify(cat)}>
+                  {cat.subCategoryName}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="text-end">
+            <button className="btn btn-primary" onClick={showFormModal}>
+              <FaPlus /> Add New Product
+            </button>
+          </div>
         </div>
-        <div className="text-end">
-          <button className="btn btn-primary" onClick={showFormModal}>
-            <FaPlus /> Add New Product
-          </button>
+        {/* Product Code Search */}
+        <div className="mb-5 px-4 ">
+          <input
+            type="text"
+            placeholder="🔍 Search by product code..."
+            onChange={handleProductCode}
+            className="border border-gray-400 px-4 py-2 rounded-md w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500 "
+          />
         </div>
-      </div>
-      {/* Product Code Search */}
-      <div className="mb-5 px-4 ">
-        <input
-          type="text"
-          placeholder="🔍 Search by product code..."
-          onChange={handleProductCode}
-          className="border border-gray-400 px-4 py-2 rounded-md w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500 "
-        />
-      </div>
 
-      {/* Products Table */}
-      <table className="table min-w-full">
-        {/* head */}
-        <thead>
-          <tr>
-            <th></th>
-            <th> Product </th>
-            <th>Items</th>
+        {/* Products Table */}
+        <table className="table min-w-full">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th> Product </th>
+              <th>Items</th>
 
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredProducts.length <= 0 ? (
-            <p className="font-bold text-lg text-red-400 text-center py-10">
-              Product not avalible this category
-            </p>
-          ) : (
-            filteredProducts?.map((item, index) => (
-              <tr key={item._id}>
-                <td>{index + 1}</td>
-                {/* <td>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredProducts.length <= 0 ? (
+              <p className="font-bold text-lg text-red-400 text-center py-10">
+                Product not avalible this category
+              </p>
+            ) : (
+              filteredProducts?.map((item, index) => (
+                <tr key={item._id}>
+                  <td>{index + 1}</td>
+                  {/* <td>
                 <p>{item.productCode}</p>
               </td> */}
-                <td>
-                  <div className="md:flex gap-5 items-center">
-                    <div className="relative">
-                      <img
-                        src={item.image}
-                        alt=""
-                        className="w-25 h-20 rounded object-cover"
-                      />
+                  <td>
+                    <div className="md:flex gap-5 items-center">
+                      <div className="relative">
+                        <img
+                          src={item.image}
+                          alt=""
+                          className="w-25 h-20 rounded object-cover"
+                        />
 
-                      {item.discount && (
+                        {item.discount && (
 
-                        <p className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 text-[12px] rounded">
-                          - {item.discount} %
+                          <p className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 text-[12px] rounded">
+                            - {item.discount} %
 
-                        </p>
-                      )}
-
-                    </div>
-                    <div className="">
-                      <p>
-                        code :{" "}
-                        <i className="text-[#b67718] font-medium font-serif text-[16px]">
-                          {item.productCode}
-                        </i>{" "}
-                      </p>
-                      <div className="flex gap-4 justify-start items-center">
-                        <p className="text-lg font-semibold">
-                          {item.productTitle}
-                        </p>
-                      </div>
-                      <div className="flex gap-3">
-                        {item.price ? (
-                          <div className="">
-                            {item.discount ? <small className="line-through text-gray-500 text-xs">$ {item.price} </small> : <b>$ {item.price}</b>}
-                            {item.discount && <small className="text-[16px] font-semibold p-2">$ {Math.round(item.price - (item.price * item.discount / 100))}</small>}
-                          </div>
-                        ) : (
-                          <b> Price not add</b>
+                          </p>
                         )}
 
                       </div>
-                      {item.noOfQuantity ? (
-                        <p>Quantity : {item.noOfQuantity}</p>
-                      ) : (
-                        <p>Quantity Available</p>
-                      )}
-                      {/* size */}
-
-                      {item?.size && item.size.length > 0 && (
-                        <div className="flex gap-3">
-                          <b> Size : </b>
-                          {item?.size.map((s) => (
-                            <i className="" key={s}>
-                              {s}
-                            </i>
-                          ))}
+                      <div className="">
+                        <p>
+                          code :{" "}
+                          <i className="text-[#b67718] font-medium font-serif text-[16px]">
+                            {item.productCode}
+                          </i>{" "}
+                        </p>
+                        <div className="flex gap-4 justify-start items-center">
+                          <p className="text-lg font-semibold">
+                            {item.productTitle}
+                          </p>
                         </div>
-                      )}
+                        <div className="flex gap-3">
+                          {item.price ? (
+                            <div className="">
+                              {item.discount ? <small className="line-through text-gray-500 text-xs">$ {item.price} </small> : <b>$ {item.price}</b>}
+                              {item.discount && <small className="text-[16px] font-semibold p-2">$ {Math.round(item.price - (item.price * item.discount / 100))}</small>}
+                            </div>
+                          ) : (
+                            <b> Price not add</b>
+                          )}
+
+                        </div>
+                        {item.noOfQuantity ? (
+                          <p>Quantity : {item.noOfQuantity}</p>
+                        ) : (
+                          <p>Quantity Available</p>
+                        )}
+                        {/* size */}
+
+                        {item?.size && item.size.length > 0 && (
+                          <div className="flex gap-3">
+                            <b> Size : </b>
+                            {item?.size.map((s) => (
+                              <i className="" key={s}>
+                                {s}
+                              </i>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="">
-                    <p>
-                      {" "}
-                      <b>Category :</b> {item?.categoryItem?.categoryName}
-                    </p>
-                    <p>
-                      {" "}
-                      <b>Sub Category :</b>{" "}
-                      {item.subCategoryItem.subCategoryName}
-                    </p>
-                  </div>
-                </td>
-                <td>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => handleViewProduct(item)}
-                      className="btn bg-[#41a28e] text-white hover:bg-black"
-                      title="View Details"
-                    >
-                      <FaEye />
-                    </button>
-                    <button
-                      onClick={() => handleEditProduct(item)}
-                      className="btn bg-[#D1A054] text-white hover:bg-black "
-                    >
-                      <FaEdit></FaEdit>
-                    </button>
-                    <button
-                      onClick={() => handleDeleteProduct(item)}
-                      className="btn bg-red-600 text-white hover:bg-black"
-                    >
-                      <FaTrashAlt></FaTrashAlt>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-    </div>
+                  </td>
+                  <td>
+                    <div className="">
+                      <p>
+                        {" "}
+                        <b>Category :</b> {item?.categoryItem?.categoryName}
+                      </p>
+                      <p>
+                        {" "}
+                        <b>Sub Category :</b>{" "}
+                        {item.subCategoryItem.subCategoryName}
+                      </p>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleViewProduct(item)}
+                        className="btn bg-[#41a28e] text-white hover:bg-black"
+                        title="View Details"
+                      >
+                        <FaEye />
+                      </button>
+                      <button
+                        onClick={() => handleEditProduct(item)}
+                        className="btn bg-[#D1A054] text-white hover:bg-black "
+                      >
+                        <FaEdit></FaEdit>
+                      </button>
+                      <button
+                        onClick={() => handleDeleteProduct(item)}
+                        className="btn bg-red-600 text-white hover:bg-black"
+                      >
+                        <FaTrashAlt></FaTrashAlt>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const ProductImage = ({ spData }) => {
   return (
     <motion.div
-      className="sPImg relative w-full h-full object-cover xl:col-span-4 col-span-12"
+      className="sPImg relative w-full h-full object-cover xl:col-span-4"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}

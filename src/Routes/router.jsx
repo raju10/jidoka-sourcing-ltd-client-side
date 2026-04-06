@@ -23,6 +23,7 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import AdminRoute from "./AdminRoute";
 import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
 import ManageCategory from "../pages/DashBoard/Manage-category/ManageCategory";
+import AllCategories from "../pages/AllCategories/AllCategories";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
     element: <Main></Main>,
     children: [
       { path: "/", element: <Home></Home> },
+      { path: "/categories", element: <AllCategories></AllCategories> },
       {
         path: "/product/:id",
         element: <SubCategories></SubCategories>,

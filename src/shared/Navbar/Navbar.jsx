@@ -38,6 +38,14 @@ const Navbar = () => {
           Shop
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/categories"
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+        >
+          Categories
+        </NavLink>
+      </li>
       {isAdmin && (
         <li>
           <NavLink

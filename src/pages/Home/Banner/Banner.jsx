@@ -16,6 +16,7 @@
 
 // export default Banner;
 
+import { Link } from "react-router";
 import bannerVideo from "../../../assets/banner-video/vecteezy_smiling-young-woman-sorts-through-her-wardrobe-to-find-the_51034732.mov";
 
 const Banner = () => {
@@ -36,11 +37,14 @@ const Banner = () => {
       {/* Optional overlay text */}
       <div className="absolute inset-0 bg-black/30 flex items-center justify-center ">
         <div className="text-white  font-bold lg:w-[80%] xl:w-[50%]  mx-auto text-center px-5">
-          <h4>Effortlessly Blending Design and Delivery</h4>
+          <h4>
+            <span className="text-[#e78036] text-4xl mb-7"> Welcome to Jidoka Sourcing.</span>
+            <br />
+            <small> Effortlessly Blending Design and Delivery</small></h4>
           <h1 className="md:text-[100px] sm:text-[75px] text-[45px] py-5 ">
             Excellence in every stitch
           </h1>
-          <button className="btn btn-outline sm:w-80">Explore products</button>
+          <Link to="/categories"><button className="btn btn-outline sm:w-80">Explore products</button></Link>
         </div>
       </div>
     </div>

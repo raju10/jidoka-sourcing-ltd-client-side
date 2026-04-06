@@ -782,6 +782,7 @@ import AddSubCategoryForm from "../../AddSubCategory/AddSubCategoryForm";
 import { useLocation } from "react-router";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useProducts from "../../../../hooks/useProducts";
+import { Helmet } from "react-helmet-async";
 
 const MySwal = withReactContent(Swal);
 
@@ -1047,97 +1048,102 @@ const ManageSubCategorys = () => {
 
   // -------------------- RENDER --------------------
   return (
-    <div className="">
-      <div className="grid sm:grid-cols-2 gap-4 items-end   m-10 ">
-        <div className=" max-w-sm ">
-          <label className="block pb-2 text-lg font-medium text-gray-700">
-            Select Category
-          </label>
-          <select
-            onChange={handleTableFilterChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md "
-            defaultValue=""
-          >
-            <option value="">-- Choose Category --</option>
-            <option value="all">All</option>
-            {allCategorys.map((cat) => (
-              <option key={cat._id} value={JSON.stringify(cat)}>
-                {cat.categoryName}
-              </option>
-            ))}
-          </select>
+    <>
+      <Helmet>
+        <title>Jidoka Sourcing | Manage Sub-Categories</title>
+      </Helmet>
+      <div className="">
+        <div className="grid sm:grid-cols-2 gap-4 items-end   m-10 ">
+          <div className=" max-w-sm ">
+            <label className="block pb-2 text-lg font-medium text-gray-700">
+              Select Category
+            </label>
+            <select
+              onChange={handleTableFilterChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md "
+              defaultValue=""
+            >
+              <option value="">-- Choose Category --</option>
+              <option value="all">All</option>
+              {allCategorys.map((cat) => (
+                <option key={cat._id} value={JSON.stringify(cat)}>
+                  {cat.categoryName}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="text-end">
+            <button className="btn btn-primary" onClick={showFormModal}>
+              <FaPlus /> Add New Sub category
+            </button>
+          </div>
         </div>
-        <div className="text-end">
-          <button className="btn btn-primary" onClick={showFormModal}>
-            <FaPlus /> Add New Sub category
-          </button>
-        </div>
-      </div>
-      <table className="table min-w-full">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Total Products</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filter.map((item, index) => {
-            const prodCount = allProducts?.filter(p => p?.subCategoryItem?.subCategoryID === item._id).length;
+        <table className="table min-w-full">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Total Products</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filter.map((item, index) => {
+              const prodCount = allProducts?.filter(p => p?.subCategoryItem?.subCategoryID === item._id).length;
 
-            return (
-              <tr key={item._id}>
-                <td>{index + 1}</td>
-                <td>
-                  <div>
-                    <img
-                      src={item.subCategoryImage}
-                      alt=""
-                      className="w-25 h-20 rounded object-cover"
-                    />
-                  </div>
-                </td>
-                <td>
-                  <p className="font-bold text-gray-700">{item.subCategoryName}</p>
-                </td>
-                <td>
-                  <div className="badge badge-success gap-2 py-3 px-4 text-xs text-white font-semibold">
-                    {prodCount} Products
-                  </div>
-                </td>
-                <td className=" ">
-                  <div className="flex justify-center gap-3">
-                    <button
-                      onClick={() => handleViewSubCategory(item)}
-                      className="btn bg-blue-500 text-white hover:bg-black "
-                      title="View Details"
-                    >
-                      <FaEye />
-                    </button>
+              return (
+                <tr key={item._id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div>
+                      <img
+                        src={item.subCategoryImage}
+                        alt=""
+                        className="w-25 h-20 rounded object-cover"
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <p className="font-bold text-gray-700">{item.subCategoryName}</p>
+                  </td>
+                  <td>
+                    <div className="badge badge-success gap-2 py-3 px-4 text-xs text-white font-semibold">
+                      {prodCount} Products
+                    </div>
+                  </td>
+                  <td className=" ">
+                    <div className="flex justify-center gap-3">
+                      <button
+                        onClick={() => handleViewSubCategory(item)}
+                        className="btn bg-blue-500 text-white hover:bg-black "
+                        title="View Details"
+                      >
+                        <FaEye />
+                      </button>
 
-                    <button
-                      onClick={() => handleEditSubCategory(item)}
-                      className="btn bg-[#D1A054] text-white hover:bg-black "
-                    >
-                      <FaEdit />
-                    </button>
+                      <button
+                        onClick={() => handleEditSubCategory(item)}
+                        className="btn bg-[#D1A054] text-white hover:bg-black "
+                      >
+                        <FaEdit />
+                      </button>
 
-                    <button
-                      onClick={() => handleDeleteSubCategory(item)}
-                      className="btn bg-red-600 text-white hover:bg-black"
-                    >
-                      <FaTrashAlt />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div >
+                      <button
+                        onClick={() => handleDeleteSubCategory(item)}
+                        className="btn bg-red-600 text-white hover:bg-black"
+                      >
+                        <FaTrashAlt />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div >
+    </>
   );
 };
 

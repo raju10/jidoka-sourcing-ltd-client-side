@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaRegLightbulb, FaGem, FaTrophy, FaCogs } from "react-icons/fa";
-
+import historyBgImg from "../../assets/who we are/historyBg.jpg";
 export default function OurHistory() {
   return (
     <section className="bg-white">
@@ -10,7 +10,7 @@ export default function OurHistory() {
         style={{
           zIndex: 0,
           backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.ibb.co/1tY1BHp7/two-fashion-black-men.jpg')",
+            `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${historyBgImg})`,
         }}
       >
         <div className="">

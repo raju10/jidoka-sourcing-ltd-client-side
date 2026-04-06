@@ -92,20 +92,22 @@ const Shop = () => {
   return (
     <div className="">
       <Helmet>
-        <title>Jidoka LTD | Shop</title>
+        <title>Jidoka Sourcing | Shop</title>
       </Helmet>
 
       <CartBanner location={location} />
 
       {/* Mobile toggle */}
-      {productsToShow.length > 0 && <div className="lg:hidden flex justify-start p-4 sticky top-20  shadow-2xl">
-        <button
-          onClick={() => setIsFilterOpen(true)}
-          className="p-2 text-white bg-gray-800 rounded-md"
-        >
-          <SlArrowRight />
-        </button>
-      </div>}
+      {productsToShow.length > 0 && (
+        <div className="lg:hidden fixed left-0 top-1/3 z-40">
+          <button
+            onClick={() => setIsFilterOpen(true)}
+            className="p-3 bg-gray-800 text-white rounded-r-xl shadow-lg border border-gray-600 border-l-0"
+          >
+            <SlArrowRight className="text-xl" />
+          </button>
+        </div>
+      )}
 
       <div className="grid grid-cols-12 gap-5 ">
         {/* Desktop sidebar */}

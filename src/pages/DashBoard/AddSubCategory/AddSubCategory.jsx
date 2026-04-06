@@ -473,6 +473,7 @@
 // import useSubCategory from "../../../hooks/useSubCategory";
 // import Swal from "sweetalert2";
 // import AddSubCategoryForm from "./AddSubCategoryForm";
+import { Helmet } from "react-helmet-async";
 
 // const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 // const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
@@ -1949,18 +1950,23 @@ const AddSubCategory = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full">
-      <div className="w-xl p-8 rounded-xl border">
-        <AddSubCategoryForm
-          onSubmit={onSubmit}
-          // register={register}
-          findSelectedcategory={findSelectedcategory}
-        // errors={errors}
-        // handleSubmit={handleSubmit}
-        // isSubmitting={isSubmitting}
-        />
+    <>
+      <Helmet>
+        <title>Jidoka Sourcing | Add Sub-Category</title>
+      </Helmet>
+      <div className="flex justify-center items-center h-full">
+        <div className="w-xl p-8 rounded-xl border">
+          <AddSubCategoryForm
+            onSubmit={onSubmit}
+            // register={register}
+            findSelectedcategory={findSelectedcategory}
+          // errors={errors}
+          // handleSubmit={handleSubmit}
+          // isSubmitting={isSubmitting}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

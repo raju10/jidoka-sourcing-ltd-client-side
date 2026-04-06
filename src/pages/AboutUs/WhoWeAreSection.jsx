@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
+
+import abImg from "../../assets/who we are/img-1.png";
 const WhoWeAreSection = () => {
   return (
     <div className=" w-full max-w-5xl mx-auto grid md:grid-cols-12 gap-5 px-6 pt-20 pb-16">
@@ -11,7 +13,7 @@ const WhoWeAreSection = () => {
         className="col-span-5"
       >
         <img
-          src="https://i.ibb.co/cfPWHy7/img-1.png"
+          src={abImg}
           alt="Who we are"
           className="max-h-[550px] object-contain w-full"
         />

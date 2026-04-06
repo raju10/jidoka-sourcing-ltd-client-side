@@ -257,7 +257,7 @@ const Cart = () => {
   return (
     <>
       <Helmet>
-        <title>Jidohaka LTD | Cart</title>
+        <title>Jidoka Sourcing | Cart</title>
       </Helmet>
       <div className="min-h-screen bg-white pb-20">
         <CartBanner location={location} />

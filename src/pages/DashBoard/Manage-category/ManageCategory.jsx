@@ -8,6 +8,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import AddCategoryForm from "./AddCategoryForm";
 import useSubCategory from "../../../hooks/useSubCategory";
 import useProducts from "../../../hooks/useProducts";
+import { Helmet } from "react-helmet-async";
 
 const MySwal = withReactContent(Swal);
 
@@ -180,103 +181,108 @@ const ManageCategory = () => {
     );
 
     return (
-        <div className="py-8">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-10 mx-4 gap-4">
-                <h2 className="text-3xl font-bold text-gray-800">Manage Categories</h2>
-                <div className="flex gap-4 w-full md:w-auto">
-                    <input
-                        type="text"
-                        placeholder="Search categories..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="input input-bordered w-full md:w-64 focus:border-[#41a28e]"
-                    />
-                    <button onClick={showAddModal} className="btn bg-[#41a28e] text-white border-none hover:bg-[#348e7b]">
-                        <FaPlus className="mr-2" /> Add Category
-                    </button>
+        <>
+            <Helmet>
+                <title>Jidoka Sourcing | Manage Category</title>
+            </Helmet>
+            <div className="py-8">
+                <div className="flex flex-col md:flex-row justify-between items-center mb-10 mx-4 gap-4">
+                    <h2 className="text-3xl font-bold text-gray-800">Manage Categories</h2>
+                    <div className="flex gap-4 w-full md:w-auto">
+                        <input
+                            type="text"
+                            placeholder="Search categories..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="input input-bordered w-full md:w-64 focus:border-[#41a28e]"
+                        />
+                        <button onClick={showAddModal} className="btn bg-[#41a28e] text-white border-none hover:bg-[#348e7b]">
+                            <FaPlus className="mr-2" /> Add Category
+                        </button>
+                    </div>
+                </div>
+
+                <div className=" border border-gray-100">
+                    <table className="table w-full">
+                        <thead className="bg-gray-50 text-gray-600">
+                            <tr>
+                                <th className="rounded-tl-xl">#</th>
+                                <th>Image</th>
+                                <th>Category Name</th>
+                                <th>Sub-Categories</th>
+                                <th>Total Products</th>
+                                <th className="text-center rounded-tr-xl">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredCategories?.length > 0 ? (
+                                filteredCategories.map((item, index) => {
+                                    const subCatCount = allSubCategorys?.filter(sc => sc?.selectedCategoryItem?._id === item._id).length;
+                                    const prodCount = allProducts?.filter(p => p?.categoryItem?._id === item._id).length;
+
+                                    return (
+                                        <tr key={item._id} className="hover:bg-gray-50 transition-colors">
+                                            <td className="font-medium text-gray-500">{index + 1}</td>
+                                            <td>
+                                                <img
+                                                    src={item.categoryImage}
+                                                    alt={item.categoryName}
+                                                    className="w-16 h-16 rounded-lg object-cover shadow-sm border border-gray-100"
+                                                />
+                                            </td>
+                                            <td>
+                                                <p className="font-bold text-gray-700 text-lg">{item.categoryName}</p>
+                                            </td>
+                                            <td>
+                                                <div className="badge badge-info gap-2 py-3 px-4 text-white text-xs font-semibold">
+                                                    {subCatCount} Sub-Cats
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div className="badge badge-success gap-2 py-3 px-4 text-white text-xs font-semibold">
+                                                    {prodCount} Products
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div className="flex justify-center gap-3">
+                                                    <button
+                                                        onClick={() => handleViewCategory(item)}
+                                                        className="btn btn-sm bg-[#41a28e] text-white hover:bg-black border-none px-4"
+                                                        title="View Details"
+                                                    >
+                                                        <FaEye />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => showEditModal(item)}
+                                                        className="btn btn-sm bg-[#D1A054] text-white hover:bg-black border-none px-4"
+                                                        title="Edit Category"
+                                                    >
+                                                        <FaEdit />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleDeleteCategory(item)}
+                                                        className="btn btn-sm bg-red-600 text-white hover:bg-black border-none px-4"
+                                                        title="Delete Category"
+                                                    >
+                                                        <FaTrashAlt />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            ) : (
+                                <tr>
+                                    <td colSpan="4" className="text-center py-10 text-gray-400 font-medium text-lg">
+                                        No categories found
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <div className=" border border-gray-100">
-                <table className="table w-full">
-                    <thead className="bg-gray-50 text-gray-600">
-                        <tr>
-                            <th className="rounded-tl-xl">#</th>
-                            <th>Image</th>
-                            <th>Category Name</th>
-                            <th>Sub-Categories</th>
-                            <th>Total Products</th>
-                            <th className="text-center rounded-tr-xl">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredCategories?.length > 0 ? (
-                            filteredCategories.map((item, index) => {
-                                const subCatCount = allSubCategorys?.filter(sc => sc?.selectedCategoryItem?._id === item._id).length;
-                                const prodCount = allProducts?.filter(p => p?.categoryItem?._id === item._id).length;
-
-                                return (
-                                    <tr key={item._id} className="hover:bg-gray-50 transition-colors">
-                                        <td className="font-medium text-gray-500">{index + 1}</td>
-                                        <td>
-                                            <img
-                                                src={item.categoryImage}
-                                                alt={item.categoryName}
-                                                className="w-16 h-16 rounded-lg object-cover shadow-sm border border-gray-100"
-                                            />
-                                        </td>
-                                        <td>
-                                            <p className="font-bold text-gray-700 text-lg">{item.categoryName}</p>
-                                        </td>
-                                        <td>
-                                            <div className="badge badge-info gap-2 py-3 px-4 text-white text-xs font-semibold">
-                                                {subCatCount} Sub-Cats
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="badge badge-success gap-2 py-3 px-4 text-white text-xs font-semibold">
-                                                {prodCount} Products
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="flex justify-center gap-3">
-                                                <button
-                                                    onClick={() => handleViewCategory(item)}
-                                                    className="btn btn-sm bg-[#41a28e] text-white hover:bg-black border-none px-4"
-                                                    title="View Details"
-                                                >
-                                                    <FaEye />
-                                                </button>
-                                                <button
-                                                    onClick={() => showEditModal(item)}
-                                                    className="btn btn-sm bg-[#D1A054] text-white hover:bg-black border-none px-4"
-                                                    title="Edit Category"
-                                                >
-                                                    <FaEdit />
-                                                </button>
-                                                <button
-                                                    onClick={() => handleDeleteCategory(item)}
-                                                    className="btn btn-sm bg-red-600 text-white hover:bg-black border-none px-4"
-                                                    title="Delete Category"
-                                                >
-                                                    <FaTrashAlt />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                );
-                            })
-                        ) : (
-                            <tr>
-                                <td colSpan="4" className="text-center py-10 text-gray-400 font-medium text-lg">
-                                    No categories found
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        </>
     );
 };
 

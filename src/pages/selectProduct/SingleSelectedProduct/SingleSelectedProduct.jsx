@@ -669,6 +669,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 import { AuthContext } from "../../../providers/AuthProvider";
 import emailjs from "@emailjs/browser";
+import { Helmet } from "react-helmet-async";
 
 // Sub-components
 import ProductImage from "./ProductImage";
@@ -897,59 +898,64 @@ const SingleSelectedProduct = () => {
   //////////////////////////////////
 
   return (
-    <div className=" mt-20">
-      <div className="w-full max-w-[1600px] mx-auto">
-        {/* 🔙 Back button */}
-        <div className="px-10 pb-3">
-          <button
-            className="flex items-center gap-1 bg-[#41a28e] text-white px-5 py-1 rounded-xl hover:bg-black"
-            onClick={() => navigate(-1)}
-          >
-            <IoIosArrowRoundBack className="text-2xl" /> Go Back
-          </button>
-        </div>
+    <>
+      <Helmet>
+        <title>Jidoka Sourcing | Single Selected Product</title>
+      </Helmet>
+      <div className=" mt-20">
+        <div className="w-full max-w-[1600px] mx-auto">
+          {/* 🔙 Back button */}
+          <div className="px-10 pb-3">
+            <button
+              className="flex items-center gap-1 bg-[#41a28e] text-white px-5 py-1 rounded-xl hover:bg-black"
+              onClick={() => navigate(-1)}
+            >
+              <IoIosArrowRoundBack className="text-2xl" /> Go Back
+            </button>
+          </div>
 
-        {/* 🖼️ Image + Details + Contact */}
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 xl:gap-15 px-4 md:px-10">
-          <ProductImage spData={spData} />
-          <div className="col-span-8 grid sm:grid-cols-12 gap-4">
-            <ProductDetails
-              spData={spData}
-              finalPrice={finalPrice}
-              addOrLessProduct={addOrLessProduct}
-              setAddOrLessProduct={setAddOrLessProduct}
-              handleAddToCart={handleAddToCart}
-              handleSizeSelect={setSizeSelect}
-              sizeSelect={sizeSelect}
-            />
-            <ProductContact
-              spData={spData}
-              user={user}
-              message={message}
-              setMessage={setMessage}
-              isSent={isSent}
-              handleContactSeller={handleContactSeller}
-              handleWhatsAppContact={handleWhatsAppContact}
+          {/* 🖼️ Image + Details + Contact */}
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 xl:gap-15 px-4 md:px-10">
+            <ProductImage spData={spData} />
+            <div className="xl:col-span-8 flex flex-col md:flex-row gap-8 w-full">
+              <ProductDetails
+                spData={spData}
+                finalPrice={finalPrice}
+                addOrLessProduct={addOrLessProduct}
+                setAddOrLessProduct={setAddOrLessProduct}
+                handleAddToCart={handleAddToCart}
+                handleSizeSelect={setSizeSelect}
+                sizeSelect={sizeSelect}
+              />
+              <ProductContact
+                spData={spData}
+                user={user}
+                message={message}
+                setMessage={setMessage}
+                isSent={isSent}
+                handleContactSeller={handleContactSeller}
+                handleWhatsAppContact={handleWhatsAppContact}
+              />
+            </div>
+          </div>
+
+          {/* 📑 Tabs */}
+          <div className="px-4 md:px-10">
+            <ProductTabs
+              activeTab={activeTab}
+              handleClick={setActiveTab}
+              moreDetlsInfo={moreDetlsInfo}
             />
           </div>
-        </div>
 
-        {/* 📑 Tabs */}
-        <div className="px-4 md:px-10">
-          <ProductTabs
-            activeTab={activeTab}
-            handleClick={setActiveTab}
-            moreDetlsInfo={moreDetlsInfo}
+          {/* 🔗 Related */}
+          <RelatedProducts
+            searchRelatedData={searchRelatedData}
+            spAllData={spAllData}
           />
         </div>
-
-        {/* 🔗 Related */}
-        <RelatedProducts
-          searchRelatedData={searchRelatedData}
-          spAllData={spAllData}
-        />
       </div>
-    </div>
+    </>
   );
 };
 

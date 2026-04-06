@@ -516,6 +516,7 @@ import { useParams } from "react-router";
 import useSubCategory from "../../../hooks/useSubCategory";
 import useProducts from "../../../hooks/useProducts";
 import AddSubCategoryProductForm from "./AddSubCategoryProductForm";
+import { Helmet } from "react-helmet-async";
 
 const AddSubCategoryProduct = () => {
   const { id } = useParams(); // Get subcategory ID from route
@@ -541,26 +542,31 @@ const AddSubCategoryProduct = () => {
   }, [allProducts, id]);
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow rounded-md">
-      <h2 className="text-2xl font-semibold mb-6 text-center">
-        Add Product Page
-      </h2>
-      <h6 className="py-5">
-        {" "}
-        Category / Sub-Category :{" "}
-        <b className=" text-lg text-blue-600 ">
-          {subCategorySelectItem?.selectedCategoryItem?.categoryName} /{" "}
-          {subCategorySelectItem?.subCategoryName}
-        </b>
-      </h6>
-      {subCategorySelectItem && (
-        <AddSubCategoryProductForm
-          allProducts={allProducts}
-          subCategorySelectItem={subCategorySelectItem}
-          subCatIdFiltaringProducts={subCatIdFiltaringProducts}
-        />
-      )}
-    </div>
+    <>
+      <Helmet>
+        <title>Jidoka Sourcing | Add Sub-Category Product</title>
+      </Helmet>
+      <div className="max-w-2xl mx-auto p-6 bg-white shadow rounded-md">
+        <h2 className="text-2xl font-semibold mb-6 text-center">
+          Add Product Page
+        </h2>
+        <h6 className="py-5">
+          {" "}
+          Category / Sub-Category :{" "}
+          <b className=" text-lg text-blue-600 ">
+            {subCategorySelectItem?.selectedCategoryItem?.categoryName} /{" "}
+            {subCategorySelectItem?.subCategoryName}
+          </b>
+        </h6>
+        {subCategorySelectItem && (
+          <AddSubCategoryProductForm
+            allProducts={allProducts}
+            subCategorySelectItem={subCategorySelectItem}
+            subCatIdFiltaringProducts={subCatIdFiltaringProducts}
+          />
+        )}
+      </div>
+    </>
   );
 };
 

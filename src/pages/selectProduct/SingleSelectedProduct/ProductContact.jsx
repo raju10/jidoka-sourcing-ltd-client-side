@@ -15,7 +15,7 @@ const ProductContact = ({
 }) => {
   return (
     <motion.div
-      className="col-span-12 md:col-span-6 mt-6 md:mt-0"
+      className="w-full md:w-1/2 mt-6 md:mt-0"
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1 }}

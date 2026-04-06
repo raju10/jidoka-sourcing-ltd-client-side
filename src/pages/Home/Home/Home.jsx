@@ -38,7 +38,7 @@ const Home = () => {
   return (
     <div className="">
       <Helmet>
-        <title>Jidoka-Ltd| Home</title>
+        <title>Jidoka Sourcing | Home</title>
       </Helmet>
       <div className="home snap-y snap-mandatory  ">
         {/* Hero: exactly full screen */}

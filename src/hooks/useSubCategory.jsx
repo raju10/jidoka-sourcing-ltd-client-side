@@ -6,17 +6,21 @@ const useSubCategory = () => {
 
   const refetch = () => setReload(!reload);
   //console.log(allCategorys);
-  //const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     fetch("https://jidoka-sourcing-ltd-server-side.vercel.app/subCategory")
       .then((res) => res.json())
       .then((data) => {
         setSubAllCategorys(data);
-        // setLoading(false);
+        setLoading(false);
       })
-      .catch((err) => console.log("Error loading JSON:", err));
+      .catch((err) => {
+        console.log("Error loading JSON:", err);
+        setLoading(false);
+      });
   }, [reload]); // Reload when this trigger changes
-  return [allSubCategorys, refetch];
+  return [allSubCategorys, refetch, loading];
 };
 
 export default useSubCategory;

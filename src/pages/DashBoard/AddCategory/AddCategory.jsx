@@ -3,6 +3,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { Link, useNavigate } from "react-router";
 import useCategory from "../../../hooks/useCategory";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
@@ -100,58 +101,63 @@ const AddCategory = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full">
-      <div className="w-xl  p-8 rounded-xl border">
-        <form onSubmit={handleSubmit(onSubmit)} className="">
-          <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-            Category Add
-          </h2>
+    <>
+      <Helmet>
+        <title>Jidoka Sourcing | Add Category</title>
+      </Helmet>
+      <div className="flex justify-center items-center h-full">
+        <div className="w-xl  p-8 rounded-xl border">
+          <form onSubmit={handleSubmit(onSubmit)} className="">
+            <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+              Category Add
+            </h2>
 
-          {/* Category Name Field */}
-          <div className="mb-6">
-            <label className="block mb-1 text-gray-700">Category Name</label>
+            {/* Category Name Field */}
+            <div className="mb-6">
+              <label className="block mb-1 text-gray-700">Category Name</label>
+              <input
+                type="text"
+                {...register("categoryName", {
+                  required: "categoryName is required",
+                })}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="Enter your Category Name"
+              />
+              {errors.categoryName && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.categoryName.message}
+                </p>
+              )}
+            </div>
+
+            {/* Category img Field */}
+            <div className="mb-6">
+              <label className="block mb-1 text-gray-700">Category Image</label>
+              <input
+                type="file"
+                {...register("categoryImage", { required: true })}
+                className="mb-2 file-input file-input-ghost"
+              />
+              {errors.categoryImage && (
+                <span className="text-red-500 text-sm block">
+                  Please upload a file
+                </span>
+              )}
+            </div>
+
+            {/* submit btn */}
+            {/* <Link to={`/dashboard/addSubCategory/${creacteCategoryId}`}> */}
             <input
-              type="text"
-              {...register("categoryName", {
-                required: "categoryName is required",
-              })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your Category Name"
+              type="submit"
+              disabled={isSubmitting}
+              value={isSubmitting ? "Submitting..." : "Add Category"}
+              className="w-full btn bg-blue-500 mt-4 text-white hover:bg-blue-600 font-semibold"
             />
-            {errors.categoryName && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.categoryName.message}
-              </p>
-            )}
-          </div>
-
-          {/* Category img Field */}
-          <div className="mb-6">
-            <label className="block mb-1 text-gray-700">Category Image</label>
-            <input
-              type="file"
-              {...register("categoryImage", { required: true })}
-              className="mb-2 file-input file-input-ghost"
-            />
-            {errors.categoryImage && (
-              <span className="text-red-500 text-sm block">
-                Please upload a file
-              </span>
-            )}
-          </div>
-
-          {/* submit btn */}
-          {/* <Link to={`/dashboard/addSubCategory/${creacteCategoryId}`}> */}
-          <input
-            type="submit"
-            disabled={isSubmitting}
-            value={isSubmitting ? "Submitting..." : "Add Category"}
-            className="w-full btn bg-blue-500 mt-4 text-white hover:bg-blue-600 font-semibold"
-          />
-          {/* </Link> */}
-        </form>
+            {/* </Link> */}
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
